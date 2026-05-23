@@ -9,10 +9,10 @@ All meeting:
 
 
 09-oct-2025
-09-oct-2025 (Damien x Rakesh)
+09-oct-2025 (Alice x Ben)
 
 
-Attendees: Damien HUZARD, Rakesh Beedasy, Damien HUZARD
+Attendees: Alice Fontaine, Ben Okafor, Alice Fontaine
 Overview
 
 
@@ -21,21 +21,21 @@ The meeting focused on refining the technical roadmap and optimizing the cloud i
 Key Takeaways
  
 * The team decided to defer addressing ClickUp’s storage limitations immediately, prioritizing the MVP roadmap instead.
-* They agreed to reevaluate Keycloak for authentication due to potential high cloud costs and maintenance challenges, with a follow-up discussion planned with Laurent.
+* They agreed to reevaluate Keycloak for authentication due to potential high cloud costs and maintenance challenges, with a follow-up discussion planned with Chris.
 * A more robust CI/CD pipeline was confirmed as essential to ensure smooth and automatic cloud deployments.
-* The importance of finalizing a catchy, SEO-friendly product name (e.g., ontofair) was underlined to unify both the startup and product branding.
+* The importance of finalizing a catchy, SEO-friendly product name (e.g., metaplatform) was underlined to unify both the startup and product branding.
 * The team planned to establish separate production and staging environments on Google Cloud once the product naming is finalized.
  
 Next Steps
  
-* Rakesh: Prepare Terraform scripts for deploying a minimal, auto-scaling database and metadata app service with idle shutdown.
-* Rakesh: Compile a concise list of technical questions regarding the repository and Keycloak integration to discuss with Laurent.
-* Damien: Follow up with user feedback on the pitch website content and adjust design elements accordingly.
-* Damien: Create two separate Google Cloud projects for production and staging after the product name is finalized.
+* Ben: Prepare Terraform scripts for deploying a minimal, auto-scaling database and metadata app service with idle shutdown.
+* Ben: Compile a concise list of technical questions regarding the repository and Keycloak integration to discuss with Chris.
+* Alice: Follow up with user feedback on the pitch website content and adjust design elements accordingly.
+* Alice: Create two separate Google Cloud projects for production and staging after the product name is finalized.
 * To be Assigned: Schedule the follow-up meeting for next Thursday at 9:30 AM and set it as a recurring event.
 Key Topics
 * Discussion on ClickUp Limitations Problem
-   * Rakesh noted that ClickUp’s free version has storage constraints (e.g., 100 MB limit, with current usage at 23 MB) which might affect long-term workflow and data management.
+   * Ben noted that ClickUp’s free version has storage constraints (e.g., 100 MB limit, with current usage at 23 MB) which might affect long-term workflow and data management.
    * They agreed not to spend too much time resolving ClickUp’s space issues immediately, deciding instead to focus on the broader roadmap and MVP features.
 * Cloud Infrastructure and Cost Management Strategy Update
    * The team discussed strategies to use Google Cloud cost-effectively by leveraging Cloud Run's auto-scaling and a minimal database that shuts down when idle.
@@ -43,10 +43,10 @@ Key Topics
    * There was an agreement to deploy services in a way that minimizes idle resource usage and cloud expenses.
 * Evaluation of Keycloak for Authentication Decision
    * Participants evaluated Keycloak’s benefits and drawbacks, noting that while it supports various authentication protocols (like SAML), it requires continuous running and is heavier to maintain.
-   * They discussed the possibility of using a lightweight alternative for an MVP, with the decision to revisit the approach with Laurent's expertise.
-   * It was agreed that a detailed discussion with Laurent is needed to finalize the authentication strategy.
+   * They discussed the possibility of using a lightweight alternative for an MVP, with the decision to revisit the approach with Chris's expertise.
+   * It was agreed that a detailed discussion with Chris is needed to finalize the authentication strategy.
 * Deployment Process and CI/CD Pipeline Enhancements Update
-   * Rakesh described progress in preparing Terraform scripts for deployment, including setting up a minimal PostgreSQL instance and hosting the metadata app on Cloud Run.
+   * Ben described progress in preparing Terraform scripts for deployment, including setting up a minimal PostgreSQL instance and hosting the metadata app on Cloud Run.
    * The importance of a smooth CI/CD pipeline was underlined, with discussions on automatic deployments from the main branch and the potential use of integration testing frameworks (e.g., PHPUnit and possibly Playwright for front-end tests).
    * Both participants emphasized the need for a stable pipeline to facilitate rapid updates to production.
 * Website Content, SEO, and UI/UX Improvements Update
@@ -54,16 +54,16 @@ Key Topics
    * Feedback included the importance of clear messaging regarding data management benefits and the integration of keywords for improved SEO.
    * Color scheme discussions emerged, with mentions of using blue, red, and teal to create a balanced and professional aesthetic.
 * Product Naming and Branding Strategy Decision
-   * There was an in-depth discussion on potential product and company names, with names like 'autofair' and 'ontofair' being considered for their catchiness, ease of remembrance, and SEO potential.
+   * There was an in-depth discussion on potential product and company names, with names like 'metaplatform' and 'metaplatform' being considered for their catchiness, ease of remembrance, and SEO potential.
    * The team reflected on the importance of having one unified name for both the startup and the product to avoid confusion in marketing and branding.
    * Feedback from surrounding peers was considered important for finalizing the decision.
 * Environment Setup and Roadmap for MVP Demo Decision
-   * Rakesh planned to create separate Google Cloud projects for production and staging (e.g., 'ontoFair Prod' and 'ontoFair Stage') to ensure safe testing and deployment.
-   * The team agreed to prepare a concise list of questions for Laurent regarding repository and Keycloak integration issues, aiming to improve the development roadmap.
+   * Ben planned to create separate Google Cloud projects for production and staging (e.g., 'MetaPlatform Prod' and 'MetaPlatform Stage') to ensure safe testing and deployment.
+   * The team agreed to prepare a concise list of questions for Chris regarding repository and Keycloak integration issues, aiming to improve the development roadmap.
    * Overall, the focus was on launching a stable MVP demo and iterating on features based on feedback.
 * Scheduling and Next Steps
-   * A follow-up meeting was scheduled for next week at 9:30 AM to finalize product naming, refine deployment processes, and address feedback from Laurent.
-   * Both Rakesh and Damien committed to sending follow-up emails and preparing action items to ensure progress on infrastructure deployment, CI/CD improvements, and authentication strategy.
+   * A follow-up meeting was scheduled for next week at 9:30 AM to finalize product naming, refine deployment processes, and address feedback from Chris.
+   * Both Ben and Alice committed to sending follow-up emails and preparing action items to ensure progress on infrastructure deployment, CI/CD improvements, and authentication strategy.
  
 * Transcript
 
@@ -96,7 +96,7 @@ Clickup Todo Lists
 
 14-10-25 CR meeting (LH)
 Compte rendu de la réunion du 2025-10-14
-Présents: Laurent, Rakesh
+Présents: Chris, Ben
 
 
 Sujet: 
@@ -111,7 +111,7 @@ Décision: On n’utilise plus Keycloack
 Il faut implémenter une authentification.
 Point de vigilance pour le front qui utilise actuellement, Keycloack actuellement
 En premier temps on peut mettre en dur, mocker l’auth.
-Acteur: Rakesh
+Acteur: Ben
 
 
 Connected apps
@@ -125,8 +125,8 @@ On utilise un “cron”, “schedules” dans une cloud function.
 
 
 Acteur 
-Laurent: Refactoring archi
-Rakesh: Création de la cloud function de synchroniation
+Chris: Refactoring archi
+Ben: Création de la cloud function de synchroniation
 
 
 Roadmap
@@ -136,19 +136,19 @@ Milestones 2
 Connected Apps
 
 
-* Elabftw (Rakesh+Laurent)
-* SoftMouse (Laurent)
-* Fair3R (Laurent)
-* ORCID (Rakesh)
-* ROR (Rakesh)
-* OSF (Rakesh)
+* Elabftw (Ben+Chris)
+* SoftMouse (Chris)
+* Fair3R (Chris)
+* ORCID (Ben)
+* ROR (Ben)
+* OSF (Ben)
 Milestones 3:
 Authentication ORCID (à valider le besoin car on peut utiliser l’api pour les données publiques des users)
 Milestones 4
 Frontend
 
 
-Question à Damien:
+Question à Alice:
 * Faut-il vraiment implémenter l’authentification ORCID ? On peut utiliser l’API de l’ORCID pour récupérer les informations des utilisateurs.Cela implique que les utilisateurs renseignent leur ID ORCID
 * Quels sont les features que l’on peut enlever de la démo (voir ce qui est surligné dans la partie document de support à la réunion)
 * 
@@ -257,7 +257,7 @@ Tasks for Meeting
 * What’s the deadline?
 
 
-Damien suggested end of november, is it realistic
+Alice suggested end of november, is it realistic
 
 
 To move efficiently, I suggest reviewing what I’ve done so far following this plan:
@@ -267,7 +267,7 @@ ________________
 
 
 🔐 Authentication
-Owner: Rakesh
+Owner: Ben
 
 
 I propose using a fake authentication for the POC.
@@ -282,7 +282,7 @@ We will not use the login flow — only the APIs, as connected apps, to fetch us
 → Implemented as repositories (check different options to use external apps with API Platform).
 No persistence or data sent from our side is needed.
 4.5 ORCID Auth
-Owner: Rakesh
+Owner: Ben
 Goals:
 
 
@@ -295,7 +295,7 @@ Goals:
 * Explore linking ORCID ↔ ROR (institutional metadata).
 (If Keycloak handles the entire flow, the process will be simplified.)
 4.6 ROR (Research Organization Registry)
-Owner: Rakesh
+Owner: Ben
 Goals:
 
 
@@ -348,7 +348,7 @@ ________________
 Soft Mouse
 
 
-Owner: Laurent
+Owner: Chris
 Goals:
 
 
@@ -370,7 +370,7 @@ Goals:
    * or reuse of LIMSpeed.
 
 
-Laurent’s proposal:
+Chris’s proposal:
 Use the real app for the POC.
 
 
@@ -380,7 +380,7 @@ Use the real app for the POC.
 To clarify:
 
 
-   * Do we need screenshots for the demo to help devs interact with the real SoftMouse? → (Damien unclear about this)
+   * Do we need screenshots for the demo to help devs interact with the real SoftMouse? → (Alice unclear about this)
 
 
    * Define a sync method (manual, scheduled, state-based, etc.).
@@ -393,7 +393,7 @@ ________________
 
 
 🧬 Fair3R
-Owner: Laurent
+Owner: Chris
 Goals:
 
 
@@ -407,8 +407,8 @@ ________________
 
 
 🧩 OSF (Open Science Framework)
-Owner: Rakesh
-Support: Laurent
+Owner: Ben
+Support: Chris
 Goals:
 
 
@@ -425,17 +425,17 @@ ________________
 
 
 ⚙️ ElabFTW
-Owners: Rakesh & Laurent
+Owners: Ben & Chris
 Tasks:
 
 
-   * Deploy on GCloud Run: Rakesh
+   * Deploy on GCloud Run: Ben
 
 
-   * Complete PHP client: Laurent
+   * Complete PHP client: Chris
 
 
-   * Mapping & Sync: Rakesh & Laurent
+   * Mapping & Sync: Ben & Chris
 
 
 Goals:
@@ -457,7 +457,7 @@ ________________
 
 
 💻 New Frontend
-Owner: Rakesh
+Owner: Ben
 Goals:
 
 
@@ -468,7 +468,7 @@ ________________
 
 
 📚 Documentation (Before the Demo)
-Owner: Laurent
+Owner: Chris
 
 
 Deliverables:
@@ -500,7 +500,7 @@ Data Flow Documentation
 
 
 Note du 2025-10-15
-Par Laurent.
+Par Chris.
 
 
 Documentation:
@@ -514,7 +514,7 @@ La documentation existante couvre aussi de nombreux autres sujets
 Question:
 Quels sont les sujets manquants ?
 Compte rendu de la réunion du 2025-10-14
-Présents: Laurent, Rakesh
+Présents: Chris, Ben
 
 
 Sujet: 
@@ -529,7 +529,7 @@ Décision: On n’utilise plus Keycloack
 Il faut implémenter une authentification.
 Point de vigilance pour le front qui utilise actuellement, Keycloack actuellement
 En premier temps on peut mettre en dur, mocker l’auth.
-Acteur: Rakesh
+Acteur: Ben
 
 
 Connected apps
@@ -543,8 +543,8 @@ On utilise un “cron”, “schedules” dans une cloud function.
 
 
 Acteur 
-Laurent: Refactoring archi
-Rakesh: Création de la cloud function de synchroniation
+Chris: Refactoring archi
+Ben: Création de la cloud function de synchroniation
 
 
 Roadmap
@@ -554,19 +554,19 @@ Milestones 2
 Connected Apps
 
 
-   * Elabftw (Rakesh+Laurent)
-   * SoftMouse (Laurent)
-   * Fair3R (Laurent)
-   * ORCID (Rakesh)
-   * ROR (Rakesh)
-   * OSF (Rakesh)
+   * Elabftw (Ben+Chris)
+   * SoftMouse (Chris)
+   * Fair3R (Chris)
+   * ORCID (Ben)
+   * ROR (Ben)
+   * OSF (Ben)
 Milestones 3:
 Authentication ORCID (à valider le besoin car on peut utiliser l’api pour les données publiques des users)
 Milestones 4
 Frontend
 
 
-Question à Damien:
+Question à Alice:
    * Faut-il vraiment implémenter l’authentification ORCID ? On peut utiliser l’API de l’ORCID pour récupérer les informations des utilisateurs.Cela implique que les utilisateurs renseignent leur ID ORCID
    * Quels sont les features que l’on peut enlever de la démo (voir ce qui est surligné dans la partie document de support à la réunion)
    * 
@@ -675,7 +675,7 @@ Tasks for Meeting
    * What’s the deadline?
 
 
-Damien suggested end of november, is it realistic
+Alice suggested end of november, is it realistic
 
 
 To move efficiently, I suggest reviewing what I’ve done so far following this plan:
@@ -685,7 +685,7 @@ ________________
 
 
 🔐 Authentication
-Owner: Rakesh
+Owner: Ben
 
 
 I propose using a fake authentication for the POC.
@@ -700,7 +700,7 @@ We will not use the login flow — only the APIs, as connected apps, to fetch us
 → Implemented as repositories (check different options to use external apps with API Platform).
 No persistence or data sent from our side is needed.
 4.5 ORCID Auth
-Owner: Rakesh
+Owner: Ben
 Goals:
 
 
@@ -713,7 +713,7 @@ Goals:
    * Explore linking ORCID ↔ ROR (institutional metadata).
 (If Keycloak handles the entire flow, the process will be simplified.)
 4.6 ROR (Research Organization Registry)
-Owner: Rakesh
+Owner: Ben
 Goals:
 
 
@@ -766,7 +766,7 @@ ________________
 Soft Mouse
 
 
-Owner: Laurent
+Owner: Chris
 Goals:
 
 
@@ -788,7 +788,7 @@ Goals:
       * or reuse of LIMSpeed.
 
 
-Laurent’s proposal:
+Chris’s proposal:
 Use the real app for the POC.
 
 
@@ -798,7 +798,7 @@ Use the real app for the POC.
 To clarify:
 
 
-      * Do we need screenshots for the demo to help devs interact with the real SoftMouse? → (Damien unclear about this)
+      * Do we need screenshots for the demo to help devs interact with the real SoftMouse? → (Alice unclear about this)
 
 
       * Define a sync method (manual, scheduled, state-based, etc.).
@@ -811,7 +811,7 @@ ________________
 
 
 🧬 Fair3R
-Owner: Laurent
+Owner: Chris
 Goals:
 
 
@@ -825,8 +825,8 @@ ________________
 
 
 🧩 OSF (Open Science Framework)
-Owner: Rakesh
-Support: Laurent
+Owner: Ben
+Support: Chris
 Goals:
 
 
@@ -843,17 +843,17 @@ ________________
 
 
 ⚙️ ElabFTW
-Owners: Rakesh & Laurent
+Owners: Ben & Chris
 Tasks:
 
 
-      * Deploy on GCloud Run: Rakesh
+      * Deploy on GCloud Run: Ben
 
 
-      * Complete PHP client: Laurent
+      * Complete PHP client: Chris
 
 
-      * Mapping & Sync: Rakesh & Laurent
+      * Mapping & Sync: Ben & Chris
 
 
 Goals:
@@ -875,7 +875,7 @@ ________________
 
 
 💻 New Frontend
-Owner: Rakesh
+Owner: Ben
 Goals:
 
 
@@ -886,7 +886,7 @@ ________________
 
 
 📚 Documentation (Before the Demo)
-Owner: Laurent
+Owner: Chris
 
 
 Deliverables:
@@ -918,7 +918,7 @@ Data Flow Documentation
 
 
 Note du 2025-10-15
-Par Laurent.
+Par Chris.
 
 
 Documentation:
@@ -943,8 +943,8 @@ Development will focus on:
       * Integrating and documenting a few Connected Apps (ElabFTW, SoftMouse, Fair3R, OSF, ORCID, ROR).
       * Simplifying the architecture by removing unnecessary generic or asynchronous layers (Messenger, Scheduler, Mercure).
       * Producing a stable MVP demo before the end of November 2025.
-Laurent will progressively phase out of active development after completing his final tasks and documentation.
-Rakesh assumes full technical leadership and integration responsibility.
+Chris will progressively phase out of active development after completing his final tasks and documentation.
+Ben assumes full technical leadership and integration responsibility.
 ________________
 
 
@@ -954,15 +954,15 @@ Strategic Decisions
       * Replace with a simple local authentication system (two roles: user, admin).
       * For the demo: hardcoded or mocked auth flow acceptable.
       * Future versions may reintegrate ORCID-based OAuth if needed.
-[Damien] Keep a Keycloak branch safe for later reintegration !!
-[Damien] Will be discussed during API Platform Audit
+[Alice] Keep a Keycloak branch safe for later reintegration !!
+[Alice] Will be discussed during API Platform Audit
       2. Connected Apps Architecture
       * Remove generic and asynchronous layers (Messenger, Scheduler).
       * Replace with direct integrations per app.
       * Use manual sync or Cloud Function triggers instead of Symfony schedulers.
       * Each connected app handled independently to simplify maintenance.
-[Damien] Keep a Messenger, Scheduler branch safe for later reintegration !!
-[Damien] Will be discussed during API Platform Audit
+[Alice] Keep a Messenger, Scheduler branch safe for later reintegration !!
+[Alice] Will be discussed during API Platform Audit
       3. Data Synchronization
       * Synchronization will be triggered on demand or scheduled externally (via GCP Cloud Functions).
       * Future versions may include event-based sync once MVP is stable.
@@ -973,11 +973,11 @@ Strategic Decisions
          * Focus: Connected Apps, data flow, and API key management.
 
             5. Milestones
-            * Milestone 1: GCP deployment with new authentication (Rakesh).
-            * [Damien] Deadline needed
+            * Milestone 1: GCP deployment with new authentication (Ben).
+            * [Alice] Deadline needed
             * Milestone 2: Connected Apps integration (ElabFTW, SoftMouse, Fair3R, OSF, ORCID, ROR).
             * Milestone 3: Optional ORCID authentication (depending on feasibility and need).
-            * [Damien] I do think it is a nice feature to have, but indeed not urgently
+            * [Alice] I do think it is a nice feature to have, but indeed not urgently
             * Milestone 4: Frontend refactoring and polishing for demo.
 ________________
 
@@ -990,83 +990,83 @@ Deadline
 	DONE ?
 	Oct 25
 	Implement simple authentication (2 roles)
-	Rakesh
+	Ben
 	Replace Keycloak; can be mocked initially
 	YES
 	Deploy current version to GCP (Cloud Run + DB)
-	Rakesh
+	Ben
 	MVP-ready deployment
 	Ongoing (delay: making Deployment ‘live’ compatible)
 for Nov 21
 	Oct  30
 	Integrate ORCID and ROR APIs (read-only)
-	Rakesh
+	Ben
 	Only public data fetching, no login flow
 	
 
 	Oct 30
 	Clean & simplify Connected Apps architecture
-	Laurent
+	Chris
 	Remove Messenger, scheduler, generic layers
 	For Nov 5
 	Oct 30
 	Home page website
-	Damien
+	Alice
 	
 
 	Done
 	Nov 10
 	Review + Create Cloud Function for data sync
-	Rakesh
+	Ben
 	Replace Symfony scheduler
 	
 
 	Nov 10
 	Contact form for early-demo
-	Damien
+	Alice
 	
 
 	
 
 	Nov 5
 	Finalize “Connected Apps” documentation
-	Laurent
+	Chris
 	Include mapping, auth, API keys, flow diagrams
 	
 
 	Nov 20
 	Implement OSF connection (mock OK)
-	Rakesh + Laurent
+	Ben + Chris
 	Use Symfony HttpClient
 	
 
 	Nov 20
 	Website more pages and tabs completed
-	Damien
+	Alice
 	
 
 	Nav bar ok
 	Nov 25
 	Finalize ElabFTW client + sync
-	Rakesh + Laurent
+	Ben + Chris
 	Ensure metadata mapping works
 	
 
 	Nov 30
 	Finalize Fair3R integration
-	Laurent
+	Chris
 	Real app, no mock
 	
 
 	Nov 30
 	Frontend V2 setup & connection with backend
-	Rakesh 
+	Ben 
 	Must reflect new auth and API routes
 	
 
 	Dec 05
 	Complete SoftMouse integration
-	Laurent
+	Chris
 	Use real app for demo
 	
 
@@ -1081,22 +1081,22 @@ for Nov 21
 
 Comments & Observations
 On technical direction:
-Laurent acknowledges that Rakesh has taken strong ownership of the project and brings professional energy. 
-Laurent's concern lies in skipping review of existing code (Messenger, Scheduler, etc.) which may still offer long-term scalability. 
-[Damien] Let’s document rationale for each simplification to preserve future flexibility. And let’s keep all ‘removed code’ in some safe specific branches. Everything will be raised and specifically asked during the API Platform audit, coming ASAP (after MVP is deployed).
+Chris acknowledges that Ben has taken strong ownership of the project and brings professional energy. 
+Chris's concern lies in skipping review of existing code (Messenger, Scheduler, etc.) which may still offer long-term scalability. 
+[Alice] Let’s document rationale for each simplification to preserve future flexibility. And let’s keep all ‘removed code’ in some safe specific branches. Everything will be raised and specifically asked during the API Platform audit, coming ASAP (after MVP is deployed).
 On architecture simplification:
 Removing generic interfaces and async processes makes sense for a rapid MVP. However, the modular approach (one connector per app) should keep an eye on future extensibility when dozens of apps are added later.
-[Damien] Depending on clients (Pharma) this might become critical, they might have a lot of Apps to sync and a lot of users as well! (hopefully we’ll know more by the end of the year)
+[Alice] Depending on clients (Pharma) this might become critical, they might have a lot of Apps to sync and a lot of users as well! (hopefully we’ll know more by the end of the year)
 On deadlines:
-[Damien] let’s be sure we can REALISTICALLY reach the deadlines. I would like exact timings and bi-weekly reporting on what is done and what is left to be done on each subtasks.
+[Alice] let’s be sure we can REALISTICALLY reach the deadlines. I would like exact timings and bi-weekly reporting on what is done and what is left to be done on each subtasks.
 On ORCID integration:
 Decision pending. ORCID login may not be needed now; API calls for user and institutional data suffice. Implement full OAuth only once user management and persistence layers are stable.
 
-[Damien] Institutional data are from the ROR, not Orcid. Orcid is a personal ID + scientific CV
-[Damien] Orcid will be required for login, I truly believe in this feature and promotion of Orcid as a way to connect to their scientific ecosystem (in academic settings), in industry no Orcid login needed. Ex: Orcid is already used for login in OSF, we need this feature to make better Open Science accessibility and to push forward one unique ID for persons. It is a strategic decision I made long ago, no coming back on this.
+[Alice] Institutional data are from the ROR, not Orcid. Orcid is a personal ID + scientific CV
+[Alice] Orcid will be required for login, I truly believe in this feature and promotion of Orcid as a way to connect to their scientific ecosystem (in academic settings), in industry no Orcid login needed. Ex: Orcid is already used for login in OSF, we need this feature to make better Open Science accessibility and to push forward one unique ID for persons. It is a strategic decision I made long ago, no coming back on this.
 On documentation:
-Laurent’s wiki and README files are valuable and should not be discarded. They contain scalable foundations (Messenger system, Scheduler) that may become relevant for future MAPP v2 or OntoFAIR federated architecture.
-[Damien] Laurent HuzardCan you add a [API P Audit] Tag in the doc concerning some of those aspects that would be great to have feedbacks on?
+Chris’s wiki and README files are valuable and should not be discarded. They contain scalable foundations (Messenger system, Scheduler) that may become relevant for future MAPP v2 or OntoFAIR federated architecture.
+[Alice] Can you add a [API P Audit] Tag in the doc concerning some of those aspects that would be great to have feedbacks on?
 ________________
 
 
@@ -1112,14 +1112,14 @@ ________________
 
 Next Steps
             1. Weekly alignment report to track progress per milestone.
-            1. Rakesh + Done Sync on thursday
-            2. Asynch for Laurent
+            1. Ben + Done Sync on thursday
+            2. Asynch for Chris
             3. Check boxes in the table
-            2. [for Damien] Prepare a Contact form for early-demo
+            2. [for Alice] Prepare a Contact form for early-demo
             1. Pitch website => Contact form
             2. Embed a contact form to be Early Demo ?!
             1. + Ask quick question feedback
-            3. [Damien] PITCH WEBSITE HOME PAGE REDONE
+            3. [Alice] PITCH WEBSITE HOME PAGE REDONE
             4. Clean Github Issues and start from scratch for this (not using ClickUp ?)
             5. Ensure proper cloud resource documentation (GCP deployment parameters, env vars, Cloud Function configuration).
             6. One team sync mid-December to validate MVP readiness
@@ -1145,22 +1145,22 @@ Define tasks!
             * MAPP better to use overall
             * Vizualisation of the entire schema of the selected entities
             * Calendar/stock/booking system (From React-Admin Business)
-            * LIMS (LIMSpeed from Laurent?)
+            * LIMS (LIMSpeed from Chris?)
 
 
 13-nov-2025 (HD, FD, RB)
 13-nov-2025 (HD, FD, RB)
 MAPP Project Meeting Summary  🚀 
 Context
-On November 13, 2025, Damien HUZARD, Frédéric Deverre, and Rakesh Beedasy met to discuss the MAPP (Metadata Application Platform Project) startup development, focusing on MVP progress, business planning, and team collaboration.
+On November 13, 2025, Alice Fontaine, Frédéric Deverre, and Ben Okafor met to discuss the MAPP (Metadata Application Platform Project) startup development, focusing on MVP progress, business planning, and team collaboration.
 Key Participants  👥 
-            * Damien HUZARD: Project Lead
+            * Alice Fontaine: Project Lead
             * Frédéric Deverre: New Team Member
-            * Rakesh Beedasy: Technical Lead
+            * Ben Okafor: Technical Lead
 Action Items  📋 
 Immediate Priorities
-            1. Rakesh: Complete deployment of the MVP platform by December 15th
-            2. Damien: Prepare 15-20 slide presentation for December 2nd
+            1. Ben: Complete deployment of the MVP platform by December 15th
+            2. Alice: Prepare 15-20 slide presentation for December 2nd
             3. Team: Develop preliminary business plan sections
             4. Frédéric: Assist with market research and business strategy
 MVP Development Status  💻 
@@ -1207,15 +1207,15 @@ Key Challenges  🚧
             * Balancing technical development with business strategy / Switch focus from IT design to product development
             * Navigating complex research software ecosystem
 Personal Motivations  💭 
-            * Rakesh: Desire to build a product from scratch
-            * Damien: Create a solution that reduces animal research
+            * Ben: Desire to build a product from scratch
+            * Alice: Create a solution that reduces animal research
             * Frédéric: Support startup growth and strategic development
 Conclusion  🌟 
 The team is aligned on creating an innovative metadata platform for research, with a clear focus on deployment, regulatory compliance, and potential market impact. Time is short but we can make it!  😉 
 
 
 10-12-25 Tecniplast discussion
-10-12-25, Tecniplast discussion, Fred-Damien
+10-12-25, Tecniplast discussion, Fred-Alice
 
 
 
@@ -1231,7 +1231,7 @@ Techniplast situation
             * The worldwide market of cages in Europe and in the US is stable or declining, growing in China with a trend in superlabs (>120,000 cages in one institute) using automation and digital solutions.
             * The main US competitor of connected cages is Allentown (Discovery IVC, imaging+IA), also promoted as JAX Envision, a collaboration between the NPO Jackson Laboratory and Allentown. As released in late 2024 the JAX Envision/Discovery IVC installed base is likely still small ( a few thousands).
             * Tecniplast Group represents 250M€ yearly revenues through 3 divisions: pharma business (IWT), Lab business (Tecnilabo) and LAS/laboratory Animal Systems (through Tecniplast SpA), which represents ~107M€ (2024). The Tecniplast group has an active track record of acquisitions (BioAir in 2021, Labosystem and KW in 2023), seeking transformation and expansion in biomedical, hospital, and pharmaceutical research.
-            * The interest of Tecniplast in advanced digital features is proven by Damien’s current consultancy missions.  
+            * The interest of Tecniplast in advanced digital features is proven by Alice’s current consultancy missions.  
 Terms of collaboration
             * A partnership towards a combined ‘DVC+MAAP’ solution with unique features intended for the US and European markets would support Tecniplast’s efforts to convert their installed base of passive cages towards DVC ones and fight back the recent competition of JAX Envision in the US, and open a broad market of users to MAAP and accelerate our awareness and business growth.
             * We could propose a co-development agreement where MAAP and Tecniplast collaborate on features missing in DVC to outrace JAX Envision:
@@ -1258,7 +1258,7 @@ Fred
             * + Faire BP (sur MBP ?)
 
 
-Damien
+Alice
             * Apports actifs?
             * email valorisation: early stage tps passé + logiciel pour le céder à l’entreprise ?
             * PI:
@@ -1292,7 +1292,7 @@ Topics:
             * but the list would be super interesting!
             * BP
             * [FRED] Relire doc 251105 Analyse BP V1.docx
-            * [Damien] Relire BP
+            * [Alice] Relire BP
             * Contacter Jubéa + BTD Consulting
             * Nouvelle Orga Drive + Chat
             * fonds Investisseurs
@@ -1364,9 +1364,9 @@ milestones, WPs
 
 
 
-Mar 30, 2026 | Point hebdo Damien-Fred
-Mar 30, 2026 | Point hebdo Damien-Fred
-Attendees: Damien HUZARD
+Mar 30, 2026 | Point hebdo Alice-Fred
+Mar 30, 2026 | Point hebdo Alice-Fred
+Attendees: Alice Fontaine
 
 
 Notes
@@ -1490,7 +1490,7 @@ Tecniplast
 
 
 Symposium at IGF, 27-11-25 
-Damien Notes
+Alice Notes
 1. New Features to Integrate in MAPP / Metadatapp
 These systems were confirmed to be in use at IGF and must be added to the features list:
                                                       * DVC Running Wheels (Techniplast) — installed at IGF.
@@ -1652,7 +1652,7 @@ INM Saint-Éloi – Claire Naon
 
                                                                                                                               * Usage d’amphétamine (ex. TDAH), suivi activité.
 
-Discussion – Damien & P.-F. Mery
+Discussion – Alice & P.-F. Mery
                                                                                                                                  * Seulement 1 expérimentation sur 5 est reproductible.
 
                                                                                                                                  * Suggestion : corréler métadonnées + données pour détecter les déviations & aider les chercheurs.
@@ -1760,10 +1760,10 @@ Giorgio, 22/01/26
 Giorgio, Tecniplast, 22/01/26
 
 
-Discussion with Giorgio & Damien
+Discussion with Giorgio & Alice
 
 
-Customer are still discovering the power of the data, Giorgio has invited Damien to come and discuss. Meet the Technical team, the business group, and the Board of Tecniplast.
+Customer are still discovering the power of the data, Giorgio has invited Alice to come and discuss. Meet the Technical team, the business group, and the Board of Tecniplast.
 NAMs are very strategic for them, they want to be able to disseminate outcomes of DVC.
 He sees multiple deliverables and achievable goals within the same project. They want to do the Metadatapp project with us, we have an important piece they miss, they miss metadata, and they don't want to do it themselves, it is very convenient for them to find a partner who does it. DVC is the 1st step, it will be complemented with sensors, cameras, there is more and more to come.
  
@@ -1963,13 +1963,13 @@ Présentation, sans relance, dans un coin de tête. Avancer sur 2026.
 Ils sont confrontés à 1. l'accessibilité des données et du réseau chez eux, 2. solutions choisies pour une certaine population, pas pour l'ensemble du groupe, si elle essaie pour 10 personnes, pas de poids pour que les équipes digitales acceptent, 3. pour dérisquer leurs choix, ils ne peuvent pas utiliser des solutions s'ils ont une grosse part de marché de cet éditeur (>70% de revenus de la boite).  
 Digital, IA, mots-clés du moment, s'ils veulent rester dans la course, important pour eux. 
  
-Damien’s Notes
+Alice’s Notes
 Voici un rapport de réunion structuré et exploitable, rédigé en français professionnel, à partir de tes notes. J’ai clarifié les points, éliminé les ambiguïtés et organisé l’information pour qu’elle puisse servir à la fois de compte rendu interne et de base de réflexion produit.
 ________________
 
 
 Rapport de réunion
-Réunion avec Sophie Engelhart (Sanofi) + Fred + Damien
+Réunion avec Sophie Engelhart (Sanofi) + Fred + Alice
 Date : 18 décembre 2025
 Objet : Contraintes pharma, pratiques in vivo et opportunités de structuration des données
 1. Contexte général
@@ -2134,10 +2134,10 @@ Voici une longue liste des différents sujets abordés dans vos discussions par 
                                                                                                                                                                                                 * Périmètre de l'audit : code source, architecture, infrastructure, tests, sécurité, performances, process de développement.
                                                                                                                                                                                                 * Livrables : synthèse exécutive, évaluation globale, dette technique, recommandations.
                                                                                                                                                                                                 * Non-Disclosure Agreement (NDA) avec JoliCode.
-                                                                                                                                                                                                * Évaluation du travail d'un développeur (Rakesh) :
+                                                                                                                                                                                                * Évaluation du travail d'un développeur (Ben) :
                                                                                                                                                                                                 * Analyse des Pull Requests (PRs) effectuées par un ancien développeur.
                                                                                                                                                                                                 * Problèmes majeurs soulevés : non-respect des priorités, refactoring lourd non indispensable, prises de décisions structurantes sans nécessité, peu de valeur pour une démo fonctionnelle.
-                                                                                                                                                                                                * Question sur la valeur du travail de Rakesh et la possibilité de repartir de la version pré-Rakesh (KeyCloack, Kubernetes).
+                                                                                                                                                                                                * Question sur la valeur du travail de Ben et la possibilité de repartir de la version pré-Ben (KeyCloack, Kubernetes).
                                                                                                                                                                                                 * Avancement Technique : Mention d'un crédit de 300€ de Clever Cloud.
                                                                                                                                                                                                 * Collaboration Future : Intérêt de discuter du Web sémantique et des applications réalistes de l'IA-stats dans le cadre de l'application.
 3. Suivi de Stage de Cyril Gilbert (M2 Bioinformatique)
@@ -2152,13 +2152,13 @@ Voici une longue liste des différents sujets abordés dans vos discussions par 
 4. Organisation de Réunions et Contact
                                                                                                                                                                                                 * Planification de réunions : Discussions pour se rencontrer/s'appeler (jeudi matin, au campus Triolet, près du bâtiment 16).
                                                                                                                                                                                                 * Annulation : Annulation d'une réunion en raison d'une urgence personnelle.
-                                                                                                                                                                                                * Contrat de Collaboration : Échange sur la nécessité de rédiger un contrat de collaboration entre la startup de Damien et le LIRMM.
+                                                                                                                                                                                                * Contrat de Collaboration : Échange sur la nécessité de rédiger un contrat de collaboration entre la startup de Alice et le LIRMM.
 Konstantin Todorov (15-01-26)
 Konstantin Todorov (15-01-26)
 
 
 Compte-rendu de réunion
-Réunion entre Damien Huzard et Konstantin Todorov
+Réunion entre Alice Fontaine et Konstantin Todorov
  Date : 15 janvier 2026
  Objet : Ontologies, stage de master, consortiums, finances et perspectives de financement
 ________________
@@ -2166,11 +2166,11 @@ ________________
 
 1. Mise en relation JC Barat (AllFeat) 
 Discussion
- Damien a proposé de mettre Konstantin en relation avec JC Barat (AllFeat) afin d’échanger sur des sujets scientifiques et techniques communs. Konstantin est favorable à cette mise en relation.
+ Alice a proposé de mettre Konstantin en relation avec JC Barat (AllFeat) afin d’échanger sur des sujets scientifiques et techniques communs. Konstantin est favorable à cette mise en relation.
 Décision
  Accord pour initier le contact par email.
 Actions à mener
-                                                                                                                                                                                                * Damien envoie un email de mise en relation entre AllFeat et Konstantin, en précisant le contexte et les objectifs de l’échange.
+                                                                                                                                                                                                * Alice envoie un email de mise en relation entre AllFeat et Konstantin, en précisant le contexte et les objectifs de l’échange.
 2. Stage de master de Cyril – Ontologies, standards et IA
 2.1 Objectifs scientifiques et techniques du stage
 Discussion
@@ -2208,7 +2208,7 @@ Discussion
                                                                                                                                                                                                 * Cyril doit être proactif, signaler rapidement les blocages.
                                                                                                                                                                                                 * Mise en place d’un rendez-vous hebdomadaire.
 Participants envisagés pour le suivi :
-                                                                                                                                                                                                * Damien Huzard
+                                                                                                                                                                                                * Alice Fontaine
                                                                                                                                                                                                 * Konstantin Todorov
                                                                                                                                                                                                 * Pierre Larmande
                                                                                                                                                                                                 * Serge Sonfack
@@ -2216,7 +2216,7 @@ Participants envisagés pour le suivi :
 Format proposé :
                                                                                                                                                                                                 * Réunion hebdomadaire de 1 à 2 heures
                                                                                                                                                                                                 * Créneau privilégié : mardi ou jeudi matin, 9h–10h
-                                                                                                                                                                                                * En visio, avec Cyril potentiellement présent physiquement au bureau avec Damien.
+                                                                                                                                                                                                * En visio, avec Cyril potentiellement présent physiquement au bureau avec Alice.
 Actions à mener
                                                                                                                                                                                                 * Envoyer un email à l’ensemble des participants pour identifier un créneau hebdomadaire fixe.
                                                                                                                                                                                                 * Mettre en place la récurrence dès le démarrage du stage.
@@ -2253,7 +2253,7 @@ Discussion
                                                                                                                                                                                                 * Quels résultats attendus ?
                                                                                                                                                                                                 * Faire le lien avec les contraintes techniques (notamment via Serge).
 Interlocuteurs principaux :
-                                                                                                                                                                                                * Priorité : Damien.
+                                                                                                                                                                                                * Priorité : Alice.
                                                                                                                                                                                                 * Second cercle : Konstantin, Serge, Pierre.
                                                                                                                                                                                                 * Ouverture vers des interlocuteurs plus appliqués du monde préclinique.
 Personnes proposées :
@@ -2265,7 +2265,7 @@ Actions à mener
                                                                                                                                                                                                 * un échange mensuel par email sur l’avancement du stage.
 3. Consortium API Platform + Solid pour le HCM Repository
 Discussion
- Damien propose d’envoyer à Konstantin des détails sur le consortium autour de :
+ Alice propose d’envoyer à Konstantin des détails sur le consortium autour de :
                                                                                                                                                                                                 * API Platform
                                                                                                                                                                                                 * Solid
                                                                                                                                                                                                 * HCM Repository
@@ -2278,7 +2278,7 @@ Actions à mener
 4. Dépenses et aspects administratifs
 Discussion
                                                                                                                                                                                                 * Konstantin valide le principe général des dépenses.
-                                                                                                                                                                                                * Processus : Damien envoie un email, Konstantin valide.
+                                                                                                                                                                                                * Processus : Alice envoie un email, Konstantin valide.
 Points spécifiques :
                                                                                                                                                                                                 * Dépenses immédiates à rembourser.
                                                                                                                                                                                                 * Dépenses futures à anticiper.
@@ -2440,7 +2440,7 @@ ________________
 
 Écosystème local et leviers stratégiques
 ISDM / Halles de l’IA / INRIA
-                                                                                                                                                                                                         * Anne Laurent : interlocutrice-clé
+                                                                                                                                                                                                         * Anne Chris : interlocutrice-clé
                                                                                                                                                                                                          * Important de la mettre de notre côté
                                                                                                                                                                                                          * Montrer que notre projet est structurant pour l’écosystème
                                                                                                                                                                                                          * Peuvent être des sous-traitants ou partenaires pour certaines briques (ex : réseaux neuronaux avec l’ISDM)
@@ -2471,7 +2471,7 @@ Prochaines actions
                                                                                                                                                                                                          * Clarifier stratégie financement (ANR vs Pionniers vs FEDER)
                                                                                                                                                                                                          * Évaluer montage CIFRE
                                                                                                                                                                                                          * Monter une proposition de participation Pionniers de l’IA
-                                                                                                                                                                                                         * Soumettre Lettre de Soutien à Anne Laurent
+                                                                                                                                                                                                         * Soumettre Lettre de Soutien à Anne Chris
         
 
 
@@ -2698,7 +2698,7 @@ IGF - 13.02.26
 
 Séminaire Metadatapp, l’Institut de Génomique Fonctionnelle (IGF) — Montpellier, 13 février 2026
 Contexte de la session
-Présentateur : Damien Huzard
+Présentateur : Alice Fontaine
 Objet : Proposition d’hébergement de Metadatapp à l’IGF comme site pilote pour :
                                                                                                                                                                                                                                                                                                          * co-développer l’infrastructure,
                                                                                                                                                                                                                                                                                                          * déployer le système à l’échelle d’un institut,
@@ -2818,7 +2818,7 @@ Ce que cette session révèle (lecture stratégique)
                                                                                                                                                                                                                                                                                                          5. Alexandre Zampieri = accélérateur business US immédiat.
 
 
-Damien’s Notes
+Alice’s Notes
 Antoine besnard:
 Ne pas trop laisser le choix (comme le Sex dans les tests il y a 5 ans): Le FAIR sera obligatoire, et Metadatapp vous aide à faire cela!
 
@@ -3108,7 +3108,7 @@ VICT3R
 VICT3R
 Discussion with Ferran Sanz, Thomas Steger-Hartmann, Frank Bringezu
 Date: 11 March 2026
-1. Context (Pre-meeting discussion – Damien Huzard & Frédéric Deverre, 10 March)
+1. Context (Pre-meeting discussion – Alice Fontaine & Frédéric Deverre, 10 March)
 Tecniplast is considering leaving the Pistoia Alliance, mainly because most Pistoia initiatives focus on reuse of historical datasets rather than projects involving generation and structuring of new experimental data. Tecniplast is therefore looking for initiatives capable of supporting the collection and exploitation of newly generated data, which may make VICT3R a more relevant ecosystem.
 ________________
 
@@ -3118,14 +3118,14 @@ Thomas Steger-Hartmann is a toxicologist who previously worked at Schering AG in
 Ferran Sanz, professor at Pompeu Fabra University, brings expertise in data science applied to toxicology and collaborates extensively with pharmaceutical industry toxicologists. He previously worked with Thomas and Frank on earlier initiatives such as eTRANSAFE, and now coordinates the academic partners within VICT3R.
 Frank Bringezu, formerly with Merck (since 2007), is an expert in in silico toxicology. After working on earlier IHI initiatives, he joined VICT3R at Thomas’s request and now leads a work package focused on data curation and standardization.
 Inari Soininen (Synapse) previously managed projects such as eTOX and eTRANSAFE and now contributes to VICT3R coordination, connecting stakeholders and partners.
-Damien Huzard introduced Metadatapp and its activities.
+Alice Fontaine introduced Metadatapp and its activities.
 ________________
 
 
 3. VICT3R Project Objectives
 VICT3R is a cross-industry consortium bringing together pharmaceutical companies, CROs, SMEs, and academic partners. The project builds on substantial work from previous initiatives and focuses on alignment and standardization of toxicology datasets across companies.
 A central objective is the adoption of the SEND (Standard for Exchange of Non-clinical Data) format for toxicology studies, enabling regulatory-ready datasets. The goal is essentially to produce SEND-formatted datasets that can be accepted by regulatory authorities.
-During the discussion, Damien mentioned his exchange with Klaus from Grit42, whose approach to SEND ontology management is considered one of the most advanced implementations. The consensus was that VICT3R should leverage such existing expertise rather than reinventing the wheel.
+During the discussion, Alice mentioned his exchange with Klaus from Grit42, whose approach to SEND ontology management is considered one of the most advanced implementations. The consensus was that VICT3R should leverage such existing expertise rather than reinventing the wheel.
 ________________
 
 
@@ -3137,7 +3137,7 @@ Two interesting study types have been identified:
                                                                                                                                                                                                                                                                                                          * Embryotoxicity studies
                                                                                                                                                                                                                                                                                                          * Safety pharmacology studies, particularly those targeting neurological endpoints
 These areas may overlap with datasets produced by Tecniplast monitoring technologies.
-A key question raised during the meeting was whether Tecniplast devices are currently used in pharmaceutical safety pharmacology studies. This is an action item for Damien to investigate. Another question concerns how many pharmaceutical companies might be interested in such a use case, which Damien will explore further with Giorgio.
+A key question raised during the meeting was whether Tecniplast devices are currently used in pharmaceutical safety pharmacology studies. This is an action item for Alice to investigate. Another question concerns how many pharmaceutical companies might be interested in such a use case, which Alice will explore further with Giorgio.
 At present, only a limited number of sites generate this type of monitoring data, so the question is whether sufficient datasets could be aggregated to support meaningful applications. This would determine whether such a dataset should be integrated into the VICT3R database or developed independently. The decision will depend largely on industry interest and the number of potential customers willing to collaborate.
 Metadatapp will therefore investigate which pharmaceutical companies within the VICT3R ecosystem could contribute HCM datasets, particularly in the context of safety pharmacology studies.
 ________________
@@ -3469,11 +3469,11 @@ Compte-rendu interne – Réunion Initium (17/11/2025)
 – Timeline de financement alignée avec immatriculation début 2026, puis Pionnier IA (10 mars), Emergence, Label DeepTech.
 2. Business Plan
 – Rémi insiste sur le BP comme outil vivant.
-– Damien doit intégrer les retours et réviser le modèle dès les prochaines semaines.
+– Alice doit intégrer les retours et réviser le modèle dès les prochaines semaines.
 – À garder en tête : Crealia teste systématiquement la maîtrise du BP → il doit être parfaitement connu.
 3. Points administratifs / incubateur
 – Contacter Marie-Christine pour les fonds Initium.
-– Mettre en relation Nathalie Mercereau ↔ Damien (administratif incubateur).
+– Mettre en relation Nathalie Mercereau ↔ Alice (administratif incubateur).
 – Demander devis audit back-end (évaluation architecture API / charges / risques).
 – Déposer enveloppe e-Soleau pour la protection du code.
 – Prendre un rendez-vous avec INPI pour un accompagnement gratuit sur la PI.
@@ -3483,7 +3483,7 @@ Compte-rendu interne – Réunion Initium (17/11/2025)
 – Exercices à réaliser.
 – Se rendre disponible le 10 décembre pour la suite de la formation.
 – Potentiellement suivre la formation « Apprendre à se séparer » (utile pour gestion de partenariat & fin de collaboration).
-5. CTO – Situation avec Rakesh
+5. CTO – Situation avec Ben
 – Clarifier son engagement réel.
 – Lui fixer des deadlines et des actions concrètes (inscription incubateur, participation active).
 – Décider rapidement s’il est bien le CTO de l’entreprise avant immatriculation.
@@ -3508,7 +3508,7 @@ Todos
                                                                                                                                                                                                                                                                                                                                                          * Envoyer mail à Marie-Christine pour les fonds Initium.
                                                                                                                                                                                                                                                                                                                                                          * Partager contact de Nathalie Mercereau (administratif).
                                                                                                                                                                                                                                                                                                                                                          * Demander devis pour audit back-end (3 prestataires si possible).
-                                                                                                                                                                                                                                                                                                                                                         * Clarifier la situation avec Rakesh :
+                                                                                                                                                                                                                                                                                                                                                         * Clarifier la situation avec Ben :
 – engagement CTO,
 – deadlines,
 – actions incubateur à réaliser.
@@ -4056,13 +4056,13 @@ Lea Mazel, DIPA UM: how deploy the solution from a beta-tester to mass users? (r
 
 
 Workshop 2
-Jean Jaudeau, EY Ventury: caution with IP, as no contract with coders (Laurent, Rakesh), issue with their production that can be considered as intellectual property. Secure the transfer of IP to the future newco via a specific IP transfer agreement. 
+Jean Jaudeau, EY Ventury: caution with IP, as no contract with coders (Chris, Ben), issue with their production that can be considered as intellectual property. Secure the transfer of IP to the future newco via a specific IP transfer agreement. 
 After the initial production to build the MVP/product, the contribution of the CTO may drastically drop => EY ventury experience (20 years of experience with start-ups) shows usual practices of no more than 4% equity for the CTO.
 Alexandre Rochet, Crealia: our project sounds more like a change in user practices than a technological disruption (Deeptech status compromised?) => private investors (eg BA or VCs) may enter later in our plan
-Other attendant: Pierre-Laurent Tonnon, Catea, accounting+legal+HR. Rémi Przybylski (Initium) reported that Pierre-Laurent has been very reactive in his past start-up venture.
+Other attendant: Pierre-Chris Tonnon, Catea, accounting+legal+HR. Rémi Przybylski (Initium) reported that Pierre-Chris has been very reactive in his past start-up venture.
 
 
-                                                                                                                                                                                                                                                                                                                                                                           * Contact Jean Jaudeau, Pierre-Laurent Tonnon, discuss collaboration
+                                                                                                                                                                                                                                                                                                                                                                           * Contact Jean Jaudeau, Pierre-Chris Tonnon, discuss collaboration
                                                                                                                                                                                                                                                                                                                                                                            * Contact Alexandre Rochet, investigate his comment about financing round & Deeptech status
 
 
@@ -4099,12 +4099,12 @@ Catea invoiced his start-up for 160€ per month for regular accounting expenses
 
 
 
-Damien’s notes:
+Alice’s notes:
 Jury 1
                                                                                                                                                                                                                                                                                                                                                                            * Soulignement du thème : Souveraineté
 Jury 2
                                                                                                                                                                                                                                                                                                                                                                            * PI avec Dev!
-                                                                                                                                                                                                                                                                                                                                                                           * Nécessité d’une cession d’IP signée par Laurent/Rakesh asad
+                                                                                                                                                                                                                                                                                                                                                                           * Nécessité d’une cession d’IP signée par Chris/Ben asad
                                                                                                                                                                                                                                                                                                                                                                            * TODO: discuter avec Jean Jeaudo (+INPI? après immatriculation)
                                                                                                                                                                                                                                                                                                                                                                            * NDA
                                                                                                                                                                                                                                                                                                                                                                            * Doit explicitement couvrir le code
@@ -4118,7 +4118,7 @@ Jury 2
                                                                                                                                                                                                                                                                                                                                                                            * Réseau
                                                                                                                                                                                                                                                                                                                                                                            * Jean Jodeau → important de garder le contact
                                                                                                                                                                                                                                                                                                                                                                            * Preuve & crédibilité
-                                                                                                                                                                                                                                                                                                                                                                           * Pierre-Laurent Tonnon – expert-comptable
+                                                                                                                                                                                                                                                                                                                                                                           * Pierre-Chris Tonnon – expert-comptable
                                                                                                                                                                                                                                                                                                                                                                            * Se documenter sur commissaire au compte et process de valorisatoin '30k€'
 Jury 5
                                                                                                                                                                                                                                                                                                                                                                            * Gregory Peigon, (BIC) Christophe Bonnel (CHU)
@@ -4155,7 +4155,7 @@ Pause
                                                                                                                                                                                                                                                                                                                                                                            * fonds propres
                                                                                                                                                                                                                                                                                                                                                                            * Banque à considérer
                                                                                                                                                                                                                                                                                                                                                                            * Piste : Crédit Agricole – pôle / offre Numérique
-                                                                                                                                                                                                                                                                                                                                                                           * Pierre Laurent Tonno (Expert-comptable, Ey venturi)
+                                                                                                                                                                                                                                                                                                                                                                           * Pierre Chris Tonno (Expert-comptable, Ey venturi)
                                                                                                                                                                                                                                                                                                                                                                            * Coût : 150–160 €/mois (≤ 200 €/mois)
                                                                                                                                                                                                                                                                                                                                                                            * Apports :
                                                                                                                                                                                                                                                                                                                                                                            * Gestion RH : fiches de paie, conseil juridique sur les statuts
@@ -4179,7 +4179,7 @@ Todo
                                                                                                                                                                                                                                                                                                                                                                            * Déploiement
                                                                                                                                                                                                                                                                                                                                                                            * Clarifier comment déployer Metadatapp (technique + accompagnement clients).
                                                                                                                                                                                                                                                                                                                                                                            * IP & juridique
-                                                                                                                                                                                                                                                                                                                                                                           * Sécuriser l’IP de Rakesh et Laurent :
+                                                                                                                                                                                                                                                                                                                                                                           * Sécuriser l’IP de Ben et Chris :
                                                                                                                                                                                                                                                                                                                                                                            * Rédiger / faire signer les documents de cession d’IP
                                                                                                                                                                                                                                                                                                                                                                            * Clarifier le calcul du temps passé (heures / lignes / forfait)
                                                                                                                                                                                                                                                                                                                                                                            * Préparer un document d’avocat pour le transfert d’IP
@@ -4221,10 +4221,10 @@ Roadmap de financement (12-24mois) Public & Privée
 Lien Présentation [To Add]
 
 
-Gemini Summary (both Damien and Fred notes)
+Gemini Summary (both Alice and Fred notes)
                                                                                                                                                                                                                                                                                                                                                                            * 
 
-Damien’s notes
+Alice’s notes
 Investisseurs equity 
 BA (Lovey Money) 
 => premier Ticket => Premier Souffle 👍 => Plus de cash => plus de financeurs
@@ -4445,7 +4445,7 @@ Maîtriser les risques, être transparent.
 
 
 Participants Initium: Kate Rivière, Rémi Przybylski, Jordan X, Kenza Khazroun
-Participants MAPP: Damien Huzard, Frederic Deverre
+Participants MAPP: Alice Fontaine, Frederic Deverre
 
 
 Main feedback:
@@ -4472,7 +4472,7 @@ Main feedback:
                                                                                                                                                                                                                                                                                                                                                                            * Ask Jean Jodeau for the protection strategy with tecniplast!
                                                                                                                                                                                                                                                                                                                                                                            * Good evolution of the project: the Open Source logic has been clearly removed (NDLR: incubators and most start-up ecosystem stakeholders are interested in money-driven value creation and hate ‘free’ models)
                                                                                                                                                                                                                                                                                                                                                                            * Hiring a student for CIFRE PhD research program can trigger the Companies & Campus grant program (Companies & Campus can finance up to 50K€ for a collaboration with a research team, see slide here)
-                                                                                                                                                                                                                                                                                                                                                                           * Kate recommends a company specialized in asset valuation (in the view of valuing the software code): Diag N Grow. A professional assessment of the intangible assets that Damien will bring is useful to justify the equity value towards funding partners. Frederic is in contact with Laurence Joly and will organize a call with Damien.
+                                                                                                                                                                                                                                                                                                                                                                           * Kate recommends a company specialized in asset valuation (in the view of valuing the software code): Diag N Grow. A professional assessment of the intangible assets that Alice will bring is useful to justify the equity value towards funding partners. Frederic is in contact with Laurence Joly and will organize a call with Alice.
                                                                                                                                                                                                                                                                                                                                                                            * The slide deck does not highlight enough our respective expertise => add a slide on each of us with our competences, to reassure future investors.
                                                                                                                                                                                                                                                                                                                                                                            * capitalise on Legitimity and the Team!! Really important to highlight well!
                                                                                                                                                                                                                                                                                                                                                                            * Our UNIQUE positioning IS a “barrière à l’entrée”! and it is what people will invest on
@@ -4539,11 +4539,11 @@ Vue d'ensemble
                                                                                                                                                                                                                                                                                                                                                                            * Le montage financier global, incluant la répartition entre apports en nature et en cash ainsi que les options de financement (prêt d’honneur, CREALIA, etc.), a été analysé en profondeur.
                                                                                                                                                                                                                                                                                                                                                                            * Une formation sur l’utilisation de l’outil de prospection Walaxy a été envisagée pour optimiser l’approche commerciale.
 Prochaines étapes
-                                                                                                                                                                                                                                                                                                                                                                           * Damien HUZARD: Finaliser et synthétiser le business plan en intégrant les trois scénarios financiers et préparer le slide deck. (Échéance: 03/23)
+                                                                                                                                                                                                                                                                                                                                                                           * Alice Fontaine: Finaliser et synthétiser le business plan en intégrant les trois scénarios financiers et préparer le slide deck. (Échéance: 03/23)
                                                                                                                                                                                                                                                                                                                                                                            * Rémi Przybylski: Relire et challenger la version finale du BP et des documents financiers afin d’assurer leur cohérence avant la réunion de suivi. (Échéance: 03/23)
                                                                                                                                                                                                                                                                                                                                                                            * Frédéric Deverre: Clarifier le montage financier global et finaliser le dossier CREALIA en précisant la répartition entre apports en nature et en cash.
                                                                                                                                                                                                                                                                                                                                                                            * À attribuer: Organiser une session de formation sur l’utilisation de Walaxy en collaboration avec Michel pour optimiser la prospection commerciale.
-                                                                                                                                                                                                                                                                                                                                                                           * À attribuer: Contacter un commissaire aux apports via Pierre Laurent pour obtenir une estimation crédible des actifs immatériels.
+                                                                                                                                                                                                                                                                                                                                                                           * À attribuer: Contacter un commissaire aux apports via Pierre Chris pour obtenir une estimation crédible des actifs immatériels.
 Sujets Clés
                                                                                                                                                                                                                                                                                                                                                                            * Revue et synthèse du Business Plan (BP) Mise à jour
                                                                                                                                                                                                                                                                                                                                                                            * La réunion a principalement porté sur l’optimisation et la finalisation du Business Plan initial de 60 pages, qui devait être synthétisé en un slide deck plus opérationnel.
@@ -4552,11 +4552,11 @@ Sujets Clés
                                                                                                                                                                                                                                                                                                                                                                            * Choix et évolution de l'outil de gestion et de présentation Idée
                                                                                                                                                                                                                                                                                                                                                                            * La discussion s’est étendue sur l’outil de gestion des données, en comparaison entre l’utilisation actuelle d’un BP sous Excel et le potentiel d’une application dédiée développée sur React.
                                                                                                                                                                                                                                                                                                                                                                            * L’avantage de la solution dédiée résidait dans la possibilité de personnaliser le dashboard, facilitant la lecture des données (ex. graphique de trésorerie) et standardisant l’approche, malgré le risque de dispersion dans la personnalisation trop poussée.
-                                                                                                                                                                                                                                                                                                                                                                           * Damien a exprimé sa préférence de ne pas utiliser Excel pour rester cohérent avec leur promesse de fournir une véritable application métier.
+                                                                                                                                                                                                                                                                                                                                                                           * Alice a exprimé sa préférence de ne pas utiliser Excel pour rester cohérent avec leur promesse de fournir une véritable application métier.
                                                                                                                                                                                                                                                                                                                                                                            * Stratégie de financement et montage financier Mise à jour
                                                                                                                                                                                                                                                                                                                                                                            * Les participants ont débattu des divers leviers financiers à mobiliser, notamment le prêt d’honneur, le dossier CREALIA, et le recours potentiel à des financements bancaires via des institutions telles que la Caisse d’Épargne ou Crédit Agricole.
                                                                                                                                                                                                                                                                                                                                                                            * La question de la répartition entre apports en nature et apports en cash a été largement abordée, notamment en ce qui concerne la valorisation des actifs immatériels. L’implication d’un commissaire aux apports a été évoquée pour obtenir une estimation crédible et éviter la surévaluation personnelle.
-                                                                                                                                                                                                                                                                                                                                                                           * La situation personnelle de Damien, notamment ses droits au chômage et ses missions de consulting (qui pourraient servir d’apport ou de levier financier), a été analysée pour évaluer sa capacité d’investissement dans le capital social de la start-up.
+                                                                                                                                                                                                                                                                                                                                                                           * La situation personnelle de Alice, notamment ses droits au chômage et ses missions de consulting (qui pourraient servir d’apport ou de levier financier), a été analysée pour évaluer sa capacité d’investissement dans le capital social de la start-up.
                                                                                                                                                                                                                                                                                                                                                                            * Adoption du produit et validation du marché Problème
                                                                                                                                                                                                                                                                                                                                                                            * La lenteur potentielle d’adoption de la solution logicielle par le marché a été identifiée comme un risque majeur, notamment dans des segments comme les CRO et laboratoires.
                                                                                                                                                                                                                                                                                                                                                                            * Il a été suggéré de constituer un réseau d’early adopters afin de tester la solution, de challenger le produit et d’accélérer le temps de conversion, tout en soulignant l’importance de mesurer un retour sur investissement (ROI) clair dans la preuve de concept (POC).
@@ -4816,7 +4816,7 @@ INPI 09/12/25
 
 Jean Jodeau 17-12-25
 Jean Jodeau 17-12-25
-Rakesh
+Ben
 => dire qu’on passe à autre chose
 c’est de la gestion de risque: pas besoin de code, et voir sa réaction ? 
 important d’éviter l’escalade!
@@ -4831,7 +4831,7 @@ Structure message: on va faire autrement, merci, fin de collab, ça ne fonctionn
 Contrat de prestation et cession d’IP:
 ⚠️ Au travail déguisé !
 Il n’y a PAS de travail Gratuit!! sans contrat ou avis préalable (surtout quand la structure sera créée)
-Il faut faire le document et donner quelque chose en retour à Laurent (parts ? ou retribution décalée, en % de CA jusqu’à un montant max, sur 12 mois?)
+Il faut faire le document et donner quelque chose en retour à Chris (parts ? ou retribution décalée, en % de CA jusqu’à un montant max, sur 12 mois?)
 
 
 [ ] TODO Faire un document de Cession d’IP à tous contributeurs, en suivant bien le canon du code de l’IP (sinon document pas valide!)
@@ -4849,7 +4849,7 @@ il faut toujours etre en capactité de démontrer la propriété du code!
 Valorisation du capital
 2 possibilités:
                                                                                                                                                                                                                                                                                                                                                                               * Apport en Nature + Valorisation du logiciel (ex 40k€) => capital a équivalence
-                                                                                                                                                                                                                                                                                                                                                                              * Cas intéressant: Damien 10k + 40k logiciel vs 40k Fred (60/40)
+                                                                                                                                                                                                                                                                                                                                                                              * Cas intéressant: Alice 10k + 40k logiciel vs 40k Fred (60/40)
                                                                                                                                                                                                                                                                                                                                                                               * Ou Capital plus faible et utilisation du compte courant d’associé
                                                                                                                                                                                                                                                                                                                                                                               * 6k/4k => capital 10k€ et 40k dans le CCA 
                                                                                                                                                                                                                                                                                                                                                                               * le logiciel appartient à la société
@@ -4889,7 +4889,7 @@ ________________
 
 
 Jean Jodeau, 19/01/2026
-Discussion avec Damien et Fred
+Discussion avec Alice et Fred
 Contexte
                                                                                                                                                                                                                                                                                                                                                                               * Jean Jodeau, EY Ventury (intégré à EY), collaborateur libéral, responsable Occitanie entre Montpellier et Toulouse.
 
@@ -4982,11 +4982,11 @@ notes from their read.ai: https://app.read.ai/analytics/meetings/01KEF38RCERSWA1
 
 
 
-La discussion porte sur la valorisation des apports en nature pour le projet de start-up de Damien Huzard et Frédéric Deverre, qui est en phase d'immatriculation. Ils ont convenu d'une répartition de 60% pour Damien et 40% pour Frédéric, tout en cherchant à établir une valorisation acceptable par le commissaire aux apports. Un participant de la salle de conférence souligne que le temps passé doit être lié à des actifs immatériels pour être pris en compte, tandis que Damien exprime des préoccupations sur la reconnaissance de la valeur de ces actifs. Il est précisé que le temps consacré à des tâches non séparables de l'entreprise ne sera pas considéré comme un apport.
-Damien évoque l'investissement en temps et en ressources pour le logiciel qu'il a développé, et il est indiqué que l'audit technique inclura une analyse approfondie pour attester de la qualité du logiciel. Il est également ajouté que leur expérience leur permet de fournir des évaluations fiables, et Damien mentionne un audit antérieur par Jolicode qui pourrait renforcer leur rapport. La discussion se termine par l'importance de fournir des détails sur les brevets et le savoir-faire pour une évaluation précise, ainsi que la nécessité d'un premier rendu pour discuter des résultats.
+La discussion porte sur la valorisation des apports en nature pour le projet de start-up de Alice Fontaine et Frédéric Deverre, qui est en phase d'immatriculation. Ils ont convenu d'une répartition de 60% pour Alice et 40% pour Frédéric, tout en cherchant à établir une valorisation acceptable par le commissaire aux apports. Un participant de la salle de conférence souligne que le temps passé doit être lié à des actifs immatériels pour être pris en compte, tandis que Alice exprime des préoccupations sur la reconnaissance de la valeur de ces actifs. Il est précisé que le temps consacré à des tâches non séparables de l'entreprise ne sera pas considéré comme un apport.
+Alice évoque l'investissement en temps et en ressources pour le logiciel qu'il a développé, et il est indiqué que l'audit technique inclura une analyse approfondie pour attester de la qualité du logiciel. Il est également ajouté que leur expérience leur permet de fournir des évaluations fiables, et Alice mentionne un audit antérieur par Jolicode qui pourrait renforcer leur rapport. La discussion se termine par l'importance de fournir des détails sur les brevets et le savoir-faire pour une évaluation précise, ainsi que la nécessité d'un premier rendu pour discuter des résultats.
 3:44Enverra un questionnaire pour bien cerner l'entreprise et des liens à télécharger. Ask Copilot
-16:39Damien HUZARD contactera Jolicode pour formaliser le rapport d'audit existant. Ask Copilot
-17:00Damien HUZARD fournira des éléments concernant les articles scientifiques et les chapitres de livres pour justifier le temps de recherche et développement. Ask Copilot
+16:39Alice Fontaine contactera Jolicode pour formaliser le rapport d'audit existant. Ask Copilot
+17:00Alice Fontaine fournira des éléments concernant les articles scientifiques et les chapitres de livres pour justifier le temps de recherche et développement. Ask Copilot
 23:36Pierre enverra un questionnaire et différents liens à renseigner après la réception de la facture d'acompte. Ask Copilot
 11:32Quelle est la valeur estimée des apports en nature pour le logiciel développé ? Ask Copilot
 20:31Quels éléments sont pris en compte pour la valorisation des apports en nature ? Ask Copilot
@@ -5006,7 +5006,7 @@ TODO: JoliCode: droit et cession de droit
 TODO. avoir un document type pour chaque personne aui contribue ⚠️LICENSES OS ⚠️ (garanties de bonnes pratiques!!)
 
 
-Valeur réelle de Metadatapp : Laurent 250h en Juin 2025 => 300h en janvier 2026 => 25-35k€ (estimation avec taux horaire dev backed senior => 40k€ avec ‘coeff MVP’ (?)
+Valeur réelle de Metadatapp : Chris 250h en Juin 2025 => 300h en janvier 2026 => 25-35k€ (estimation avec taux horaire dev backed senior => 40k€ avec ‘coeff MVP’ (?)
 
 
 Faire une donation? et justifier pourquoi ? (pas de travail, aide familiale, …)
@@ -5029,7 +5029,7 @@ Amandine: ‘moins cher que EY’ (?) à confirmer
 
 
 Création: SAS
-Damien = Président
+Alice = Président
 Fred = DG
 + clause de Limitations des pouvoirs
 
@@ -5051,7 +5051,7 @@ Catéa / Expert-Comptable
 Réunion du 13/01/26
 
 
-Pierre Laurent Tonnon 0682589309 (pltonnon@catea.fr)
+Pierre Chris Tonnon 0682589309 (pltonnon@catea.fr)
 
 
 To check Occical therapeutics (sarah colombani)
@@ -5200,7 +5200,7 @@ ELN bientôt à l’IPAM ? ElabFTW ?
 Réponse Yoan 16/01/26 : 
 
 
-Bonjour Damien, bonjour Frédéric,
+Bonjour Alice, bonjour Frédéric,
 
 
 J’ai eu quelques retours.
@@ -5368,7 +5368,7 @@ Geoffrey Gallibert, 19/01/2026
 
 
 Besoin revu (janvier 2026) :
-Travailler sur la sécurité IA / protection des données, sujet nécessaire par ex. pour discuter avec le DSI CNRS (cloud + IA, éviter l’implémentation on-premises). Konstantin Todorov avait averti Damien du risque concernant la sécurité des données. 
+Travailler sur la sécurité IA / protection des données, sujet nécessaire par ex. pour discuter avec le DSI CNRS (cloud + IA, éviter l’implémentation on-premises). Konstantin Todorov avait averti Alice du risque concernant la sécurité des données. 
 Geoffrey Galibert, doctorant contractuel en droit (3ᵉ année), thèse sur le droit économique et social de l’UE. Domaines liés à la régulation de l’IA et à la protection des données, qu’il maîtrise conceptuellement même si ce sont des secteurs en pleine évolution. Début de rédaction de thèse récemment, moins exposé aux sujets IA ces derniers mois.
 Nouvelle réglementation IA en 2024 : émergence de “données sensibles au titre de l’IA”, concept distinct du RGPD. Le sujet intersecte sa thèse car la réglementation IA/données relève du domaine économique européen → intérêt académique + mise à jour réglementaire. Possibilité de contribuer ~½ journée/semaine. Accès aux bases juridiques via faculté.
 Rémi a signalé que les entretiens ne sont pas terminés ; sélection prévue pour le 27 janvier. Geoffrey a décliné un autre projet (certification européenne) car hors de ses compétences ; le projet le plus simple juridiquement n’est pas celui qu’il veut. Le nôtre est plus complexe juridiquement mais plus intéressant. Rendez-vous demain sur ses travaux de thèse pour arbitrage ; se tournera vers le sujet le plus efficient, sinon il choisirait notre projet.
@@ -5649,7 +5649,7 @@ BP collective review – 28/01/2026
 Revue BP – Metadatapp
 Réunion du 28/01/2026
 Participants :
- Racym Boutedja (BTD Consulting), Arnaud Marchant & Anthony Hervé (Jubea), Pierre-Laurent Tonnon (Catea), Rémi & Anne (Initium), Damien Huzard, + toi.
+ Racym Boutedja (BTD Consulting), Arnaud Marchant & Anthony Hervé (Jubea), Pierre-Chris Tonnon (Catea), Rémi & Anne (Initium), Alice Fontaine, + toi.
 1. Objectif de la revue
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * Challenger le BP sur les aspects techniques ↔ financiers et la stratégie de financement
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * Identifier des axes de travail ouvrant potentiellement sur des ateliers dédiés
@@ -5756,7 +5756,7 @@ Les experts recommandent de :
 ▸ banque / structuration
 7. Synthèse
 Metadatapp coche les cases techno + marché + deeptech, mais doit rendre lisible ce qu’elle veut financer, quand et avec quel phasage, pour dérouler le non-dilutif → dilutif → bancaire. La base technique est rassurante, la thèse CIFRE stratégique, le label Deeptech pertinent, la structuration du BP cruciale.
-notes de Damien en plus:
+notes de Alice en plus:
 1) Pourquoi rémunération cyclique dans notre BP? 
 2) Paiement 30-45 jours, en 1 ou 2 fois. Étudier ce qui se fait en CRO, académique 
 3) attendre un peu pour le bancaire et combinent bancaire + 'seed' pour qu'ils "partagent les risques" 
@@ -6194,7 +6194,7 @@ ________________
 Élodie Belan, Biocampus
 Élodie Belan, Biocampus
 Date de l’entretien : 09/02/2026
-Contexte : Introduction par Damien – échange centré sur les aspects réglementaires, qualité et données en animalerie
+Contexte : Introduction par Alice – échange centré sur les aspects réglementaires, qualité et données en animalerie
 ________________
 
 
@@ -6901,20 +6901,20 @@ HORIZON-HTLH-202601-IND-3
 Meeting with Carmen Sanges and Antonia Mueller, 23/01/2026
 
 
-Frédéric Deverre, Damien HUZARD, Carmen Sanges, and Antonia Mueller discussed a proposal for a European collaborative regulator-informed AI platform to systematically collect and curate high-quality pre-clinical ATMP data, aiming to enable validated in silico models and support faster, cheaper, and safer ATMP development. Antonia Mueller, leading a work package in the JOIN4ATMP consortium, introduced the idea, emphasizing the need for structured data to address regulatory hesitancy regarding AI models due to a lack of trustworthy data sets. Damien HUZARD and Frédéric Deverre's startup, Metadatapp, aligns with this goal, particularly regarding the development of a standardized ontology for the ATMP pre-clinical field and the architectural design for a robust federated data repository, which Carmen Sanges suggested should also link post-ATMP sample data to patient outcomes. Participants, including the consortium members Catapult, Utrecht, EATRIS, Fraunhofer, the Medical University of Vienna and the University of Würzburg, agreed that the platform requires IT expertise, and the next steps include a writing workshop next Wednesday to strategically fill the consortium, define work packages for the lump-sum project, and address challenges related to data sharing and intellectual property protection through federated models and mandatory sharing policies.
+Frédéric Deverre, Alice Fontaine, Carmen Sanges, and Antonia Mueller discussed a proposal for a European collaborative regulator-informed AI platform to systematically collect and curate high-quality pre-clinical ATMP data, aiming to enable validated in silico models and support faster, cheaper, and safer ATMP development. Antonia Mueller, leading a work package in the JOIN4ATMP consortium, introduced the idea, emphasizing the need for structured data to address regulatory hesitancy regarding AI models due to a lack of trustworthy data sets. Alice Fontaine and Frédéric Deverre's startup, Metadatapp, aligns with this goal, particularly regarding the development of a standardized ontology for the ATMP pre-clinical field and the architectural design for a robust federated data repository, which Carmen Sanges suggested should also link post-ATMP sample data to patient outcomes. Participants, including the consortium members Catapult, Utrecht, EATRIS, Fraunhofer, the Medical University of Vienna and the University of Würzburg, agreed that the platform requires IT expertise, and the next steps include a writing workshop next Wednesday to strategically fill the consortium, define work packages for the lump-sum project, and address challenges related to data sharing and intellectual property protection through federated models and mandatory sharing policies.
 Additional comment:
 This is a lump sump project, you get the biggest amount of money when a work package is completed. The purpose is to reduce administration and financial errors by removing the need to report actual costs, meaning easier access to the programme for SMEs. The flipcoin effect is that WPs have to be strategically scheduled, and each party has to have sustainable resources to work until completion of the WP he/she is involved in.  
 
 
 Suggested next steps: 
         Antonia Mueller will send out an Excel sheet by the end of today with the work packages and some tasks to the attendees, and ask them to (1) add missing tasks, and (2) suggest work package renaming, so the group can have a basis for discussion for the writing workshop on Wednesday.
-        Damien HUZARD will contact Les Tilleuls to discuss the possibility of providing an open-source framework for building the repository, including whether they are willing to participate in the consortium or provide a cost estimate as an external contributor.
+        Alice Fontaine will contact Les Tilleuls to discuss the possibility of providing an open-source framework for building the repository, including whether they are willing to participate in the consortium or provide a cost estimate as an external contributor.
         Antonia Mueller will contact the Austrian national point of contact to clarify if the project, as a technology that serves the regulatory purpose, fits into the current call.
         Antonia Mueller will send the link for next week.
         Antonia Mueller will look more into the 3R movement.
         Carmen Sanges will share the invite for Wednesday.
-23-01-26, Notes Damien
-23-01-26, Notes Damien (EIC IND3 / ATMP)
+23-01-26, Notes Alice
+23-01-26, Notes Alice (EIC IND3 / ATMP)
 
 
 preclinical ATMP data for AI Use
@@ -7044,7 +7044,7 @@ Halle de l’Innovation, BIC – 29 January 2026
 The event brought together representatives from DGE, INRIA, and Bpifrance, alongside local academic and ecosystem leaders.
 Key speakers included:
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  * Manu Reynaud, Metropolitan Authority in charge of Digital Affairs
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * Anne Laurent, Deputy Director of the University of Montpellier and President of the IA Montpellier-Méditerranée Association
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * Anne Chris, Deputy Director of the University of Montpellier and President of the IA Montpellier-Méditerranée Association
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  * Raphaël Duqué, Head of AI Support Office at the DGE
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  * Representatives from Bpifrance and INRIA (notably Stéphane Dalma, INRIA; Mathieu Desroches, INRIA)
 The evening focused on the AI revolution, national strategy alignment, and funding mechanisms under France 2030.
@@ -7171,7 +7171,7 @@ Réunion Racym Bouteldja, BTD Consulting, 03/02/26
 
 
 Mail Racym, CR réunion
-Bonjour Frédéric, bonjour Damien,
+Bonjour Frédéric, bonjour Alice,
 À la suite de nos échanges et du travail d’analyse mené ensemble, je vous partage une synthèse structurée des conseils et préconisations opérationnelles que je vous ai formulés pour renforcer votre dossier EIC Accelerator.
 
 Sur les documents et annexes, mon conseil principal est de sortir d’un dossier "descriptif" pour aller vers un dossier "démonstratif".
@@ -7420,7 +7420,7 @@ CR de Fred
 
 
 Compte-rendu – Meeting PUI / Marion Hayaoui Le Claireq – Bureau Europe – DIPA – 20/01/26
-La DIPA comprend un bureau Europe et un bureau national ; ils accompagnent les porteurs de projet avec la DAF depuis l’identification d’un AAP jusqu’à la clôture et la justification. Présentation Damien ; Frédéric arrive pour la partie business/structuration. Pas de lien direct avec l’UM (embêtant).
+La DIPA comprend un bureau Europe et un bureau national ; ils accompagnent les porteurs de projet avec la DAF depuis l’identification d’un AAP jusqu’à la clôture et la justification. Présentation Alice ; Frédéric arrive pour la partie business/structuration. Pas de lien direct avec l’UM (embêtant).
 Le PUI accompagne les chercheurs (Pierre Larmande, IRD, co-tuteur du stagiaire). Le LIRMM est mieux positionné pour accompagner Konstantin. Bien distinguer le porteur scientifique (ex. Konstantin) de l’utilisateur final.
 Objectif de l’EIC : soutenir des Deeptech risquées à gros potentiel. Nouveau dispositif : Advanced Innovation Challenges, encore flou, focalisé sur les freins à l’adoption commerciale. Deux thématiques identifiées : IA et NAMs. Appel en deux phases pour dérisquer :
 • Phase 1 (300 k€, 9 mois) : viabilité, faisabilité, benchmark de plus-value.
@@ -7443,7 +7443,7 @@ Exchanges with Mathieu Vinken
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  * Meeting – Mathieu Vinken (EIC NAM)
 Date: 06/02/2026
 Context: Exploration of a NAM / VCG positioning for an EIC project and identification of potential future collaboration pathways
-Decision point: Damien and Frédéric Decide to discontinue Metadatapp application to EIC-AEC-02 Challenge
+Decision point: Alice and Frédéric Decide to discontinue Metadatapp application to EIC-AEC-02 Challenge
 ________________
 
 
@@ -7790,7 +7790,7 @@ Finally, the next potential opportunity to prepare an application would be in ro
 Zefix - 31-Mar-26
 Zefix - 31-Mar-26
 Meeting notes — Zefix / Marc Plays / Mme Gonzalez
-Damien + Fred
+Alice + Fred
 Date: 31 March 2026
 Direct summary
 Zefix needs a harmonized digital platform for zebrafish colony and facility management across four plateaux. Current practices are heterogeneous, with some teams using different Excel files and others still relying on paper. The main value proposition is to standardize workflows, centralize colony data, improve live visibility of stock and line status, support reporting for funding agencies and management, and enable alerts, exports, and possibly billing.
@@ -8157,7 +8157,7 @@ Actions proposées
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        5. Organiser un échange business avec Instem.
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        6. Cartographier les contacts sémantique/ontologie obtenus pendant le meeting.
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        7. Consolider notre message de positionnement : VCG + métadonnées précliniques + interface souris/NAMs.
-Raw notes from Damien
+Raw notes from Alice
 Je fais un petit recap de pensées et retours que j'ai à chaud : Point positif : il y. A beaucoup de trucs dans notre sujet. On travaille sur quelques chose de réellement utile Point négatif : ils y a deja pas mal de grosses grosses concurrences dans "le game". Les (certaines) pharmas ont des équipes gigantesques qui travaillent deja dessus. D'autres utilisent les boites de service (rancho, ontoforce, metaphacts, ...). Donc sur ce point, on peut sûrement oublier le segment pharma : on ne pourra pas faire de standardization de leurs process et pipelines internes. Pour Les CROs, le point de vu des pharmas: ils sont imprévisibles et ne feront rien si c'est pas une obligation qui vient d'au dessus. Un aspect positif : rester focus aur notre niche VCG avec métadonnées preclinical (avec DVC ou non). Mais il faut qu'on soit une référence NAM-preclinique-avec-souris-virtuelles. Les gens achètent et consomment du NAMs Mais ils ont conscience que la souris est (encore) utile! Donc il faut suirfer les 2 vagues! -> on doit standardiser le monde du NAM pour assurer la translation entre souris -> NAMs. J'ai "plein" de noms et de personnes qui voudront bien répondre a des questions et qui pourraient nous mettre en contact avec des services plus business en interne pour nous éclairer (ils ont bien compris qu'on est pas un concurrent ou potentiel vendeur 😂, donc ils sont genereux) Mais en général, c'était des gens super et très tres genereux. J'ai aussi des contact de personnalités de la semantiques, je vais creuser ces aspects aussi, c'est un monde qui bouge vite, faut pas qu'on rate le coche.
  Message Long mais le gros de mes retours sont là.. Il faudra creuser Pistoia etape 2, avec qui et comment Pistoia NAM Idée de Stefano d'aller ce mettre en avant au niveau règlementaire et FDA, NIH, EMA avec MNMS Parler business avec Instem pour voir quand ils pourraient être intéressés par notre projet 
 

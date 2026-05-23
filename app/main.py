@@ -152,7 +152,7 @@ def main() -> None:
             1. **Validate Knowledge** → click **"Seed Metadatapp candidates"** in the sidebar to load
                45 entities and 30 relations extracted from the real knowledge base documents.
             2. Review and approve candidates — validate key entities like *Home Cage Monitoring*,
-               *VCG Readiness Module*, *Connector Framework*, and the team (Damien, Rakesh, Laurent).
+               *VCG Readiness Module*, *Connector Framework*, and the team (Alice, Ben, Chris).
             3. **Graph Explorer** → write validated knowledge to Neo4j and load the graph.
             4. **Agents** → run the claims audit to surface assumptions, risks, and contradictions.
 
