@@ -1,0 +1,16 @@
+subject_id,predicate,object_id,confidence,source_doc
+N001,has_initial_wedge,N002,high,STR-010
+N001,supports,N003,high,STR-001
+N001,exports,N004,high,PRD-006
+N001,exports,N005,high,PRD-006
+N001,generates,N006,high,PRD-009
+N007,uses,N008,high,TECH-005
+N009,supports,N004,high,TECH-006
+N010,buys_for,N006,medium,CLI-002
+N011,needs,N007,high,CLI-001
+N012,needs,N014,medium,CLI-003
+N013,integrates_with,N016,medium,CLI-004
+N015,requires,Human Review,high,PRD-007
+N017,measures,Metadata Completeness,high,COM-004
+N018,supports,Community Adoption,medium,STR-005
+N019,requires,Security and RBAC,medium,COM-005

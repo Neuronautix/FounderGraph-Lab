@@ -1,0 +1,20 @@
+node_id,label,type,description,source_doc
+N001,Metadatapp,StartupProject,FAIR-by-design metadata platform for preclinical research,KB-000
+N002,Home Cage Monitoring,UseCase,Automated longitudinal monitoring in animal home cages,PRD-003
+N003,FAIRRR,Concept,FAIR for Animals and responsible research,STR-001
+N004,JSON-LD Export,ExportFormat,Linked data export format,TECH-004
+N005,RO-Crate Export,ExportFormat,Research object package export,PRD-006
+N006,ARRIVE Export,Report,Reporting checklist draft from structured metadata,PRD-009
+N007,Validation Report,ProductModule,Report listing missing or inconsistent metadata,PRD-001
+N008,SHACL Validation,TechnicalCapability,Semantic validation using shape constraints,TECH-005
+N009,Ontology Layer,TechnicalCapability,Maps local labels to stable concepts,TECH-006
+N010,CRO,CustomerSegment,Contract research organization segment,STR-003
+N011,Academic Platform,CustomerSegment,University or institute preclinical platform,CLI-001
+N012,Pharma Translational Group,CustomerSegment,Enterprise group interested in reuse and controls,CLI-003
+N013,HCM Vendor,PartnerSegment,Home cage monitoring technology vendor,CLI-004
+N014,VCG Readiness Module,ProductModule,Assesses metadata readiness for historical control review,PRD-008
+N015,AI Assistant,ProductFeature,Suggests mappings and summaries but does not validate facts,PRD-007
+N016,Connector Framework,TechnicalCapability,Imports and maps external system data,TECH-007
+N017,Pilot Program,CommercialProcess,Six-to-ten-week validation engagement,COM-004
+N018,Open Source Core,BusinessModelComponent,Community and adoption-oriented codebase,STR-005
+N019,Enterprise Deployment,BusinessModelComponent,Private deployment with support and SLA,COM-005

@@ -140,6 +140,28 @@ def main() -> None:
         "visualize the graph, and run the startup claims audit."
     )
 
+    with st.expander("Metadatapp worked example", expanded=True):
+        st.markdown(
+            """
+            **Metadatapp** is a FAIR-by-design metadata platform for preclinical animal research.
+            Its full synthetic knowledge base (110 documents across strategy, product, technical, client discovery,
+            commercial, research, finance, and operations) is pre-loaded in `sample_data/metadatapp_kb/`.
+
+            To run the worked example end-to-end:
+
+            1. **Validate Knowledge** → click **"Seed Metadatapp candidates"** in the sidebar to load
+               45 entities and 30 relations extracted from the real knowledge base documents.
+            2. Review and approve candidates — validate key entities like *Home Cage Monitoring*,
+               *VCG Readiness Module*, *Connector Framework*, and the team (Damien, Rakesh, Laurent).
+            3. **Graph Explorer** → write validated knowledge to Neo4j and load the graph.
+            4. **Agents** → run the claims audit to surface assumptions, risks, and contradictions.
+
+            The knowledge base covers: vision & mission, problem statement, product modules, technical
+            architecture, client discovery interviews, commercial strategy, meeting decisions, team members,
+            risks, milestones, and KG-ready triple examples.
+            """
+        )
+
     st.info("Use the sidebar pages from top to bottom for the vertical demo.")
 
 

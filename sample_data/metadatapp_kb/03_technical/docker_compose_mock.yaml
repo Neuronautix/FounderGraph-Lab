@@ -1,0 +1,20 @@
+services:
+  backend:
+    image: metadatapp/backend:mock
+    environment:
+      APP_ENV: dev
+      DATABASE_URL: postgresql://metadatapp:metadatapp@database:5432/metadatapp
+  frontend:
+    image: metadatapp/frontend:mock
+    environment:
+      API_BASE_URL: http://backend
+  database:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: metadatapp
+      POSTGRES_PASSWORD: metadatapp
+      POSTGRES_DB: metadatapp
+  validation_worker:
+    image: metadatapp/validator:mock
+    environment:
+      QUEUE: validation
