@@ -1,0 +1,51 @@
+{
+  "@context": {
+    "mapp": "https://example.org/metadatapp/",
+    "schema": "https://schema.org/",
+    "Project": "mapp:Project",
+    "Experiment": "mapp:Experiment",
+    "Animal": "mapp:Animal",
+    "Cage": "mapp:Cage",
+    "Procedure": "mapp:Procedure",
+    "Endpoint": "mapp:Endpoint",
+    "Dataset": "mapp:Dataset",
+    "hasAnimal": {
+      "@id": "mapp:hasAnimal",
+      "@type": "@id"
+    },
+    "hasCage": {
+      "@id": "mapp:hasCage",
+      "@type": "@id"
+    },
+    "measuresEndpoint": {
+      "@id": "mapp:measuresEndpoint",
+      "@type": "@id"
+    },
+    "usesProcedure": {
+      "@id": "mapp:usesProcedure",
+      "@type": "@id"
+    },
+    "hasValidationStatus": "mapp:hasValidationStatus",
+    "hasProvenance": "mapp:hasProvenance"
+  },
+  "@id": "mapp:experiment/EXP-HCM-001",
+  "@type": "Experiment",
+  "schema:name": "Mock HCM baseline activity study",
+  "hasAnimal": [
+    "mapp:animal/M001",
+    "mapp:animal/M002"
+  ],
+  "hasCage": "mapp:cage/CAGE-01",
+  "measuresEndpoint": [
+    "mapp:endpoint/activity-index",
+    "mapp:endpoint/night-day-ratio"
+  ],
+  "usesProcedure": [
+    "mapp:procedure/baseline-recording"
+  ],
+  "hasValidationStatus": "curation_needed",
+  "hasProvenance": {
+    "source_type": "synthetic_mock",
+    "created_at": "2026-05-20"
+  }
+}

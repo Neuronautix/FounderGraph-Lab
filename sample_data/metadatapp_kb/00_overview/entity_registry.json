@@ -1,0 +1,50 @@
+{
+  "project": {
+    "Metadatapp": {
+      "type": "startup_project",
+      "description": "FAIR-by-design metadata platform for preclinical animal research.",
+      "aliases": [
+        "MAPP",
+        "MAPP-Hub"
+      ],
+      "domain": [
+        "preclinical research",
+        "metadata",
+        "semantic web",
+        "home cage monitoring"
+      ]
+    }
+  },
+  "standards": {
+    "FAIR": "Findable, Accessible, Interoperable, Reusable principles.",
+    "ARRIVE": "Animal research reporting guidelines.",
+    "JSON-LD": "JSON serialization for linked data.",
+    "SHACL": "RDF graph validation language.",
+    "RO-Crate": "Research object packaging format.",
+    "DataCite": "Metadata schema often used for DOI registration."
+  },
+  "stakeholder_types": [
+    "academic_preclinical_platform",
+    "CRO",
+    "pharma_translational_group",
+    "animal_facility",
+    "HCM_vendor",
+    "ELN_vendor",
+    "LIMS_vendor",
+    "biostatistician",
+    "data_steward",
+    "animal_welfare_officer"
+  ],
+  "core_modules": [
+    "Experiment Registry",
+    "Protocol Metadata Builder",
+    "Animal Cohort Manager",
+    "Procedure Timeline",
+    "HCM Endpoint Mapper",
+    "FAIR Validation Report",
+    "ARRIVE Export",
+    "RO-Crate Export",
+    "Connector Framework",
+    "Knowledge Graph Layer"
+  ]
+}

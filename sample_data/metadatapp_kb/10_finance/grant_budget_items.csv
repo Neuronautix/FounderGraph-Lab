@@ -1,0 +1,8 @@
+item,category,amount_eur_mock,purpose,kg_entity
+API Platform architecture audit,technical,8000,Review backend architecture security scalability,ArchitectureAudit
+Semantic web support,team,4200,Support JSON-LD ontology mapping SHACL shapes,SemanticSupport
+UX design support,product,2500,Improve experiment creation and validation workflows,UXDesign
+Cloud and storage credits,infrastructure,2300,Run staging demos validation jobs object storage,CloudCredits
+Legal and licensing review,legal,2000,Review open-source commercial license pilot contracts,LegalReview
+Pilot documentation and training,commercial,1500,Create onboarding and training material,PilotTraining
+Conference and demo material,marketing,1200,Prepare demos visuals one-pager pitch materials,ConferenceDemo
