@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Mock Metadatapp HCM Experiment",
+  "type": "object",
+  "required": [
+    "experiment_id",
+    "title",
+    "species",
+    "strain",
+    "sex",
+    "cages",
+    "endpoints"
+  ],
+  "properties": {
+    "experiment_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "species": {
+      "type": "string"
+    },
+    "strain": {
+      "type": "string"
+    },
+    "sex": {
+      "type": "string",
+      "enum": [
+        "female",
+        "male",
+        "mixed",
+        "not_reported"
+      ]
+    },
+    "light_cycle": {
+      "type": "string"
+    },
+    "cages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "endpoints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

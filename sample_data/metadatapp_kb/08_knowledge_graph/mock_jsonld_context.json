@@ -1,0 +1,31 @@
+{
+  "@context": {
+    "mapp": "https://example.org/metadatapp/",
+    "schema": "https://schema.org/",
+    "Project": "mapp:Project",
+    "Experiment": "mapp:Experiment",
+    "Animal": "mapp:Animal",
+    "Cage": "mapp:Cage",
+    "Procedure": "mapp:Procedure",
+    "Endpoint": "mapp:Endpoint",
+    "Dataset": "mapp:Dataset",
+    "hasAnimal": {
+      "@id": "mapp:hasAnimal",
+      "@type": "@id"
+    },
+    "hasCage": {
+      "@id": "mapp:hasCage",
+      "@type": "@id"
+    },
+    "measuresEndpoint": {
+      "@id": "mapp:measuresEndpoint",
+      "@type": "@id"
+    },
+    "usesProcedure": {
+      "@id": "mapp:usesProcedure",
+      "@type": "@id"
+    },
+    "hasValidationStatus": "mapp:hasValidationStatus",
+    "hasProvenance": "mapp:hasProvenance"
+  }
+}
