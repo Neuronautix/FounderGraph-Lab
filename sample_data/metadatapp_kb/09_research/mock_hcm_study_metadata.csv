@@ -1,0 +1,5 @@
+animal_id,species,strain,sex,age_weeks,cage_id,group,endpoint,unit,source
+M001,Mus musculus,C57BL/6J,male,11,CAGE-01,control,activity_index,a.u.,synthetic
+M002,Mus musculus,C57BL/6J,female,10,CAGE-01,control,activity_index,a.u.,synthetic
+M003,Mus musculus,C57BL/6J,male,12,CAGE-02,treatment,night_day_ratio,ratio,synthetic
+M004,Mus musculus,C57BL/6J,female,11,CAGE-02,treatment,night_day_ratio,ratio,synthetic
