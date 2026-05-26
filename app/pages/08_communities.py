@@ -21,7 +21,6 @@ except ImportError:  # pragma: no cover -- streamlit only needed at runtime
     st = None  # type: ignore[assignment]
 
 from app.services.community_service import Community, CommunityService, MacroCommunity
-from app.services.llm_service import OllamaLLMService
 from app.services.neo4j_service import Neo4jService
 from app.services.qdrant_service import QdrantService
 
@@ -46,9 +45,9 @@ def _build_service() -> tuple[CommunityService | None, Neo4jService | None, str 
     except Exception as exc:  # noqa: BLE001
         return None, None, f"Neo4j: {exc}"
     try:
-        llm = OllamaLLMService()
         qdrant = QdrantService()
         from app.services.backend_factory import BackendFactory as _BF
+        llm = _BF.create_llm()
         embed_fn = _BF.create_embed_fn()
     except Exception as exc:  # noqa: BLE001
         return None, neo4j, f"LLM/embedding service: {exc}"
