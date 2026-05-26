@@ -298,6 +298,14 @@ def generate_cypher(schema_path: Path, out_path: Path) -> None:
         + str(dims)
         + ", `vector.similarity_function`: 'cosine'}};"
     )
+    # Phase 7 Level-2: macro-community vector index, populated by
+    # ``CommunityService.materialize_macro``.
+    lines.append(
+        "CREATE VECTOR INDEX macro_community_embedding IF NOT EXISTS FOR (m:MacroCommunity) ON m.embedding "
+        "OPTIONS {indexConfig: {`vector.dimensions`: "
+        + str(dims)
+        + ", `vector.similarity_function`: 'cosine'}};"
+    )
 
     out_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
