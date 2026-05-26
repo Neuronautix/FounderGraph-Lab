@@ -100,11 +100,13 @@ class QdrantService:
         ollama_url: str = DEFAULT_OLLAMA_URL,
         embed_model: str = DEFAULT_EMBED_MODEL,
         vector_size: int = DEFAULT_VECTOR_SIZE,
+        embed_fn: Callable[[str], list[float]] | None = None,
     ) -> None:
         self.qdrant_url = qdrant_url.rstrip("/")
         self.ollama_url = ollama_url.rstrip("/")
         self.embed_model = embed_model
         self.vector_size = vector_size
+        self._embed_fn = embed_fn
 
     def ensure_collections(self) -> dict[str, Any]:
         results: dict[str, Any] = {}
@@ -130,6 +132,8 @@ class QdrantService:
             return {"available": False, "error": str(exc), "collection": collection}
 
     def embed(self, text: str) -> list[float]:
+        if self._embed_fn is not None:
+            return list(self._embed_fn(text))
         body = {"model": self.embed_model, "input": text}
         response = _json_request("POST", f"{self.ollama_url}/api/embed", body, timeout=30)
         embeddings = response.get("embeddings")
