@@ -53,6 +53,8 @@ HYBRID_GAMMA_EVIDENCE_STRENGTH = float(os.getenv("HYBRID_GAMMA_EVIDENCE_STRENGTH
 HYBRID_SEED_K = int(os.getenv("HYBRID_SEED_K", "8"))
 HYBRID_EXPANSION_HOPS = int(os.getenv("HYBRID_EXPANSION_HOPS", "1"))
 
+GRAPHRAG_ROOT = Path(os.getenv("GRAPHRAG_ROOT", str(DATA_DIR / "graphrag")))
+
 DOCUMENTS_JSON = STAGING_DIR / "documents.json"
 CANDIDATE_ENTITIES_JSON = STAGING_DIR / "candidate_entities.json"
 CANDIDATE_RELATIONS_JSON = STAGING_DIR / "candidate_relations.json"
