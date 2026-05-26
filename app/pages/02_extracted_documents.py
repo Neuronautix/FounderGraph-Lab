@@ -15,6 +15,16 @@ st.set_page_config(page_title="Extracted Documents", page_icon="FG", layout="wid
 st.title("Extracted Documents")
 
 ensure_storage_dirs()
+
+# Backend indicator
+from app.config import EXTRACTION_BACKEND as _BACKEND
+if _BACKEND == "graphrag":
+    st.info(
+        "**GraphRAG backend active.** Entity extraction on this page uses OpenAI. "
+        "To run full-corpus indexing (recommended for >5 documents), use the "
+        "**GraphRAG Pipeline** page (page 09) instead."
+    )
+
 markdown_files = sorted(VAULT_DOCUMENTS_DIR.glob("*.md"), key=lambda path: path.stat().st_mtime, reverse=True)
 
 if not markdown_files:
