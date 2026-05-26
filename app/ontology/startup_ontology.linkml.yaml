@@ -566,6 +566,14 @@ slots:
       predicate: IN_COMMUNITY
       relation: true
 
+  in_macro_community:
+    description: Community IN_MACRO_COMMUNITY MacroCommunity (Phase 7 Level-2 aggregation).
+    domain: Community
+    range: MacroCommunity
+    annotations:
+      predicate: IN_MACRO_COMMUNITY
+      relation: true
+
 # ---------------------------------------------------------------------------
 # Classes
 # ---------------------------------------------------------------------------
@@ -841,6 +849,13 @@ classes:
       - risk_exposure
       - created_at
       - updated_at
+
+  MacroCommunity:
+    description: A Level-2 macro-cluster grouping related Level-1 Community nodes.
+    slots:
+      - id
+      - summary
+      - embedding
 
   # Additional shell classes referenced by extractors but with no fields yet.
   Site:
