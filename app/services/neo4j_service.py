@@ -130,7 +130,7 @@ class Neo4jService:
         # Derive allowed sets from the ontology YAML when not overridden
         # explicitly (e.g. in tests).  Fall back to the hard-coded defaults if
         # the ontology produces an empty set (missing YAML, parse error, etc.).
-        ontology = get_ontology()
+        ontology = get_ontology(force_reload=True)
         ontology_labels = ontology.allowed_labels or DEFAULT_ALLOWED_LABELS
         ontology_rels = ontology.allowed_relationships or DEFAULT_ALLOWED_RELATIONSHIPS
         self.allowed_labels = allowed_labels if allowed_labels is not None else ontology_labels

@@ -164,6 +164,73 @@ classes:
     - embedding
     - size
     - risk_exposure
+  StartupProject:
+    description: A startup initiative modeled as a structured project entity.
+    fields:
+    - name
+    - stage
+    - focus_area
+  UseCase:
+    description: A concrete workflow or problem scenario addressed by the startup.
+    fields:
+    - name
+    - description
+  Concept:
+    description: A domain concept or operating principle relevant to strategy and design.
+    fields:
+    - name
+    - description
+  Standard:
+    description: A formal guideline or interoperability standard.
+    fields:
+    - name
+    - version
+  ExportFormat:
+    description: A supported data export format.
+    fields:
+    - name
+    - specification
+  ProductModule:
+    description: A named product module in the platform architecture.
+    fields:
+    - name
+    - description
+  TechnicalCapability:
+    description: A technical capability that enables product behavior.
+    fields:
+    - name
+    - maturity
+  Technology:
+    description: A technology, tool, or external platform dependency.
+    fields:
+    - name
+    - category
+  Person:
+    description: A person involved in founding, building, or operating the startup.
+    fields:
+    - name
+    - role
+  PartnerSegment:
+    description: A partner or buyer segment connected to a use case.
+    fields:
+    - name
+    - description
+  BusinessModelComponent:
+    description: A component of the business model such as pricing or channel.
+    fields:
+    - name
+    - description
+  CommercialProcess:
+    description: A commercial or go-to-market process step.
+    fields:
+    - name
+    - stage
+  Metric:
+    description: A measurable KPI or outcome used for decision-making.
+    fields:
+    - name
+    - unit
+    - target
 relations:
 - subject: Startup
   predicate: TARGETS
@@ -231,3 +298,90 @@ relations:
 - subject: Entity
   predicate: IN_COMMUNITY
   object: Community
+- subject: StartupProject
+  predicate: HAS_INITIAL_WEDGE
+  object: UseCase
+- subject: StartupProject
+  predicate: HAS_BUSINESS_MODEL
+  object: BusinessModelComponent
+- subject: StartupProject
+  predicate: SUPPORTS
+  object: Concept
+- subject: StartupProject
+  predicate: IMPLEMENTS
+  object: Standard
+- subject: StartupProject
+  predicate: EXPORTS
+  object: ExportFormat
+- subject: StartupProject
+  predicate: INTEGRATES_WITH
+  object: Technology
+- subject: ProductModule
+  predicate: REQUIRES
+  object: TechnicalCapability
+- subject: CommercialProcess
+  predicate: NEEDS
+  object: ProductFeature
+- subject: StartupProject
+  predicate: USES
+  object: Technology
+- subject: Metric
+  predicate: MEASURES
+  object: Concept
+- subject: Person
+  predicate: FOUNDED
+  object: StartupProject
+- subject: PartnerSegment
+  predicate: BUYS_FOR
+  object: UseCase
+- subject: Person
+  predicate: LEADS_TECHNICAL_DEVELOPMENT_FOR
+  object: StartupProject
+- subject: StartupProject
+  predicate: GENERATES
+  object: ExportFormat
+- subject: ProductModule
+  predicate: USES
+  object: TechnicalCapability
+- subject: TechnicalCapability
+  predicate: SUPPORTS
+  object: ExportFormat
+- subject: CustomerSegment
+  predicate: BUYS_FOR
+  object: ExportFormat
+- subject: CustomerSegment
+  predicate: NEEDS
+  object: ProductModule
+- subject: PartnerSegment
+  predicate: INTEGRATES_WITH
+  object: TechnicalCapability
+- subject: ProductFeature
+  predicate: REQUIRES
+  object: Concept
+- subject: CommercialProcess
+  predicate: MEASURES
+  object: Metric
+- subject: BusinessModelComponent
+  predicate: SUPPORTS
+  object: Concept
+- subject: BusinessModelComponent
+  predicate: REQUIRES
+  object: TechnicalCapability
+- subject: StartupProject
+  predicate: ADDRESSES
+  object: Problem
+- subject: UseCase
+  predicate: REQUIRES
+  object: TechnicalCapability
+- subject: Decision
+  predicate: MITIGATES
+  object: Risk
+- subject: TechnicalCapability
+  predicate: INTEGRATES_WITH
+  object: Technology
+- subject: Milestone
+  predicate: DEPENDS_ON
+  object: Technology
+- subject: Assumption
+  predicate: SUPPORTS
+  object: Concept

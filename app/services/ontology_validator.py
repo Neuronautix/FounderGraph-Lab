@@ -62,6 +62,11 @@ class OntologyLoader:
         # call sites that pass tmp_path-style legacy paths working in tests.
         if path is None and self._schema_json_path.exists():
             self._data = self._load_from_jsonschema()
+            # Honor user edits in startup_ontology.yaml without requiring a
+            # regenerate step: merge any additional classes/relations from the
+            # legacy YAML onto the generated schema view.
+            if self._path.exists():
+                self._merge_legacy_overlay(self._load_legacy_yaml())
             self._source = "schema.json"
         elif self._path.exists():
             self._data = self._load_legacy_yaml()
@@ -152,6 +157,21 @@ class OntologyLoader:
         ``violation_reason`` is ``None`` on success; otherwise a short string
         the caller may surface to the user / staging report.
         """
+        def _clean(value: str | None) -> str | None:
+            if value is None:
+                return None
+            text = str(value)
+            # Guard against hidden formatting chars from edited JSON/YAML.
+            text = text.replace("\ufeff", "").replace("\u200b", "").strip()
+            return text or None
+
+        rel_type = _clean(rel_type)
+        source_type = _clean(source_type)
+        target_type = _clean(target_type)
+
+        if not rel_type:
+            return False, "Missing predicate"
+
         if not source_type or not target_type:
             return False, (
                 f"Untyped endpoint(s) for predicate '{rel_type}': "
@@ -264,14 +284,50 @@ class OntologyLoader:
         except Exception:  # noqa: BLE001
             return {}
 
+    def _merge_legacy_overlay(self, legacy: dict[str, Any]) -> None:
+        """Merge YAML-only additions into the generated-schema data view.
+
+        Generated ``schema.json`` remains authoritative for existing entities,
+        but any new classes/predicates added via the editable YAML are merged
+        so runtime whitelist checks stay aligned with current user intent.
+        """
+        if not isinstance(self._data, dict):
+            return
+        classes = self._data.setdefault("classes", {})
+        for name, spec in (legacy.get("classes") or {}).items():
+            if name not in classes and isinstance(spec, dict):
+                classes[name] = spec
+
+        relations = self._data.setdefault("relations", [])
+        seen = {
+            (str(r.get("subject", "")), str(r.get("predicate", "")), str(r.get("object", "")))
+            for r in relations
+            if isinstance(r, dict)
+        }
+        for rel in legacy.get("relations") or []:
+            if not isinstance(rel, dict):
+                continue
+            key = (
+                str(rel.get("subject", "")),
+                str(rel.get("predicate", "")),
+                str(rel.get("object", "")),
+            )
+            if key not in seen and rel.get("predicate"):
+                relations.append(rel)
+                seen.add(key)
+
 
 _loader: OntologyLoader | None = None
 
+def get_ontology(force_reload: bool = False) -> OntologyLoader:
+    """Return the module-level OntologyLoader singleton.
 
-def get_ontology() -> OntologyLoader:
-    """Return the module-level OntologyLoader singleton."""
+    Set ``force_reload=True`` to rebuild the loader from on-disk ontology
+    artifacts, which is useful in long-lived Streamlit sessions after the
+    ontology YAML changes.
+    """
     global _loader
-    if _loader is None:
+    if _loader is None or force_reload:
         _loader = OntologyLoader()
     return _loader
 

@@ -57,24 +57,34 @@ def _neo4j_read(cypher: str, parameters: dict[str, Any] | None = None) -> dict[s
 
 def _ollama_generate(prompt: str) -> dict[str, Any]:
     url = f"{os.getenv('OLLAMA_URL', 'http://localhost:11434').rstrip('/')}/api/generate"
+    model = os.getenv(
+        "OLLAMA_SYNTH_MODEL",
+        os.getenv("LLM_MODEL", os.getenv("OLLAMA_MODEL", "llama3.1:8b")),
+    )
+    timeout = float(os.getenv("OLLAMA_SYNTH_TIMEOUT", "25"))
     body = json.dumps({
-        "model": os.getenv(
-            "OLLAMA_SYNTH_MODEL",
-            os.getenv("LLM_MODEL", os.getenv("OLLAMA_MODEL", "llama3.1:8b")),
-        ),
+        "model": model,
         "prompt": prompt,
         "stream": False,
+        "options": {
+            "num_ctx": int(os.getenv("OLLAMA_SYNTH_NUM_CTX", "2048")),
+            "num_predict": int(os.getenv("OLLAMA_SYNTH_NUM_PREDICT", "350")),
+            "temperature": 0.2,
+        },
     }).encode("utf-8")
     request = urllib.request.Request(url, data=body, method="POST", headers={"Content-Type": "application/json"})
     try:
-        with urllib.request.urlopen(request, timeout=90) as resp:
+        with urllib.request.urlopen(request, timeout=timeout) as resp:
             response = json.loads(resp.read().decode("utf-8"))
         return {"available": True, "text": str(response.get("response", "")).strip()}
     except urllib.error.HTTPError as exc:
-        model = os.getenv("OLLAMA_SYNTH_MODEL", os.getenv("LLM_MODEL", os.getenv("OLLAMA_MODEL", "llama3.1:8b")))
+        try:
+            detail = exc.read().decode("utf-8")[:500]
+        except Exception:
+            detail = ""
         return {
             "available": False,
-            "error": f"{exc}. Is Ollama model '{model}' pulled?",
+            "error": f"{exc}. Model '{model}' failed during synthesis. {detail}".strip(),
             "text": "",
         }
     except (urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError) as exc:
@@ -110,8 +120,24 @@ def _format_rows(rows: list[dict[str, Any]]) -> str:
     if not rows:
         return "No graph rows available."
     lines = []
-    for row in rows[:30]:
-        lines.append("- " + "; ".join(f"{key}: {value}" for key, value in row.items()))
+    for row in rows[:12]:
+        properties = row.get("properties") if isinstance(row.get("properties"), dict) else row
+        labels = row.get("labels") if isinstance(row.get("labels"), list) else []
+        entity_type = properties.get("type") or next((label for label in labels if label not in {"Entity"}), "")
+        label = properties.get("label") or properties.get("name") or properties.get("id") or "Unnamed"
+        description = properties.get("description") or ""
+        source = properties.get("source_file") or properties.get("source_document_id") or ""
+        snippet = properties.get("source_snippet") or ""
+        parts = [f"**{label}**"]
+        if entity_type:
+            parts.append(f"type: {entity_type}")
+        if description:
+            parts.append(f"description: {description}")
+        if source:
+            parts.append(f"source: {source}")
+        if snippet:
+            parts.append(f"evidence: {snippet}")
+        lines.append("- " + "; ".join(str(part) for part in parts))
     return "\n".join(lines)
 
 
@@ -119,13 +145,12 @@ def _format_snippets(search: dict[str, Any]) -> str:
     if not search.get("available"):
         return f"Vector search unavailable: {search.get('error', 'unknown error')}"
     snippets = []
-    for result in search.get("results", []):
+    for result in search.get("results", [])[:4]:
         payload = result.payload
         source = payload.get("source_path") or payload.get("document_id") or result.id
         chunk_id = payload.get("chunk_id") or payload.get("source_chunk_id") or result.id
-        snippets.append(
-            f"- chunk_id={chunk_id} score={result.score:.3f} source={source}: {result.text[:900]}"
-        )
+        text = " ".join(result.text.split())
+        snippets.append(f"- chunk_id={chunk_id} score={result.score:.3f} source={source}: {text[:350]}")
     return "\n".join(snippets) if snippets else "No vector snippets found."
 
 
@@ -219,6 +244,41 @@ def _merge_contexts(
     )
 
 
+def _top_graph_items(rows: list[dict[str, Any]], entity_type: str, limit: int = 5) -> list[dict[str, Any]]:
+    matches = []
+    for row in rows:
+        properties = row.get("properties") if isinstance(row.get("properties"), dict) else row
+        labels = row.get("labels") if isinstance(row.get("labels"), list) else []
+        if properties.get("type") == entity_type or entity_type in labels:
+            matches.append(properties)
+    return matches[:limit]
+
+
+def _snippet_bullets(search: dict[str, Any], limit: int = 5) -> str:
+    if not search.get("available"):
+        return f"- Vector search unavailable: {search.get('error', 'unknown error')}"
+    bullets = []
+    for result in search.get("results", [])[:limit]:
+        payload = result.payload
+        source = payload.get("source_path") or payload.get("document_id") or result.id
+        text = " ".join(result.text.split())
+        bullets.append(f"- `{source}`: {text[:350]}{'...' if len(text) > 350 else ''}")
+    return "\n".join(bullets) if bullets else "- No vector snippets found."
+
+
+def _entity_bullets(items: list[dict[str, Any]]) -> str:
+    if not items:
+        return "- None found in graph context."
+    bullets = []
+    for item in items:
+        label = item.get("label") or item.get("name") or item.get("id") or "Unnamed"
+        description = item.get("description") or item.get("source_snippet") or ""
+        source = item.get("source_file") or item.get("source_document_id") or ""
+        suffix = f" Source: `{source}`." if source else ""
+        bullets.append(f"- **{label}**: {description}{suffix}")
+    return "\n".join(bullets)
+
+
 def _save_audit(slug: str, title: str, body: str) -> Path:
     AUDIT_DIR.mkdir(parents=True, exist_ok=True)
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
@@ -228,20 +288,39 @@ def _save_audit(slug: str, title: str, body: str) -> Path:
 
 
 def _fallback_markdown(title: str, prompt: str, graph: dict[str, Any], snippets: dict[str, Any]) -> str:
-    return f"""Generated without Ollama synthesis.
+    rows = graph.get("rows", [])
+    startups = _top_graph_items(rows, "Startup", limit=3)
+    assumptions = _top_graph_items(rows, "Assumption", limit=6)
+    evidence = _top_graph_items(rows, "Evidence", limit=6)
+    risks = _top_graph_items(rows, "Risk", limit=6)
+    graph_status = "available" if graph.get("available") else graph.get("error", "unavailable")
+    vector_status = "available" if snippets.get("available") else snippets.get("error", "unavailable")
+    return f"""Generated without Ollama synthesis, so this is a structured evidence summary rather than a narrative audit.
 
-## Prompt
-{prompt.strip() or title}
+## Executive readout
+- Graph context: {graph_status}
+- Vector snippets: {vector_status}
+- Use this as a review packet, then rerun after pulling/configuring the Ollama synthesis model for a full narrative audit.
 
-## Graph Context
-{_format_rows(graph.get("rows", []))}
+## Startup
+{_entity_bullets(startups)}
 
-## Evidence Snippets
-{_format_snippets(snippets)}
+## Strengths
+{_entity_bullets(evidence)}
 
-## Availability
-- Neo4j: {"available" if graph.get("available") else graph.get("error")}
-- Qdrant: {"available" if snippets.get("available") else snippets.get("error")}
+## Gaps and contradictions
+{_entity_bullets(assumptions)}
+
+## Risks
+{_entity_bullets(risks)}
+
+## Evidence snippets
+{_snippet_bullets(snippets)}
+
+## Follow-up questions
+- Which claims have direct customer or pilot evidence rather than inferred support?
+- Which assumptions need stronger source snippets before an investor or partner review?
+- Which risks threaten the next milestone and need mitigation owners?
 """
 
 
