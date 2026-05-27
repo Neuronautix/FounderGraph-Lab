@@ -35,6 +35,13 @@ EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "nomic-embed-text")
 # vectors; if a future model has a different dimension, regenerate the DDL.
 EMBEDDING_DIMS = int(os.getenv("EMBEDDING_DIMS", "768"))
 
+# --- GraphRAG / OpenAI backend ---
+EXTRACTION_BACKEND: str = os.getenv("EXTRACTION_BACKEND", "ollama")
+OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
+OPENAI_LLM_MODEL: str = os.getenv("OPENAI_LLM_MODEL", "gpt-4o-mini")
+OPENAI_EMBED_MODEL: str = os.getenv("OPENAI_EMBED_MODEL", "text-embedding-3-small")
+GRAPHRAG_ROOT: Path = Path(os.getenv("GRAPHRAG_ROOT", str(DATA_DIR / "graphrag")))
+
 # Phase 4 hybrid retrieval weights.  Tunable so the user can shift emphasis
 # between raw vector similarity (alpha), graph proximity (beta), and how
 # strongly an Evidence node grades its support (gamma).  Defaults keep
@@ -45,6 +52,8 @@ HYBRID_BETA_PROXIMITY = float(os.getenv("HYBRID_BETA_PROXIMITY", "0.25"))
 HYBRID_GAMMA_EVIDENCE_STRENGTH = float(os.getenv("HYBRID_GAMMA_EVIDENCE_STRENGTH", "0.15"))
 HYBRID_SEED_K = int(os.getenv("HYBRID_SEED_K", "8"))
 HYBRID_EXPANSION_HOPS = int(os.getenv("HYBRID_EXPANSION_HOPS", "1"))
+
+GRAPHRAG_ROOT = Path(os.getenv("GRAPHRAG_ROOT", str(DATA_DIR / "graphrag")))
 
 DOCUMENTS_JSON = STAGING_DIR / "documents.json"
 CANDIDATE_ENTITIES_JSON = STAGING_DIR / "candidate_entities.json"
@@ -63,6 +72,7 @@ def ensure_directories() -> None:
         VAULT_DOCUMENTS_DIR,
         VAULT_ENTITIES_DIR,
         VAULT_AUDITS_DIR,
+        GRAPHRAG_ROOT,
     ]:
         path.mkdir(parents=True, exist_ok=True)
 

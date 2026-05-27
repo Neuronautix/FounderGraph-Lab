@@ -17,6 +17,14 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 
+[project.optional-dependencies]
+graphrag = [
+    "graphrag>=2.0,<3.0",
+    "openai>=1.0",
+    "pandas>=2.0",
+    "pyarrow>=14.0",
+]
+
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
