@@ -400,17 +400,18 @@ class HybridRetriever:
         items = items[: self.final_top_k]
 
         # ------------------------------------------------------------------
-        # Stage D (Phase 7): community summaries for global questions
+        # Stage D: community summaries (Level-1) and macro-community summaries
+        # (Level-2) for global / very-global questions.
+        #
+        # Prepend order: macro first (highest abstraction), then Level-1
+        # communities, then entities/chunks.  This matches the BYOG feedback
+        # loop: the LLM consumes the broadest context anchor before narrowing.
         # ------------------------------------------------------------------
+        macro_items = self._maybe_macro_community_items(question, query_vec, traces)
         community_items = self._maybe_community_items(question, query_vec, traces)
-        if community_items:
-            # Prepend so the LLM consumes the global summary BEFORE the
-            # narrow entity/chunk evidence -- this matches Microsoft's
-            # GraphRAG observation that a high-level summary anchors the
-            # subsequent finer-grained retrieval.
-            items = community_items + items
-            # Truncate again to keep the contract; community items count
-            # toward the top-K budget.
+        prepend = macro_items + community_items
+        if prepend:
+            items = prepend + items
             items = items[: self.final_top_k]
 
         return HybridResult(
@@ -443,6 +444,18 @@ class HybridRetriever:
         "in aggregate",
     )
 
+    _VERY_GLOBAL_HINTS: tuple[str, ...] = (
+        "overall themes",
+        "big picture",
+        "key themes",
+        "across all",
+        "across everything",
+        "top-level",
+        "high-level overview",
+        "strategic overview",
+        "all domains",
+    )
+
     @classmethod
     def _is_global_question(cls, question: str) -> bool:
         """True if the question reads as graph-wide rather than entity-local."""
@@ -450,6 +463,14 @@ class HybridRetriever:
             return False
         lowered = question.lower()
         return any(hint in lowered for hint in cls._GLOBAL_HINTS)
+
+    @classmethod
+    def _is_very_global_question(cls, question: str) -> bool:
+        """True for questions asking for the highest-level cross-domain view."""
+        if not question:
+            return False
+        lowered = question.lower()
+        return any(hint in lowered for hint in cls._VERY_GLOBAL_HINTS)
 
     def _maybe_community_items(
         self,
@@ -512,6 +533,73 @@ class HybridRetriever:
                         "size": size,
                         "risk_exposure": risk_exposure,
                         "kind": "community",
+                    },
+                )
+            )
+        return out
+
+    def _maybe_macro_community_items(
+        self,
+        question: str,
+        query_vec: list[float],
+        traces: list[str],
+    ) -> list[RetrievedItem]:
+        """Vector-search macro-community summaries for very-global questions.
+
+        Only fires when the community service exposes ``search_macro`` AND the
+        question trips the stricter ``_is_very_global_question`` heuristic.
+        Failures are caught so a missing macro index never breaks retrieval.
+        """
+        if self.community_service is None or not self._is_very_global_question(question):
+            return []
+        search_macro = getattr(self.community_service, "search_macro", None)
+        if not callable(search_macro):
+            return []
+        try:
+            macros = search_macro(query_vec, k=self.seed_k)
+        except Exception as exc:  # noqa: BLE001
+            traces.append(f"community_service.search_macro failed: {exc!r}")
+            return []
+        traces.append(
+            f"community_service.search_macro(k={self.seed_k}) -> {len(macros)}"
+        )
+        out: list[RetrievedItem] = []
+        for macro in macros:
+            mid = str(
+                getattr(macro, "id", None)
+                or (macro.get("id") if isinstance(macro, dict) else "")
+                or ""
+            )
+            summary = str(
+                getattr(macro, "summary", "")
+                or (macro.get("summary") if isinstance(macro, dict) else "")
+                or ""
+            )
+            total = int(
+                getattr(macro, "total_entity_count", 0)
+                or (macro.get("total_entity_count") if isinstance(macro, dict) else 0)
+                or 0
+            )
+            risk = float(
+                getattr(macro, "max_risk_exposure", 0.0)
+                or (macro.get("max_risk_exposure") if isinstance(macro, dict) else 0.0)
+                or 0.0
+            )
+            score = float(
+                getattr(macro, "score", 0.0)
+                or (macro.get("score") if isinstance(macro, dict) else 0.0)
+                or 0.0
+            )
+            out.append(
+                RetrievedItem(
+                    kind="macro_community",
+                    id=mid,
+                    text=summary or f"Macro-community {mid}",
+                    score=score,
+                    payload={
+                        "total_entity_count": total,
+                        "max_risk_exposure": risk,
+                        "kind": "macro_community",
                     },
                 )
             )

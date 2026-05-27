@@ -13,7 +13,7 @@ from typing import Any
 
 import pytest
 
-from app.services.community_service import Community, CommunityService
+from app.services.community_service import Community, CommunityService, MacroCommunity
 from app.services.hybrid_retriever import (
     HybridRetriever,
     RetrievalWeights,
@@ -123,6 +123,36 @@ class FakeNeo4j:
             )
         )
         return list(self.search_rows)[:k]
+
+    def write_macro_community_node(self, macro: dict[str, Any]) -> None:
+        self.writes.append(
+            (
+                "MERGE (m:MacroCommunity {id: $id}) SET ...",
+                dict(macro),
+            )
+        )
+
+    def set_community_macro(
+        self, community_ids: list[str], macro_id: str
+    ) -> None:
+        self.writes.append(
+            (
+                "UNWIND $ids AS cid MATCH (c:Community {id:cid}) "
+                "MERGE (c)-[r:IN_MACRO_COMMUNITY]->(m:MacroCommunity {id:$macro_id})",
+                {"ids": list(community_ids), "macro_id": macro_id},
+            )
+        )
+
+    def macro_community_summary_search(
+        self, query_embedding: list[float], k: int = 5
+    ) -> list[dict[str, Any]]:
+        self.writes.append(
+            (
+                "CALL db.index.vector.queryNodes('macro_community_embedding', $k, $vec)",
+                {"k": k, "vec": list(query_embedding)},
+            )
+        )
+        return list(getattr(self, "macro_search_rows", []))[:k]
 
 
 def _make_service(**fake_kwargs) -> tuple[CommunityService, FakeNeo4j, _StubLLM]:
@@ -339,3 +369,201 @@ def test_hybrid_retriever_without_community_service_unchanged():
     )
     result = retriever.retrieve("What are the overall themes across the portfolio?")
     assert all(item.kind != "community" for item in result.items)
+
+
+# ---------------------------------------------------------------------------
+# Level-2 macro-community tests
+# ---------------------------------------------------------------------------
+
+
+def _make_communities_with_embeddings() -> list[Community]:
+    """Three communities: A&B are similar, C is orthogonal."""
+    base_vec = _deterministic_embed("product module risk")
+    ortho_vec = _deterministic_embed("finance runway cash")
+    return [
+        Community(id="c-a", member_ids=("e1", "e2"), size=2, risk_exposure=0.3, embedding=tuple(base_vec)),
+        Community(id="c-b", member_ids=("e3", "e4"), size=2, risk_exposure=0.5, embedding=tuple(base_vec)),
+        Community(id="c-c", member_ids=("e5",), size=1, risk_exposure=0.1, embedding=tuple(ortho_vec)),
+    ]
+
+
+def test_aggregate_groups_similar_communities():
+    """Communities with identical embeddings should collapse into one macro."""
+    svc, _, _ = _make_service()
+    communities = _make_communities_with_embeddings()
+    # c-a and c-b share the same vector -> cosine sim = 1.0 > 0.65 threshold.
+    macros = svc.aggregate(communities, threshold=0.65)
+    assert len(macros) >= 1
+    # The two similar ones (c-a, c-b) must end up in the same macro.
+    for macro in macros:
+        if "c-a" in macro.member_community_ids:
+            assert "c-b" in macro.member_community_ids, (
+                "c-a and c-b share identical embeddings so must be co-clustered"
+            )
+
+
+def test_aggregate_fallback_connectivity_when_no_embeddings():
+    """When no embeddings are present, fallback groups by entity-edge connectivity.
+
+    The _aggregate_by_connectivity path reads edges from Neo4j.  We supply an
+    edge between e2 (in c-x) and e3 (in c-y) so the two communities get
+    union-found together.  c-z has no inter-community edge so it stays alone.
+    """
+    # Edge e2->e3 connects c-x and c-y through the entity graph.
+    svc, _, _ = _make_service(edges=[{"source_id": "e2", "target_id": "e3", "type": "RELATED_TO"}])
+    communities = [
+        Community(id="c-x", member_ids=("e1", "e2"), size=2, risk_exposure=0.2),
+        Community(id="c-y", member_ids=("e3", "e4"), size=2, risk_exposure=0.4),
+        Community(id="c-z", member_ids=("e9",), size=1, risk_exposure=0.0),
+    ]
+    macros = svc.aggregate(communities)
+    grouped_ids: list[tuple[str, ...]] = [m.member_community_ids for m in macros]
+    shared_macro = next(
+        (m for m in macros if "c-x" in m.member_community_ids and "c-y" in m.member_community_ids),
+        None,
+    )
+    assert shared_macro is not None, f"c-x and c-y should be co-grouped via edge e2->e3; got {grouped_ids}"
+
+
+def test_aggregate_empty_returns_empty():
+    svc, _, _ = _make_service()
+    assert svc.aggregate([]) == []
+
+
+def test_aggregate_singleton_returns_one_macro():
+    svc, _, _ = _make_service()
+    c = Community(id="c-solo", member_ids=("e1",), size=1, risk_exposure=0.0, embedding=tuple(_deterministic_embed("x")))
+    macros = svc.aggregate([c])
+    assert len(macros) == 1
+    assert "c-solo" in macros[0].member_community_ids
+
+
+def test_summarize_macro_populates_summary_and_embedding():
+    """summarize_macro calls the LLM and embeds the result."""
+    svc, _, llm = _make_service()
+    communities = [
+        Community(id="c-1", member_ids=("e1",), size=1, summary="Product risk cluster."),
+        Community(id="c-2", member_ids=("e2",), size=1, summary="Finance risk cluster."),
+    ]
+    bare_macro = MacroCommunity(
+        id="macro-test",
+        member_community_ids=("c-1", "c-2"),
+        total_entity_count=2,
+        max_risk_exposure=0.5,
+    )
+    enriched = svc.summarize_macro(bare_macro, communities)
+    assert enriched.summary == "summary text"
+    assert len(enriched.embedding) == 768
+    assert len(llm.calls) == 1
+    assert any(kw in llm.calls[0].lower() for kw in ("cluster", "theme", "strategic"))
+
+
+def test_materialize_macro_writes_node_and_edges():
+    """materialize_macro emits MacroCommunity MERGE + IN_MACRO_COMMUNITY MERGE."""
+    svc, neo, _ = _make_service()
+    macro = MacroCommunity(
+        id="macro-xyz",
+        member_community_ids=("c-a", "c-b"),
+        total_entity_count=4,
+        summary="Combined macro summary",
+        embedding=tuple([0.1] * 8),
+        max_risk_exposure=0.5,
+    )
+    svc.materialize_macro([macro])
+    queries = [q for q, _ in neo.writes]
+    assert any("MacroCommunity" in q for q in queries), f"Expected MacroCommunity MERGE in {queries}"
+    assert any("IN_MACRO_COMMUNITY" in q for q in queries), f"Expected IN_MACRO_COMMUNITY MERGE in {queries}"
+    node_call = next(params for q, params in neo.writes if "MacroCommunity" in q)
+    assert node_call["id"] == "macro-xyz"
+    assert node_call["total_entity_count"] == 4
+
+
+def test_search_macro_delegates_to_vector_index():
+    """search_macro delegates to macro_community_embedding vector index."""
+    svc, neo, _ = _make_service()
+    neo.macro_search_rows = [  # type: ignore[attr-defined]
+        {"id": "macro-1", "summary": "Strategic theme A", "total_entity_count": 10, "max_risk_exposure": 0.6, "score": 0.92},
+    ]
+    results = svc.search_macro([0.1] * 8, k=3)
+    queries = [q for q, _ in neo.writes]
+    assert any("macro_community_embedding" in q for q in queries)
+    assert len(results) == 1
+    assert results[0].id == "macro-1"
+    assert results[0].max_risk_exposure == pytest.approx(0.6)
+
+
+# ---------------------------------------------------------------------------
+# Hybrid retriever macro-community routing tests
+# ---------------------------------------------------------------------------
+
+
+class _CommunityServiceWithMacro(_CommunityServiceStub):
+    """Extends the retriever-side stub with search_macro."""
+
+    def __init__(self, communities: list[Community], macros: list[MacroCommunity]):
+        super().__init__(communities)
+        self.macros = macros
+        self.macro_calls: list[tuple[list[float], int]] = []
+
+    def search_macro(self, question_embedding: list[float], k: int = 5) -> list[MacroCommunity]:
+        self.macro_calls.append((list(question_embedding), int(k)))
+        return list(self.macros)[:k]
+
+
+def test_hybrid_retriever_very_global_question_prepends_macro_items():
+    """A very-global question yields macro_community items from search_macro."""
+    macro = MacroCommunity(
+        id="macro-1",
+        member_community_ids=("c-a",),
+        total_entity_count=5,
+        summary="Top-level strategic overview.",
+        max_risk_exposure=0.7,
+    )
+    community = Community(id="c-a", member_ids=("e1",), size=1, summary="Cluster A.")
+    svc = _CommunityServiceWithMacro(communities=[community], macros=[macro])
+    retriever = HybridRetriever(
+        neo4j_service=_FakeNeoForRetriever(),
+        qdrant_service=_FakeQdrantForRetriever(),
+        embed_fn=_deterministic_embed,
+        weights=RetrievalWeights(alpha_cosine=0.6, beta_proximity=0.25, gamma_evidence=0.15),
+        seed_k=4,
+        community_service=svc,
+    )
+    # "strategic overview" triggers _is_very_global_question.
+    result = retriever.retrieve("Give me a strategic overview of all domains.")
+    kinds = {item.kind for item in result.items}
+    assert "macro_community" in kinds, f"Expected macro_community kind in {kinds}"
+    macro_items = [item for item in result.items if item.kind == "macro_community"]
+    assert macro_items[0].id == "macro-1"
+    # Macro items should appear before non-macro items (prepended).
+    first_non_macro = next((i for i, item in enumerate(result.items) if item.kind != "macro_community"), len(result.items))
+    last_macro = max(i for i, item in enumerate(result.items) if item.kind == "macro_community")
+    assert last_macro < first_non_macro or first_non_macro == len(result.items)
+
+
+def test_hybrid_retriever_global_but_not_very_global_skips_macro():
+    """A question that is global but not very-global should not yield macro items."""
+    macro = MacroCommunity(
+        id="macro-1",
+        member_community_ids=("c-a",),
+        total_entity_count=5,
+        summary="Top-level strategic overview.",
+        max_risk_exposure=0.7,
+    )
+    community = Community(id="c-a", member_ids=("e1",), size=1, summary="Cluster A.")
+    svc = _CommunityServiceWithMacro(communities=[community], macros=[macro])
+    retriever = HybridRetriever(
+        neo4j_service=_FakeNeoForRetriever(),
+        qdrant_service=_FakeQdrantForRetriever(),
+        embed_fn=_deterministic_embed,
+        weights=RetrievalWeights(alpha_cosine=0.6, beta_proximity=0.25, gamma_evidence=0.15),
+        seed_k=4,
+        community_service=svc,
+    )
+    # "overall" + "summary" trigger global but "overall themes" would trigger very-global;
+    # "What is the overall summary?" does NOT contain "overall themes" verbatim.
+    result = retriever.retrieve("What is the overall summary?")
+    kinds = {item.kind for item in result.items}
+    assert "macro_community" not in kinds, f"macro_community should not appear for non-very-global query; got {kinds}"
+    # Community items may appear (it is a global question).
+    assert svc.macro_calls == [], "search_macro should not have been called"

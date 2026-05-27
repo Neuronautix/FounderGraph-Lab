@@ -965,6 +965,84 @@ class Neo4jService:
         """
         return self._rows(query, params)
 
+    def write_macro_community_node(self, macro: dict[str, Any]) -> None:
+        """Upsert a ``(:MacroCommunity)`` node from a plain dict."""
+        macro_id = macro.get("id")
+        if not macro_id:
+            raise Neo4jServiceError("write_macro_community_node() requires id")
+        embedding_raw = macro.get("embedding") or []
+        embedding = [float(v) for v in embedding_raw] if isinstance(embedding_raw, (list, tuple)) else []
+        params: dict[str, Any] = {
+            "id": str(macro_id),
+            "summary": str(macro.get("summary") or ""),
+            "embedding": embedding,
+            "total_entity_count": int(macro.get("total_entity_count") or 0),
+            "max_risk_exposure": float(macro.get("max_risk_exposure") or 0.0),
+            "member_count": int(macro.get("member_count") or 0),
+        }
+        query = """
+        MERGE (m:MacroCommunity {id: $id})
+        ON CREATE SET m.created_at = datetime()
+        SET m.summary = $summary,
+            m.embedding = $embedding,
+            m.total_entity_count = $total_entity_count,
+            m.max_risk_exposure = $max_risk_exposure,
+            m.member_count = $member_count,
+            m.updated_at = datetime()
+        """
+        self._run(query, params)
+
+    def set_community_macro(
+        self,
+        community_ids: list[str],
+        macro_id: str,
+    ) -> None:
+        """Attach Level-1 communities to a Level-2 macro via IN_MACRO_COMMUNITY."""
+        if not macro_id:
+            raise Neo4jServiceError("set_community_macro() requires macro_id")
+        ids = [str(cid) for cid in (community_ids or []) if cid]
+        if not ids:
+            return
+        quoted_rel = self._quote_rel("IN_MACRO_COMMUNITY")
+        params: dict[str, Any] = {
+            "ids": ids,
+            "macro_id": str(macro_id),
+        }
+        query = f"""
+        UNWIND $ids AS cid
+        MATCH (c:Community {{id: cid}})
+        MERGE (m:MacroCommunity {{id: $macro_id}})
+        MERGE (c)-[r:{quoted_rel}]->(m)
+        SET r.assigned_at = datetime()
+        """
+        self._run(query, params)
+
+    def macro_community_summary_search(
+        self,
+        query_embedding: list[float],
+        k: int = 5,
+    ) -> list[dict[str, Any]]:
+        """Vector-search the ``macro_community_embedding`` index for top-k summaries."""
+        if not isinstance(query_embedding, (list, tuple)) or not query_embedding:
+            raise Neo4jServiceError(
+                "macro_community_summary_search() requires an embedding"
+            )
+        params: dict[str, Any] = {
+            "k": int(k),
+            "vec": [float(v) for v in query_embedding],
+        }
+        query = """
+        CALL db.index.vector.queryNodes('macro_community_embedding', $k, $vec)
+        YIELD node, score
+        RETURN node.id AS id,
+               node.summary AS summary,
+               node.total_entity_count AS total_entity_count,
+               node.max_risk_exposure AS max_risk_exposure,
+               score
+        ORDER BY score DESC
+        """
+        return self._rows(query, params)
+
     def _verify_entity_exists(self, entity_id: str) -> bool:
         """Return True if an Entity node with this id is present in the graph."""
         rows = self._rows(

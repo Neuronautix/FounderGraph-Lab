@@ -58,6 +58,25 @@ class Community:
     risk_exposure: float = 0.0
 
 
+@dataclass(frozen=True)
+class MacroCommunity:
+    """A Level-2 macro-cluster grouping related Level-1 communities.
+
+    Produced by :meth:`CommunityService.aggregate`.  The id is deterministic
+    from the sorted member community ids.  ``max_risk_exposure`` is the
+    maximum ``risk_exposure`` across member communities so the UI can
+    highlight macro-clusters with concentrated risk even when the macro
+    summary is broad.
+    """
+
+    id: str
+    member_community_ids: tuple[str, ...]
+    total_entity_count: int
+    summary: str = ""
+    embedding: tuple[float, ...] = ()
+    max_risk_exposure: float = 0.0
+
+
 # ---------------------------------------------------------------------------
 # Protocols (kept narrow so tests inject minimal fakes)
 # ---------------------------------------------------------------------------
@@ -75,6 +94,16 @@ class _Neo4jLike(Protocol):
     ) -> None: ...
 
     def community_summary_search(
+        self, query_embedding: list[float], k: int = ...
+    ) -> list[dict[str, Any]]: ...
+
+    def write_macro_community_node(self, macro: dict[str, Any]) -> None: ...
+
+    def set_community_macro(
+        self, community_ids: list[str], macro_id: str
+    ) -> None: ...
+
+    def macro_community_summary_search(
         self, query_embedding: list[float], k: int = ...
     ) -> list[dict[str, Any]]: ...
 
@@ -116,6 +145,19 @@ def _stable_community_id(member_ids: Sequence[str]) -> str:
     sorted_members = sorted(str(m) for m in member_ids if m)
     digest = hashlib.sha256("|".join(sorted_members).encode("utf-8")).hexdigest()
     return f"community-{digest[:12]}"
+
+
+def _cosine_sim(a: Sequence[float], b: Sequence[float]) -> float:
+    """Cosine similarity between two equal-length float sequences."""
+    al, bl = list(a), list(b)
+    if not al or not bl or len(al) != len(bl):
+        return 0.0
+    num = sum(x * y for x, y in zip(al, bl))
+    da = sum(x * x for x in al) ** 0.5
+    db = sum(y * y for y in bl) ** 0.5
+    if da == 0.0 or db == 0.0:
+        return 0.0
+    return float(num / (da * db))
 
 
 # ---------------------------------------------------------------------------
@@ -303,6 +345,125 @@ class CommunityService:
         return results
 
     # ------------------------------------------------------------------
+    # Level-2 macro-community API
+    # ------------------------------------------------------------------
+
+    def aggregate(
+        self,
+        communities: list[Community],
+        threshold: float = 0.65,
+    ) -> list[MacroCommunity]:
+        """Cluster Level-1 communities into Level-2 macro-communities.
+
+        When communities carry embeddings, pairs whose cosine similarity
+        exceeds ``threshold`` are merged (Union-Find).  When embeddings are
+        absent, the fallback groups communities that share entity-level edges
+        between their member sets (connectivity-based).  A single community
+        is returned as a singleton macro; an empty list returns an empty list.
+        """
+        if not communities:
+            return []
+        if len(communities) == 1:
+            return [self._build_macro(communities)]
+        has_embeddings = any(len(c.embedding) > 0 for c in communities)
+        groups = (
+            self._aggregate_by_similarity(communities, threshold)
+            if has_embeddings
+            else self._aggregate_by_connectivity(communities)
+        )
+        return [self._build_macro(g) for g in groups]
+
+    def summarize_macro(
+        self,
+        macro: MacroCommunity,
+        communities: list[Community],
+    ) -> MacroCommunity:
+        """LLM-summarise a macro-community from its member Level-1 summaries."""
+        by_id = {c.id: c for c in communities}
+        bullets = [
+            f"- {by_id[cid].summary}"
+            for cid in macro.member_community_ids
+            if cid in by_id and by_id[cid].summary
+        ]
+        prompt = (
+            "You are analysing a portfolio of startup entities organised into "
+            "thematic clusters.  Summarise the following group of related "
+            "clusters in 2-3 sentences.  Identify the overarching strategic "
+            "theme and any shared risk concentration.\n\n"
+            "Cluster summaries:\n"
+            + ("\n".join(bullets) if bullets else "(no summaries available)")
+            + "\n\nReply in plain prose, no JSON."
+        )
+        summary_text = ""
+        try:
+            summary_text = str(self.llm.generate_text(prompt) or "").strip()
+        except Exception as exc:  # noqa: BLE001
+            summary_text = (
+                f"Macro-community of {len(macro.member_community_ids)} clusters "
+                f"(LLM unavailable: {exc})."
+            )
+        if not summary_text:
+            summary_text = (
+                f"Macro-community of {len(macro.member_community_ids)} clusters: "
+                + ", ".join(macro.member_community_ids[:3])
+            )
+        try:
+            vec = tuple(float(v) for v in (self.embed(summary_text) or []))
+        except Exception:  # noqa: BLE001
+            vec = ()
+        return MacroCommunity(
+            id=macro.id,
+            member_community_ids=macro.member_community_ids,
+            total_entity_count=macro.total_entity_count,
+            summary=summary_text,
+            embedding=vec,
+            max_risk_exposure=macro.max_risk_exposure,
+        )
+
+    def materialize_macro(self, macros: list[MacroCommunity]) -> None:
+        """Write ``(:MacroCommunity)`` nodes and IN_MACRO_COMMUNITY edges."""
+        for m in macros or []:
+            self.neo4j.write_macro_community_node(
+                {
+                    "id": m.id,
+                    "summary": m.summary,
+                    "embedding": list(m.embedding),
+                    "total_entity_count": m.total_entity_count,
+                    "max_risk_exposure": m.max_risk_exposure,
+                    "member_count": len(m.member_community_ids),
+                }
+            )
+            self.neo4j.set_community_macro(list(m.member_community_ids), m.id)
+
+    def search_macro(
+        self,
+        question_embedding: list[float],
+        k: int = 5,
+    ) -> list[MacroCommunity]:
+        """Vector-search materialised macro-community summaries."""
+        if not question_embedding:
+            return []
+        rows = self.neo4j.macro_community_summary_search(
+            question_embedding, k=int(k)
+        )
+        results: list[MacroCommunity] = []
+        for row in rows or []:
+            mid = str(row.get("id") or "")
+            if not mid:
+                continue
+            results.append(
+                MacroCommunity(
+                    id=mid,
+                    member_community_ids=(),
+                    total_entity_count=int(row.get("total_entity_count") or 0),
+                    summary=str(row.get("summary") or ""),
+                    embedding=(),
+                    max_risk_exposure=float(row.get("max_risk_exposure") or 0.0),
+                )
+            )
+        return results
+
+    # ------------------------------------------------------------------
     # Detection strategies
     # ------------------------------------------------------------------
 
@@ -446,6 +607,72 @@ class CommunityService:
         return risky / float(len(members))
 
     # ------------------------------------------------------------------
+    # Level-2 aggregation helpers
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def _build_macro(communities: list[Community]) -> MacroCommunity:
+        sorted_ids = tuple(sorted(c.id for c in communities))
+        digest = hashlib.sha256("|".join(sorted_ids).encode("utf-8")).hexdigest()
+        macro_id = f"macro-{digest[:12]}"
+        total = sum(c.size for c in communities)
+        max_risk = max((c.risk_exposure for c in communities), default=0.0)
+        return MacroCommunity(
+            id=macro_id,
+            member_community_ids=sorted_ids,
+            total_entity_count=total,
+            max_risk_exposure=max_risk,
+        )
+
+    def _aggregate_by_similarity(
+        self,
+        communities: list[Community],
+        threshold: float,
+    ) -> list[list[Community]]:
+        """Union communities whose embedding cosine >= threshold."""
+        uf = _UnionFind(c.id for c in communities)
+        for i, ci in enumerate(communities):
+            if not ci.embedding:
+                continue
+            for cj in communities[i + 1 :]:
+                if not cj.embedding:
+                    continue
+                if _cosine_sim(ci.embedding, cj.embedding) >= threshold:
+                    uf.union(ci.id, cj.id)
+        groups: dict[str, list[Community]] = {}
+        for c in communities:
+            root = uf.find(c.id)
+            groups.setdefault(root, []).append(c)
+        return list(groups.values())
+
+    def _aggregate_by_connectivity(
+        self, communities: list[Community]
+    ) -> list[list[Community]]:
+        """Union communities that share entity-level edges between their members."""
+        edges = self._load_validated_edges()
+        edge_pairs: set[tuple[str, str]] = set()
+        for e in edges:
+            src = str(e.get("source_id") or e.get("source") or "")
+            tgt = str(e.get("target_id") or e.get("target") or "")
+            if src and tgt:
+                edge_pairs.add((src, tgt))
+                edge_pairs.add((tgt, src))
+        entity_to_community: dict[str, str] = {
+            eid: c.id for c in communities for eid in c.member_ids
+        }
+        uf = _UnionFind(c.id for c in communities)
+        for src, tgt in edge_pairs:
+            sc = entity_to_community.get(src)
+            tc = entity_to_community.get(tgt)
+            if sc and tc and sc != tc:
+                uf.union(sc, tc)
+        groups: dict[str, list[Community]] = {}
+        for c in communities:
+            root = uf.find(c.id)
+            groups.setdefault(root, []).append(c)
+        return list(groups.values())
+
+    # ------------------------------------------------------------------
     # Prompting
     # ------------------------------------------------------------------
 
@@ -470,5 +697,6 @@ class CommunityService:
 
 __all__ = [
     "Community",
+    "MacroCommunity",
     "CommunityService",
 ]
