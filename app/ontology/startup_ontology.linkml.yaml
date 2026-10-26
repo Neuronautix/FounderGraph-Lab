@@ -353,7 +353,7 @@ slots:
 
   # ----- Investor-specific -----
   stage:
-    description: Preferred investment stage.
+    description: Stage (preferred investment stage for investors; current stage for projects and processes).
     range: string
   thesis:
     description: Investment thesis.
@@ -565,6 +565,295 @@ slots:
     annotations:
       predicate: IN_COMMUNITY
       relation: true
+
+
+  # ----- Project-model fields (StartupProject, Standard, ExportFormat, Technology, Metric) -----
+  focus_area:
+    description: Primary focus area of a startup project.
+    range: string
+
+  version:
+    description: Version identifier of a standard.
+    range: string
+
+  specification:
+    description: Specification or reference describing an export format.
+    range: string
+
+  category:
+    description: Category of a technology.
+    range: string
+
+  unit:
+    description: Unit of measurement of a metric.
+    range: string
+
+  target:
+    description: Target value of a metric.
+    range: string
+
+  # ----- Project-model relation slots -----
+  # Moved here from the legacy startup_ontology.yaml overlay so the generated
+  # artifacts (schema.json, shapes.ttl, models.py, Cypher DDL) carry them.
+  founded:
+    description: Founder FOUNDED Startup.
+    domain: Founder
+    range: Startup
+    annotations:
+      predicate: FOUNDED
+      relation: true
+
+  startup_project_has_initial_wedge_use_case:
+    description: StartupProject HAS_INITIAL_WEDGE UseCase.
+    domain: StartupProject
+    range: UseCase
+    annotations:
+      predicate: HAS_INITIAL_WEDGE
+      relation: true
+
+  startup_project_has_business_model_business_model_component:
+    description: StartupProject HAS_BUSINESS_MODEL BusinessModelComponent.
+    domain: StartupProject
+    range: BusinessModelComponent
+    annotations:
+      predicate: HAS_BUSINESS_MODEL
+      relation: true
+
+  startup_project_supports_concept:
+    description: StartupProject SUPPORTS Concept.
+    domain: StartupProject
+    range: Concept
+    annotations:
+      predicate: SUPPORTS
+      relation: true
+
+  startup_project_implements_standard:
+    description: StartupProject IMPLEMENTS Standard.
+    domain: StartupProject
+    range: Standard
+    annotations:
+      predicate: IMPLEMENTS
+      relation: true
+
+  startup_project_exports_export_format:
+    description: StartupProject EXPORTS ExportFormat.
+    domain: StartupProject
+    range: ExportFormat
+    annotations:
+      predicate: EXPORTS
+      relation: true
+
+  startup_project_integrates_with_technology:
+    description: StartupProject INTEGRATES_WITH Technology.
+    domain: StartupProject
+    range: Technology
+    annotations:
+      predicate: INTEGRATES_WITH
+      relation: true
+
+  product_module_requires_technical_capability:
+    description: ProductModule REQUIRES TechnicalCapability.
+    domain: ProductModule
+    range: TechnicalCapability
+    annotations:
+      predicate: REQUIRES
+      relation: true
+
+  commercial_process_needs_product_feature:
+    description: CommercialProcess NEEDS ProductFeature.
+    domain: CommercialProcess
+    range: ProductFeature
+    annotations:
+      predicate: NEEDS
+      relation: true
+
+  startup_project_uses_technology:
+    description: StartupProject USES Technology.
+    domain: StartupProject
+    range: Technology
+    annotations:
+      predicate: USES
+      relation: true
+
+  metric_measures_concept:
+    description: Metric MEASURES Concept.
+    domain: Metric
+    range: Concept
+    annotations:
+      predicate: MEASURES
+      relation: true
+
+  person_founded_startup_project:
+    description: Person FOUNDED StartupProject.
+    domain: Person
+    range: StartupProject
+    annotations:
+      predicate: FOUNDED
+      relation: true
+
+  partner_segment_buys_for_use_case:
+    description: PartnerSegment BUYS_FOR UseCase.
+    domain: PartnerSegment
+    range: UseCase
+    annotations:
+      predicate: BUYS_FOR
+      relation: true
+
+  person_leads_technical_development_for_startup_project:
+    description: Person LEADS_TECHNICAL_DEVELOPMENT_FOR StartupProject.
+    domain: Person
+    range: StartupProject
+    annotations:
+      predicate: LEADS_TECHNICAL_DEVELOPMENT_FOR
+      relation: true
+
+  startup_project_generates_export_format:
+    description: StartupProject GENERATES ExportFormat.
+    domain: StartupProject
+    range: ExportFormat
+    annotations:
+      predicate: GENERATES
+      relation: true
+
+  product_module_uses_technical_capability:
+    description: ProductModule USES TechnicalCapability.
+    domain: ProductModule
+    range: TechnicalCapability
+    annotations:
+      predicate: USES
+      relation: true
+
+  technical_capability_supports_export_format:
+    description: TechnicalCapability SUPPORTS ExportFormat.
+    domain: TechnicalCapability
+    range: ExportFormat
+    annotations:
+      predicate: SUPPORTS
+      relation: true
+
+  customer_segment_buys_for_export_format:
+    description: CustomerSegment BUYS_FOR ExportFormat.
+    domain: CustomerSegment
+    range: ExportFormat
+    annotations:
+      predicate: BUYS_FOR
+      relation: true
+
+  customer_segment_needs_product_module:
+    description: CustomerSegment NEEDS ProductModule.
+    domain: CustomerSegment
+    range: ProductModule
+    annotations:
+      predicate: NEEDS
+      relation: true
+
+  partner_segment_integrates_with_technical_capability:
+    description: PartnerSegment INTEGRATES_WITH TechnicalCapability.
+    domain: PartnerSegment
+    range: TechnicalCapability
+    annotations:
+      predicate: INTEGRATES_WITH
+      relation: true
+
+  product_feature_requires_concept:
+    description: ProductFeature REQUIRES Concept.
+    domain: ProductFeature
+    range: Concept
+    annotations:
+      predicate: REQUIRES
+      relation: true
+
+  commercial_process_measures_metric:
+    description: CommercialProcess MEASURES Metric.
+    domain: CommercialProcess
+    range: Metric
+    annotations:
+      predicate: MEASURES
+      relation: true
+
+  business_model_component_supports_concept:
+    description: BusinessModelComponent SUPPORTS Concept.
+    domain: BusinessModelComponent
+    range: Concept
+    annotations:
+      predicate: SUPPORTS
+      relation: true
+
+  business_model_component_requires_technical_capability:
+    description: BusinessModelComponent REQUIRES TechnicalCapability.
+    domain: BusinessModelComponent
+    range: TechnicalCapability
+    annotations:
+      predicate: REQUIRES
+      relation: true
+
+  startup_project_addresses_problem:
+    description: StartupProject ADDRESSES Problem.
+    domain: StartupProject
+    range: Problem
+    annotations:
+      predicate: ADDRESSES
+      relation: true
+
+  use_case_requires_technical_capability:
+    description: UseCase REQUIRES TechnicalCapability.
+    domain: UseCase
+    range: TechnicalCapability
+    annotations:
+      predicate: REQUIRES
+      relation: true
+
+  decision_mitigates_risk:
+    description: Decision MITIGATES Risk.
+    domain: Decision
+    range: Risk
+    annotations:
+      predicate: MITIGATES
+      relation: true
+
+  technical_capability_integrates_with_technology:
+    description: TechnicalCapability INTEGRATES_WITH Technology.
+    domain: TechnicalCapability
+    range: Technology
+    annotations:
+      predicate: INTEGRATES_WITH
+      relation: true
+
+  milestone_depends_on_technology:
+    description: Milestone DEPENDS_ON Technology.
+    domain: Milestone
+    range: Technology
+    annotations:
+      predicate: DEPENDS_ON
+      relation: true
+
+  assumption_supports_concept:
+    description: Assumption SUPPORTS Concept.
+    domain: Assumption
+    range: Concept
+    annotations:
+      predicate: SUPPORTS
+      relation: true
+
+  in_macro_community:
+    description: Community IN_MACRO_COMMUNITY MacroCommunity (Level-2 community aggregation).
+    domain: Community
+    range: MacroCommunity
+    annotations:
+      predicate: IN_MACRO_COMMUNITY
+      relation: true
+
+  total_entity_count:
+    description: Total number of entities across a macro-community's member communities.
+    range: integer
+
+  max_risk_exposure:
+    description: Highest risk_exposure among a macro-community's member communities.
+    range: float
+
+  member_count:
+    description: Number of Level-1 communities in a macro-community.
+    range: integer
 
 # ---------------------------------------------------------------------------
 # Classes
@@ -855,3 +1144,76 @@ classes:
   Blocker:
     is_a: Entity
     description: A blocker preventing forward progress.
+
+  # Level-2 macro-communities aggregate Level-1 communities (see
+  # CommunityService.aggregate); indexed via ``macro_community_embedding``.
+  MacroCommunity:
+    description: A Level-2 cluster of related Community nodes with an LLM summary.
+    slots:
+      - id
+      - summary
+      - embedding
+      - total_entity_count
+      - max_risk_exposure
+      - member_count
+      - created_at
+      - updated_at
+
+  # Project-model classes, moved here from the legacy startup_ontology.yaml overlay.
+  StartupProject:
+    is_a: Entity
+    description: A startup initiative modeled as a structured project entity.
+    slots:
+      - stage
+      - focus_area
+  UseCase:
+    is_a: Entity
+    description: A concrete workflow or problem scenario addressed by the startup.
+  Concept:
+    is_a: Entity
+    description: A domain concept or operating principle relevant to strategy and design.
+  Standard:
+    is_a: Entity
+    description: A formal guideline or interoperability standard.
+    slots:
+      - version
+  ExportFormat:
+    is_a: Entity
+    description: A supported data export format.
+    slots:
+      - specification
+  ProductModule:
+    is_a: Entity
+    description: A named product module in the platform architecture.
+  TechnicalCapability:
+    is_a: Entity
+    description: A technical capability that enables product behavior.
+    slots:
+      - maturity
+  Technology:
+    is_a: Entity
+    description: A technology, tool, or external platform dependency.
+    slots:
+      - category
+  Person:
+    is_a: Entity
+    description: A person involved in founding, building, or operating the startup.
+    slots:
+      - role
+  PartnerSegment:
+    is_a: Entity
+    description: A partner or buyer segment connected to a use case.
+  BusinessModelComponent:
+    is_a: Entity
+    description: A component of the business model such as pricing or channel.
+  CommercialProcess:
+    is_a: Entity
+    description: A commercial or go-to-market process step.
+    slots:
+      - stage
+  Metric:
+    is_a: Entity
+    description: A measurable KPI or outcome used for decision-making.
+    slots:
+      - unit
+      - target

@@ -1,5 +1,13 @@
 # FounderGraph-Lab
 
+> **Frozen demo — no longer developed.**
+>
+> - **What it shows:** an ontology-driven GraphRAG pipeline that turns startup documents into a human-reviewed, ontology-validated Neo4j knowledge graph, with deterministic discovery queries, guarded text-to-Cypher, citation checking and a bi-temporal view (see the five pillars below).
+> - **Status:** this repository is kept public as a reference demo. It is not maintained, receives no new features, and issues/PRs may not be answered.
+> - **Data:** everything under `sample_data/` is synthetic or fictionalized demo material; it does not describe real people, customers or companies.
+> - **How to run:** the full app needs Docker and local models. Run `cp .env.example .env`, then `docker compose up -d --build`, then pull the models once (`docker exec foundergraph_lab_ollama ollama pull llama3.1:8b` and `docker exec foundergraph_lab_ollama ollama pull nomic-embed-text`, or `make pull-models`), and open http://localhost:8501. The test suite runs without Docker: `pip install -r requirements.txt && python -m pytest`.
+> - **Branches:** `main` is the demo. The `feat/graphrag-backend` branch is an unmerged experiment (an optional OpenAI / Microsoft GraphRAG backend) and is not part of the demo.
+
 **An illustrative reference implementation of ontology-driven GraphRAG.** FounderGraph-Lab turns raw startup documents (pitch decks, interviews, plans, roadmaps) into a validated Neo4j knowledge graph and demonstrates *why* a typed, bi-temporal graph beats a pile of chunks for high-stakes diligence-style questions.
 
 The repository is organised around five pillars that work together — each is a discrete, testable mechanism, and each is wired into the Streamlit UI so you can see the guarantee fire on real documents.

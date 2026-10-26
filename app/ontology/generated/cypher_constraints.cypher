@@ -15,28 +15,41 @@ CREATE INDEX entity_source_document_id IF NOT EXISTS FOR (e:Entity) ON (e.source
 // --- Per-relationship id indexes (one per allowed predicate) ---
 CREATE INDEX rel_ADDRESSES_id IF NOT EXISTS FOR ()-[r:`ADDRESSES`]-() ON (r.id);
 CREATE INDEX rel_BASED_ON_id IF NOT EXISTS FOR ()-[r:`BASED_ON`]-() ON (r.id);
+CREATE INDEX rel_BUYS_FOR_id IF NOT EXISTS FOR ()-[r:`BUYS_FOR`]-() ON (r.id);
 CREATE INDEX rel_COMPETES_ON_id IF NOT EXISTS FOR ()-[r:`COMPETES_ON`]-() ON (r.id);
 CREATE INDEX rel_CONTRADICTED_BY_id IF NOT EXISTS FOR ()-[r:`CONTRADICTED_BY`]-() ON (r.id);
 CREATE INDEX rel_DEPENDS_ON_id IF NOT EXISTS FOR ()-[r:`DEPENDS_ON`]-() ON (r.id);
+CREATE INDEX rel_EXPORTS_id IF NOT EXISTS FOR ()-[r:`EXPORTS`]-() ON (r.id);
+CREATE INDEX rel_FOUNDED_id IF NOT EXISTS FOR ()-[r:`FOUNDED`]-() ON (r.id);
 CREATE INDEX rel_FUNDS_id IF NOT EXISTS FOR ()-[r:`FUNDS`]-() ON (r.id);
 CREATE INDEX rel_GENERATES_id IF NOT EXISTS FOR ()-[r:`GENERATES`]-() ON (r.id);
+CREATE INDEX rel_HAS_BUSINESS_MODEL_id IF NOT EXISTS FOR ()-[r:`HAS_BUSINESS_MODEL`]-() ON (r.id);
+CREATE INDEX rel_HAS_INITIAL_WEDGE_id IF NOT EXISTS FOR ()-[r:`HAS_INITIAL_WEDGE`]-() ON (r.id);
 CREATE INDEX rel_HAS_PROBLEM_id IF NOT EXISTS FOR ()-[r:`HAS_PROBLEM`]-() ON (r.id);
+CREATE INDEX rel_IMPLEMENTS_id IF NOT EXISTS FOR ()-[r:`IMPLEMENTS`]-() ON (r.id);
+CREATE INDEX rel_INTEGRATES_WITH_id IF NOT EXISTS FOR ()-[r:`INTEGRATES_WITH`]-() ON (r.id);
 CREATE INDEX rel_IN_COMMUNITY_id IF NOT EXISTS FOR ()-[r:`IN_COMMUNITY`]-() ON (r.id);
+CREATE INDEX rel_IN_MACRO_COMMUNITY_id IF NOT EXISTS FOR ()-[r:`IN_MACRO_COMMUNITY`]-() ON (r.id);
+CREATE INDEX rel_LEADS_TECHNICAL_DEVELOPMENT_FOR_id IF NOT EXISTS FOR ()-[r:`LEADS_TECHNICAL_DEVELOPMENT_FOR`]-() ON (r.id);
+CREATE INDEX rel_MEASURES_id IF NOT EXISTS FOR ()-[r:`MEASURES`]-() ON (r.id);
 CREATE INDEX rel_MENTIONS_id IF NOT EXISTS FOR ()-[r:`MENTIONS`]-() ON (r.id);
 CREATE INDEX rel_MITIGATES_id IF NOT EXISTS FOR ()-[r:`MITIGATES`]-() ON (r.id);
+CREATE INDEX rel_NEEDS_id IF NOT EXISTS FOR ()-[r:`NEEDS`]-() ON (r.id);
 CREATE INDEX rel_PROTECTS_id IF NOT EXISTS FOR ()-[r:`PROTECTS`]-() ON (r.id);
 CREATE INDEX rel_PROVIDES_id IF NOT EXISTS FOR ()-[r:`PROVIDES`]-() ON (r.id);
 CREATE INDEX rel_RELATED_TO_id IF NOT EXISTS FOR ()-[r:`RELATED_TO`]-() ON (r.id);
+CREATE INDEX rel_REQUIRES_id IF NOT EXISTS FOR ()-[r:`REQUIRES`]-() ON (r.id);
 CREATE INDEX rel_SAME_AS_id IF NOT EXISTS FOR ()-[r:`SAME_AS`]-() ON (r.id);
 CREATE INDEX rel_SOURCE_OF_id IF NOT EXISTS FOR ()-[r:`SOURCE_OF`]-() ON (r.id);
 CREATE INDEX rel_SUPERSEDED_BY_id IF NOT EXISTS FOR ()-[r:`SUPERSEDED_BY`]-() ON (r.id);
 CREATE INDEX rel_SUPPORTED_BY_id IF NOT EXISTS FOR ()-[r:`SUPPORTED_BY`]-() ON (r.id);
+CREATE INDEX rel_SUPPORTS_id IF NOT EXISTS FOR ()-[r:`SUPPORTS`]-() ON (r.id);
 CREATE INDEX rel_TARGETS_id IF NOT EXISTS FOR ()-[r:`TARGETS`]-() ON (r.id);
 CREATE INDEX rel_TESTS_id IF NOT EXISTS FOR ()-[r:`TESTS`]-() ON (r.id);
 CREATE INDEX rel_THREATENS_id IF NOT EXISTS FOR ()-[r:`THREATENS`]-() ON (r.id);
+CREATE INDEX rel_USES_id IF NOT EXISTS FOR ()-[r:`USES`]-() ON (r.id);
 
 // --- Native vector indexes (Phase 4 / Phase 7) ---
 CREATE VECTOR INDEX entity_embedding IF NOT EXISTS FOR (e:Entity) ON e.embedding OPTIONS {indexConfig: {`vector.dimensions`: 768, `vector.similarity_function`: 'cosine'}};
 CREATE VECTOR INDEX community_embedding IF NOT EXISTS FOR (c:Community) ON c.embedding OPTIONS {indexConfig: {`vector.dimensions`: 768, `vector.similarity_function`: 'cosine'}};
-CREATE INDEX rel_IN_MACRO_COMMUNITY_id IF NOT EXISTS FOR ()-[r:`IN_MACRO_COMMUNITY`]-() ON (r.id);
 CREATE VECTOR INDEX macro_community_embedding IF NOT EXISTS FOR (m:MacroCommunity) ON m.embedding OPTIONS {indexConfig: {`vector.dimensions`: 768, `vector.similarity_function`: 'cosine'}};

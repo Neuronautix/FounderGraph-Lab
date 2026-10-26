@@ -17,7 +17,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -46,7 +53,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -101,7 +115,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -124,7 +145,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -153,7 +181,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -208,7 +243,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -216,6 +258,267 @@
         "id"
       ],
       "title": "Blocker",
+      "type": "object"
+    },
+    "BusinessModelComponent": {
+      "additionalProperties": false,
+      "description": "A component of the business model such as pricing or channel.",
+      "properties": {
+        "description": {
+          "description": "Free-text description.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_grade": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "How directly the source supports the assertion."
+        },
+        "id": {
+          "description": "Stable identifier for the entity or relation.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Short label (often used in graphs / UI).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Human-readable display name.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_comment": {
+          "description": "Free-form reviewer notes.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_confidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Human-assigned reviewer confidence."
+        },
+        "source_document_id": {
+          "description": "ID of the document this record was extracted from.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_file": {
+          "description": "Filename of the originating document.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_location": {
+          "description": "Coarse location in the source (page, slide, paragraph).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_snippet": {
+          "description": "Original source text excerpt.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "superseded_by": {
+          "description": "Id of the entity that replaces this one.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_from": {
+          "description": "Datetime this version became valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_to": {
+          "description": "Datetime this version stopped being valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validation_status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Lifecycle status of this candidate record."
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "BusinessModelComponent",
+      "type": "object"
+    },
+    "CommercialProcess": {
+      "additionalProperties": false,
+      "description": "A commercial or go-to-market process step.",
+      "properties": {
+        "description": {
+          "description": "Free-text description.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_grade": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "How directly the source supports the assertion."
+        },
+        "id": {
+          "description": "Stable identifier for the entity or relation.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Short label (often used in graphs / UI).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Human-readable display name.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_comment": {
+          "description": "Free-form reviewer notes.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_confidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Human-assigned reviewer confidence."
+        },
+        "source_document_id": {
+          "description": "ID of the document this record was extracted from.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_file": {
+          "description": "Filename of the originating document.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_location": {
+          "description": "Coarse location in the source (page, slide, paragraph).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_snippet": {
+          "description": "Original source text excerpt.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stage": {
+          "description": "Stage (preferred investment stage for investors; current stage for projects and processes).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "superseded_by": {
+          "description": "Id of the entity that replaces this one.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_from": {
+          "description": "Datetime this version became valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_to": {
+          "description": "Datetime this version stopped being valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validation_status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Lifecycle status of this candidate record."
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "CommercialProcess",
       "type": "object"
     },
     "Community": {
@@ -299,7 +602,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -325,7 +635,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -380,7 +697,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -389,6 +713,133 @@
         "name"
       ],
       "title": "Competitor",
+      "type": "object"
+    },
+    "Concept": {
+      "additionalProperties": false,
+      "description": "A domain concept or operating principle relevant to strategy and design.",
+      "properties": {
+        "description": {
+          "description": "Free-text description.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_grade": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "How directly the source supports the assertion."
+        },
+        "id": {
+          "description": "Stable identifier for the entity or relation.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Short label (often used in graphs / UI).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Human-readable display name.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_comment": {
+          "description": "Free-form reviewer notes.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_confidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Human-assigned reviewer confidence."
+        },
+        "source_document_id": {
+          "description": "ID of the document this record was extracted from.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_file": {
+          "description": "Filename of the originating document.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_location": {
+          "description": "Coarse location in the source (page, slide, paragraph).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_snippet": {
+          "description": "Original source text excerpt.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "superseded_by": {
+          "description": "Id of the entity that replaces this one.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_from": {
+          "description": "Datetime this version became valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_to": {
+          "description": "Datetime this version stopped being valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validation_status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Lifecycle status of this candidate record."
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "Concept",
       "type": "object"
     },
     "Country": {
@@ -403,7 +854,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -432,7 +890,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -487,7 +952,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -528,7 +1000,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -557,7 +1036,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -612,7 +1098,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -634,7 +1127,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -663,7 +1163,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -702,7 +1209,14 @@
           ]
         },
         "urgency": {
-          "$ref": "#/$defs/SeverityEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SeverityEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How urgent the need is for this segment."
         },
         "valid_from": {
@@ -722,7 +1236,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         },
         "willingness_to_pay": {
@@ -766,7 +1287,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -802,7 +1330,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -857,7 +1392,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -931,7 +1473,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -960,7 +1509,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -1015,7 +1571,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -1037,11 +1600,25 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "evidence_type": {
-          "$ref": "#/$defs/EvidenceTypeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceTypeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Category of evidence."
         },
         "id": {
@@ -1070,7 +1647,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source": {
@@ -1109,7 +1693,14 @@
           ]
         },
         "strength": {
-          "$ref": "#/$defs/StrengthEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/StrengthEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Strength of evidence."
         },
         "superseded_by": {
@@ -1136,7 +1727,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -1182,11 +1780,25 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "experiment_status": {
-          "$ref": "#/$defs/ExperimentStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ExperimentStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Experiment lifecycle status."
         },
         "hypothesis": {
@@ -1229,7 +1841,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -1291,7 +1910,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -1312,6 +1938,140 @@
       "title": "ExperimentStatusEnum",
       "type": "string"
     },
+    "ExportFormat": {
+      "additionalProperties": false,
+      "description": "A supported data export format.",
+      "properties": {
+        "description": {
+          "description": "Free-text description.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_grade": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "How directly the source supports the assertion."
+        },
+        "id": {
+          "description": "Stable identifier for the entity or relation.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Short label (often used in graphs / UI).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Human-readable display name.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_comment": {
+          "description": "Free-form reviewer notes.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_confidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Human-assigned reviewer confidence."
+        },
+        "source_document_id": {
+          "description": "ID of the document this record was extracted from.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_file": {
+          "description": "Filename of the originating document.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_location": {
+          "description": "Coarse location in the source (page, slide, paragraph).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_snippet": {
+          "description": "Original source text excerpt.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "specification": {
+          "description": "Specification or reference describing an export format.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "superseded_by": {
+          "description": "Id of the entity that replaces this one.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_from": {
+          "description": "Datetime this version became valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_to": {
+          "description": "Datetime this version stopped being valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validation_status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Lifecycle status of this candidate record."
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "ExportFormat",
+      "type": "object"
+    },
     "FinancialHypothesis": {
       "additionalProperties": false,
       "description": "A financial forecast or business model hypothesis.",
@@ -1331,7 +2091,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -1367,7 +2134,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -1422,7 +2196,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -1451,7 +2232,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -1477,7 +2265,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "role": {
@@ -1539,7 +2334,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -1581,7 +2383,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "funder": {
@@ -1617,7 +2426,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -1672,7 +2488,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -1702,7 +2525,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "fit_score": {
@@ -1742,7 +2572,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -1807,7 +2644,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -1830,7 +2674,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -1866,7 +2717,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -1928,7 +2786,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -1950,7 +2815,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -1979,7 +2851,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -2034,7 +2913,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -2056,7 +2942,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -2082,7 +2975,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -2114,7 +3014,7 @@
           ]
         },
         "stage": {
-          "description": "Preferred investment stage.",
+          "description": "Stage (preferred investment stage for investors; current stage for projects and processes).",
           "type": [
             "string",
             "null"
@@ -2151,7 +3051,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -2197,6 +3104,75 @@
       "title": "KnowledgeBase",
       "type": "object"
     },
+    "MacroCommunity": {
+      "additionalProperties": false,
+      "description": "A Level-2 cluster of related Community nodes with an LLM summary.",
+      "properties": {
+        "created_at": {
+          "description": "Datetime this record was created.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "embedding": {
+          "description": "Numeric embedding vector.",
+          "items": {
+            "type": "number"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "id": {
+          "description": "Stable identifier for the entity or relation.",
+          "type": "string"
+        },
+        "max_risk_exposure": {
+          "description": "Highest risk_exposure among a macro-community's member communities.",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "member_count": {
+          "description": "Number of Level-1 communities in a macro-community.",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "summary": {
+          "description": "Short LLM-generated description of a community.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "total_entity_count": {
+          "description": "Total number of entities across a macro-community's member communities.",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "updated_at": {
+          "description": "Datetime this record was last updated.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "MacroCommunity",
+      "type": "object"
+    },
     "Market": {
       "additionalProperties": false,
       "description": "A market segment, channel, or geographic market.",
@@ -2209,7 +3185,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -2245,7 +3228,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -2300,7 +3290,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -2322,6 +3319,147 @@
       "title": "MaturityStageEnum",
       "type": "string"
     },
+    "Metric": {
+      "additionalProperties": false,
+      "description": "A measurable KPI or outcome used for decision-making.",
+      "properties": {
+        "description": {
+          "description": "Free-text description.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_grade": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "How directly the source supports the assertion."
+        },
+        "id": {
+          "description": "Stable identifier for the entity or relation.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Short label (often used in graphs / UI).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Human-readable display name.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_comment": {
+          "description": "Free-form reviewer notes.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_confidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Human-assigned reviewer confidence."
+        },
+        "source_document_id": {
+          "description": "ID of the document this record was extracted from.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_file": {
+          "description": "Filename of the originating document.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_location": {
+          "description": "Coarse location in the source (page, slide, paragraph).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_snippet": {
+          "description": "Original source text excerpt.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "superseded_by": {
+          "description": "Id of the entity that replaces this one.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "target": {
+          "description": "Target value of a metric.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unit": {
+          "description": "Unit of measurement of a metric.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_from": {
+          "description": "Datetime this version became valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_to": {
+          "description": "Datetime this version stopped being valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validation_status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Lifecycle status of this candidate record."
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "Metric",
+      "type": "object"
+    },
     "Milestone": {
       "additionalProperties": false,
       "description": "A time-bound objective.",
@@ -2342,7 +3480,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -2357,7 +3502,14 @@
           ]
         },
         "milestone_status": {
-          "$ref": "#/$defs/MilestoneStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MilestoneStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Milestone lifecycle status."
         },
         "name": {
@@ -2375,7 +3527,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -2437,7 +3596,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -2470,7 +3636,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -2496,7 +3669,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "role": {
@@ -2565,7 +3745,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -2574,6 +3761,267 @@
         "name"
       ],
       "title": "Partner",
+      "type": "object"
+    },
+    "PartnerSegment": {
+      "additionalProperties": false,
+      "description": "A partner or buyer segment connected to a use case.",
+      "properties": {
+        "description": {
+          "description": "Free-text description.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_grade": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "How directly the source supports the assertion."
+        },
+        "id": {
+          "description": "Stable identifier for the entity or relation.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Short label (often used in graphs / UI).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Human-readable display name.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_comment": {
+          "description": "Free-form reviewer notes.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_confidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Human-assigned reviewer confidence."
+        },
+        "source_document_id": {
+          "description": "ID of the document this record was extracted from.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_file": {
+          "description": "Filename of the originating document.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_location": {
+          "description": "Coarse location in the source (page, slide, paragraph).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_snippet": {
+          "description": "Original source text excerpt.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "superseded_by": {
+          "description": "Id of the entity that replaces this one.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_from": {
+          "description": "Datetime this version became valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_to": {
+          "description": "Datetime this version stopped being valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validation_status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Lifecycle status of this candidate record."
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "PartnerSegment",
+      "type": "object"
+    },
+    "Person": {
+      "additionalProperties": false,
+      "description": "A person involved in founding, building, or operating the startup.",
+      "properties": {
+        "description": {
+          "description": "Free-text description.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_grade": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "How directly the source supports the assertion."
+        },
+        "id": {
+          "description": "Stable identifier for the entity or relation.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Short label (often used in graphs / UI).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Human-readable display name.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_comment": {
+          "description": "Free-form reviewer notes.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_confidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Human-assigned reviewer confidence."
+        },
+        "role": {
+          "description": "Role of a founder or partner.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_document_id": {
+          "description": "ID of the document this record was extracted from.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_file": {
+          "description": "Filename of the originating document.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_location": {
+          "description": "Coarse location in the source (page, slide, paragraph).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_snippet": {
+          "description": "Original source text excerpt.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "superseded_by": {
+          "description": "Id of the entity that replaces this one.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_from": {
+          "description": "Datetime this version became valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_to": {
+          "description": "Datetime this version stopped being valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validation_status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Lifecycle status of this candidate record."
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "Person",
       "type": "object"
     },
     "Problem": {
@@ -2588,11 +4036,25 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "frequency": {
-          "$ref": "#/$defs/FrequencyEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FrequencyEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How often a problem occurs."
         },
         "id": {
@@ -2621,11 +4083,25 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "severity": {
-          "$ref": "#/$defs/SeverityEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SeverityEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Severity of a problem or impact."
         },
         "source_document_id": {
@@ -2680,7 +4156,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -2702,7 +4185,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -2745,7 +4235,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -2800,7 +4297,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -2808,6 +4312,133 @@
         "id"
       ],
       "title": "ProductFeature",
+      "type": "object"
+    },
+    "ProductModule": {
+      "additionalProperties": false,
+      "description": "A named product module in the platform architecture.",
+      "properties": {
+        "description": {
+          "description": "Free-text description.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_grade": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "How directly the source supports the assertion."
+        },
+        "id": {
+          "description": "Stable identifier for the entity or relation.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Short label (often used in graphs / UI).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Human-readable display name.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_comment": {
+          "description": "Free-form reviewer notes.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_confidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Human-assigned reviewer confidence."
+        },
+        "source_document_id": {
+          "description": "ID of the document this record was extracted from.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_file": {
+          "description": "Filename of the originating document.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_location": {
+          "description": "Coarse location in the source (page, slide, paragraph).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_snippet": {
+          "description": "Original source text excerpt.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "superseded_by": {
+          "description": "Id of the entity that replaces this one.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_from": {
+          "description": "Datetime this version became valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_to": {
+          "description": "Datetime this version stopped being valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validation_status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Lifecycle status of this candidate record."
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "ProductModule",
       "type": "object"
     },
     "RegulatoryConstraint": {
@@ -2822,7 +4453,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -2830,7 +4468,14 @@
           "type": "string"
         },
         "impact": {
-          "$ref": "#/$defs/SeverityEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SeverityEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Magnitude of the impact."
         },
         "jurisdiction": {
@@ -2862,7 +4507,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -2917,7 +4569,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -2932,7 +4591,14 @@
       "description": "A typed edge between two Entities.",
       "properties": {
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -2947,7 +4613,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -2988,7 +4661,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -3021,7 +4701,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -3029,7 +4716,14 @@
           "type": "string"
         },
         "impact": {
-          "$ref": "#/$defs/SeverityEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SeverityEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Magnitude of the impact."
         },
         "label": {
@@ -3054,7 +4748,14 @@
           ]
         },
         "probability": {
-          "$ref": "#/$defs/SeverityEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SeverityEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Probability of the risk materializing."
         },
         "reviewer_comment": {
@@ -3065,11 +4766,25 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "risk_type": {
-          "$ref": "#/$defs/RiskTypeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RiskTypeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Category of a risk."
         },
         "source_document_id": {
@@ -3124,7 +4839,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -3170,7 +4892,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -3199,7 +4928,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -3254,7 +4990,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -3262,6 +5005,140 @@
         "id"
       ],
       "title": "Site",
+      "type": "object"
+    },
+    "Standard": {
+      "additionalProperties": false,
+      "description": "A formal guideline or interoperability standard.",
+      "properties": {
+        "description": {
+          "description": "Free-text description.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_grade": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "How directly the source supports the assertion."
+        },
+        "id": {
+          "description": "Stable identifier for the entity or relation.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Short label (often used in graphs / UI).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Human-readable display name.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_comment": {
+          "description": "Free-form reviewer notes.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_confidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Human-assigned reviewer confidence."
+        },
+        "source_document_id": {
+          "description": "ID of the document this record was extracted from.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_file": {
+          "description": "Filename of the originating document.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_location": {
+          "description": "Coarse location in the source (page, slide, paragraph).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_snippet": {
+          "description": "Original source text excerpt.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "superseded_by": {
+          "description": "Id of the entity that replaces this one.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_from": {
+          "description": "Datetime this version became valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_to": {
+          "description": "Datetime this version stopped being valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validation_status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Lifecycle status of this candidate record."
+        },
+        "version": {
+          "description": "Version identifier of a standard.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "Standard",
       "type": "object"
     },
     "Startup": {
@@ -3276,7 +5153,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -3298,7 +5182,14 @@
           ]
         },
         "maturity_stage": {
-          "$ref": "#/$defs/MaturityStageEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MaturityStageEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Where the startup is in its lifecycle."
         },
         "name": {
@@ -3313,7 +5204,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "sector": {
@@ -3375,7 +5273,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -3384,6 +5289,147 @@
         "name"
       ],
       "title": "Startup",
+      "type": "object"
+    },
+    "StartupProject": {
+      "additionalProperties": false,
+      "description": "A startup initiative modeled as a structured project entity.",
+      "properties": {
+        "description": {
+          "description": "Free-text description.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_grade": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "How directly the source supports the assertion."
+        },
+        "focus_area": {
+          "description": "Primary focus area of a startup project.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "id": {
+          "description": "Stable identifier for the entity or relation.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Short label (often used in graphs / UI).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Human-readable display name.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_comment": {
+          "description": "Free-form reviewer notes.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_confidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Human-assigned reviewer confidence."
+        },
+        "source_document_id": {
+          "description": "ID of the document this record was extracted from.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_file": {
+          "description": "Filename of the originating document.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_location": {
+          "description": "Coarse location in the source (page, slide, paragraph).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_snippet": {
+          "description": "Original source text excerpt.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stage": {
+          "description": "Stage (preferred investment stage for investors; current stage for projects and processes).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "superseded_by": {
+          "description": "Id of the entity that replaces this one.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_from": {
+          "description": "Datetime this version became valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_to": {
+          "description": "Datetime this version stopped being valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validation_status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Lifecycle status of this candidate record."
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "StartupProject",
       "type": "object"
     },
     "StrengthEnum": {
@@ -3395,6 +5441,140 @@
       ],
       "title": "StrengthEnum",
       "type": "string"
+    },
+    "TechnicalCapability": {
+      "additionalProperties": false,
+      "description": "A technical capability that enables product behavior.",
+      "properties": {
+        "description": {
+          "description": "Free-text description.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_grade": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "How directly the source supports the assertion."
+        },
+        "id": {
+          "description": "Stable identifier for the entity or relation.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Short label (often used in graphs / UI).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "maturity": {
+          "description": "Maturity of a feature.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Human-readable display name.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_comment": {
+          "description": "Free-form reviewer notes.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_confidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Human-assigned reviewer confidence."
+        },
+        "source_document_id": {
+          "description": "ID of the document this record was extracted from.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_file": {
+          "description": "Filename of the originating document.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_location": {
+          "description": "Coarse location in the source (page, slide, paragraph).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_snippet": {
+          "description": "Original source text excerpt.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "superseded_by": {
+          "description": "Id of the entity that replaces this one.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_from": {
+          "description": "Datetime this version became valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_to": {
+          "description": "Datetime this version stopped being valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validation_status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Lifecycle status of this candidate record."
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "TechnicalCapability",
+      "type": "object"
     },
     "TechnicalDependency": {
       "additionalProperties": false,
@@ -3408,7 +5588,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -3437,11 +5624,25 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "risk_level": {
-          "$ref": "#/$defs/SeverityEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SeverityEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Risk level of a dependency."
         },
         "source_document_id": {
@@ -3503,7 +5704,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -3511,6 +5719,267 @@
         "id"
       ],
       "title": "TechnicalDependency",
+      "type": "object"
+    },
+    "Technology": {
+      "additionalProperties": false,
+      "description": "A technology, tool, or external platform dependency.",
+      "properties": {
+        "category": {
+          "description": "Category of a technology.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "description": {
+          "description": "Free-text description.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_grade": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "How directly the source supports the assertion."
+        },
+        "id": {
+          "description": "Stable identifier for the entity or relation.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Short label (often used in graphs / UI).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Human-readable display name.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_comment": {
+          "description": "Free-form reviewer notes.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_confidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Human-assigned reviewer confidence."
+        },
+        "source_document_id": {
+          "description": "ID of the document this record was extracted from.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_file": {
+          "description": "Filename of the originating document.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_location": {
+          "description": "Coarse location in the source (page, slide, paragraph).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_snippet": {
+          "description": "Original source text excerpt.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "superseded_by": {
+          "description": "Id of the entity that replaces this one.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_from": {
+          "description": "Datetime this version became valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_to": {
+          "description": "Datetime this version stopped being valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validation_status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Lifecycle status of this candidate record."
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "Technology",
+      "type": "object"
+    },
+    "UseCase": {
+      "additionalProperties": false,
+      "description": "A concrete workflow or problem scenario addressed by the startup.",
+      "properties": {
+        "description": {
+          "description": "Free-text description.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_grade": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "How directly the source supports the assertion."
+        },
+        "id": {
+          "description": "Stable identifier for the entity or relation.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Short label (often used in graphs / UI).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Human-readable display name.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_comment": {
+          "description": "Free-form reviewer notes.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer_confidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Human-assigned reviewer confidence."
+        },
+        "source_document_id": {
+          "description": "ID of the document this record was extracted from.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_file": {
+          "description": "Filename of the originating document.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_location": {
+          "description": "Coarse location in the source (page, slide, paragraph).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_snippet": {
+          "description": "Original source text excerpt.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "superseded_by": {
+          "description": "Id of the entity that replaces this one.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_from": {
+          "description": "Datetime this version became valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_to": {
+          "description": "Datetime this version stopped being valid.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validation_status": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Lifecycle status of this candidate record."
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "UseCase",
       "type": "object"
     },
     "ValidationStatusEnum": {
@@ -3544,7 +6013,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -3573,7 +6049,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -3628,7 +6111,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -3650,7 +6140,14 @@
           ]
         },
         "evidence_grade": {
-          "$ref": "#/$defs/EvidenceGradeEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EvidenceGradeEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "How directly the source supports the assertion."
         },
         "id": {
@@ -3679,7 +6176,14 @@
           ]
         },
         "reviewer_confidence": {
-          "$ref": "#/$defs/ReviewerConfidenceEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewerConfidenceEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Human-assigned reviewer confidence."
         },
         "source_document_id": {
@@ -3734,7 +6238,14 @@
           ]
         },
         "validation_status": {
-          "$ref": "#/$defs/ValidationStatusEnum",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValidationStatusEnum"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "description": "Lifecycle status of this candidate record."
         }
       },
@@ -3747,9 +6258,9 @@
   },
   "$id": "https://foundergraph.dev/ontology/startup",
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "additionalProperties": true,
+  "additionalProperties": false,
   "description": "Top-level container for a FounderGraph dataset.",
-  "metamodel_version": "1.11.0",
+  "metamodel_version": "1.12.0",
   "properties": {
     "documents": {
       "items": {
@@ -3785,13 +6296,17 @@
   "x-foundergraph-entity-labels": [
     "Assumption",
     "Blocker",
+    "BusinessModelComponent",
+    "CommercialProcess",
     "Competitor",
+    "Concept",
     "Country",
     "CustomerInterview",
     "CustomerSegment",
     "Decision",
     "Evidence",
     "Experiment",
+    "ExportFormat",
     "FinancialHypothesis",
     "Founder",
     "Grant",
@@ -3800,15 +6315,24 @@
     "Impact",
     "Investor",
     "Market",
+    "Metric",
     "Milestone",
     "Partner",
+    "PartnerSegment",
+    "Person",
     "Problem",
     "ProductFeature",
+    "ProductModule",
     "RegulatoryConstraint",
     "Risk",
     "Site",
+    "Standard",
     "Startup",
+    "StartupProject",
+    "TechnicalCapability",
     "TechnicalDependency",
+    "Technology",
+    "UseCase",
     "ValueProposition",
     "Vendor"
   ],
@@ -3820,10 +6344,40 @@
       "slot": "addresses"
     },
     {
+      "domain": "Assumption",
+      "predicate": "SUPPORTS",
+      "range": "Concept",
+      "slot": "assumption_supports_concept"
+    },
+    {
       "domain": "Entity",
       "predicate": "BASED_ON",
       "range": "Entity",
       "slot": "based_on"
+    },
+    {
+      "domain": "BusinessModelComponent",
+      "predicate": "REQUIRES",
+      "range": "TechnicalCapability",
+      "slot": "business_model_component_requires_technical_capability"
+    },
+    {
+      "domain": "BusinessModelComponent",
+      "predicate": "SUPPORTS",
+      "range": "Concept",
+      "slot": "business_model_component_supports_concept"
+    },
+    {
+      "domain": "CommercialProcess",
+      "predicate": "MEASURES",
+      "range": "Metric",
+      "slot": "commercial_process_measures_metric"
+    },
+    {
+      "domain": "CommercialProcess",
+      "predicate": "NEEDS",
+      "range": "ProductFeature",
+      "slot": "commercial_process_needs_product_feature"
     },
     {
       "domain": "Competitor",
@@ -3838,10 +6392,34 @@
       "slot": "contradicted_by"
     },
     {
+      "domain": "CustomerSegment",
+      "predicate": "BUYS_FOR",
+      "range": "ExportFormat",
+      "slot": "customer_segment_buys_for_export_format"
+    },
+    {
+      "domain": "CustomerSegment",
+      "predicate": "NEEDS",
+      "range": "ProductModule",
+      "slot": "customer_segment_needs_product_module"
+    },
+    {
+      "domain": "Decision",
+      "predicate": "MITIGATES",
+      "range": "Risk",
+      "slot": "decision_mitigates_risk"
+    },
+    {
       "domain": "TechnicalDependency",
       "predicate": "DEPENDS_ON",
       "range": "TechnicalDependency",
       "slot": "depends_on"
+    },
+    {
+      "domain": "Founder",
+      "predicate": "FOUNDED",
+      "range": "Startup",
+      "slot": "founded"
     },
     {
       "domain": "GrantCall",
@@ -3868,16 +6446,76 @@
       "slot": "in_community"
     },
     {
+      "domain": "Community",
+      "predicate": "IN_MACRO_COMMUNITY",
+      "range": "MacroCommunity",
+      "slot": "in_macro_community"
+    },
+    {
       "domain": "Document",
       "predicate": "MENTIONS",
       "range": "Entity",
       "slot": "mentions"
     },
     {
+      "domain": "Metric",
+      "predicate": "MEASURES",
+      "range": "Concept",
+      "slot": "metric_measures_concept"
+    },
+    {
+      "domain": "Milestone",
+      "predicate": "DEPENDS_ON",
+      "range": "Technology",
+      "slot": "milestone_depends_on_technology"
+    },
+    {
       "domain": "Experiment",
       "predicate": "MITIGATES",
       "range": "Risk",
       "slot": "mitigates"
+    },
+    {
+      "domain": "PartnerSegment",
+      "predicate": "BUYS_FOR",
+      "range": "UseCase",
+      "slot": "partner_segment_buys_for_use_case"
+    },
+    {
+      "domain": "PartnerSegment",
+      "predicate": "INTEGRATES_WITH",
+      "range": "TechnicalCapability",
+      "slot": "partner_segment_integrates_with_technical_capability"
+    },
+    {
+      "domain": "Person",
+      "predicate": "FOUNDED",
+      "range": "StartupProject",
+      "slot": "person_founded_startup_project"
+    },
+    {
+      "domain": "Person",
+      "predicate": "LEADS_TECHNICAL_DEVELOPMENT_FOR",
+      "range": "StartupProject",
+      "slot": "person_leads_technical_development_for_startup_project"
+    },
+    {
+      "domain": "ProductFeature",
+      "predicate": "REQUIRES",
+      "range": "Concept",
+      "slot": "product_feature_requires_concept"
+    },
+    {
+      "domain": "ProductModule",
+      "predicate": "REQUIRES",
+      "range": "TechnicalCapability",
+      "slot": "product_module_requires_technical_capability"
+    },
+    {
+      "domain": "ProductModule",
+      "predicate": "USES",
+      "range": "TechnicalCapability",
+      "slot": "product_module_uses_technical_capability"
     },
     {
       "domain": "IPAsset",
@@ -3910,6 +6548,60 @@
       "slot": "source_of"
     },
     {
+      "domain": "StartupProject",
+      "predicate": "ADDRESSES",
+      "range": "Problem",
+      "slot": "startup_project_addresses_problem"
+    },
+    {
+      "domain": "StartupProject",
+      "predicate": "EXPORTS",
+      "range": "ExportFormat",
+      "slot": "startup_project_exports_export_format"
+    },
+    {
+      "domain": "StartupProject",
+      "predicate": "GENERATES",
+      "range": "ExportFormat",
+      "slot": "startup_project_generates_export_format"
+    },
+    {
+      "domain": "StartupProject",
+      "predicate": "HAS_BUSINESS_MODEL",
+      "range": "BusinessModelComponent",
+      "slot": "startup_project_has_business_model_business_model_component"
+    },
+    {
+      "domain": "StartupProject",
+      "predicate": "HAS_INITIAL_WEDGE",
+      "range": "UseCase",
+      "slot": "startup_project_has_initial_wedge_use_case"
+    },
+    {
+      "domain": "StartupProject",
+      "predicate": "IMPLEMENTS",
+      "range": "Standard",
+      "slot": "startup_project_implements_standard"
+    },
+    {
+      "domain": "StartupProject",
+      "predicate": "INTEGRATES_WITH",
+      "range": "Technology",
+      "slot": "startup_project_integrates_with_technology"
+    },
+    {
+      "domain": "StartupProject",
+      "predicate": "SUPPORTS",
+      "range": "Concept",
+      "slot": "startup_project_supports_concept"
+    },
+    {
+      "domain": "StartupProject",
+      "predicate": "USES",
+      "range": "Technology",
+      "slot": "startup_project_uses_technology"
+    },
+    {
       "domain": "Entity",
       "predicate": "SUPERSEDED_BY",
       "range": "Entity",
@@ -3928,6 +6620,18 @@
       "slot": "targets"
     },
     {
+      "domain": "TechnicalCapability",
+      "predicate": "INTEGRATES_WITH",
+      "range": "Technology",
+      "slot": "technical_capability_integrates_with_technology"
+    },
+    {
+      "domain": "TechnicalCapability",
+      "predicate": "SUPPORTS",
+      "range": "ExportFormat",
+      "slot": "technical_capability_supports_export_format"
+    },
+    {
       "domain": "Experiment",
       "predicate": "TESTS",
       "range": "Assumption",
@@ -3938,6 +6642,12 @@
       "predicate": "THREATENS",
       "range": "Milestone",
       "slot": "threatens"
+    },
+    {
+      "domain": "UseCase",
+      "predicate": "REQUIRES",
+      "range": "TechnicalCapability",
+      "slot": "use_case_requires_technical_capability"
     }
   ],
   "x-foundergraph-source": "startup_ontology.linkml.yaml"
