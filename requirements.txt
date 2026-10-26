@@ -23,7 +23,7 @@ google-auth>=2.35.0,<3
 # Phase 1 — LinkML single source of truth.  ``linkml`` is the generator
 # toolchain (only needed when running ``make generate``); ``linkml-runtime``
 # is the lightweight import used by the runtime ``OntologyLoader``.
-linkml>=1.7,<2
-linkml-runtime>=1.7,<2
+linkml==1.12.1
+linkml-runtime==1.12.1
 pyshacl>=0.25,<1
-rdflib>=7,<8
+rdflib==7.6.0

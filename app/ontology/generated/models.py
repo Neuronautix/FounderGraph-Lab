@@ -31,7 +31,7 @@ from pydantic import (
 )
 
 
-metamodel_version = "1.11.0"
+metamodel_version = "1.12.0"
 version = "0.2.0"
 
 
@@ -235,7 +235,7 @@ class Entity(ConfiguredBaseModel):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
 
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -258,7 +258,7 @@ class Document(ConfiguredBaseModel):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
 
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
     source_file: Optional[str] = Field(default=None, description="""Filename of the originating document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
@@ -272,7 +272,7 @@ class Relation(ConfiguredBaseModel):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
 
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     source_document_id: Optional[str] = Field(default=None, description="""ID of the document this record was extracted from.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
     source_file: Optional[str] = Field(default=None, description="""Filename of the originating document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
     source_snippet: Optional[str] = Field(default=None, description="""Original source text excerpt.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
@@ -294,7 +294,7 @@ class Startup(Entity):
     sector: Optional[str] = Field(default=None, description="""Industry or sector.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Startup']} })
     maturity_stage: Optional[MaturityStageEnum] = Field(default=None, description="""Where the startup is in its lifecycle.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Startup']} })
     location: Optional[str] = Field(default=None, description="""Geographic location.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Startup', 'Market']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: str = Field(default=..., description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -318,9 +318,9 @@ class Founder(Entity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup',
          'slot_usage': {'name': {'name': 'name', 'required': True}}})
 
-    role: Optional[str] = Field(default=None, description="""Role of a founder or partner.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Founder', 'Partner']} })
+    role: Optional[str] = Field(default=None, description="""Role of a founder or partner.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Founder', 'Partner', 'Person']} })
     background: Optional[str] = Field(default=None, description="""Background of a person.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Founder']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: str = Field(default=..., description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -345,7 +345,7 @@ class CustomerSegment(Entity):
 
     urgency: Optional[SeverityEnum] = Field(default=None, description="""How urgent the need is for this segment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CustomerSegment']} })
     willingness_to_pay: Optional[str] = Field(default=None, description="""How willing the segment is to pay (free-form).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CustomerSegment']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -370,7 +370,7 @@ class Problem(Entity):
 
     severity: Optional[SeverityEnum] = Field(default=None, description="""Severity of a problem or impact.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Problem']} })
     frequency: Optional[FrequencyEnum] = Field(default=None, description="""How often a problem occurs.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Problem']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -394,7 +394,7 @@ class ValueProposition(Entity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
 
     differentiator: Optional[str] = Field(default=None, description="""What makes this value proposition stand out.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ValueProposition']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -417,9 +417,9 @@ class ProductFeature(Entity):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
 
-    maturity: Optional[str] = Field(default=None, description="""Maturity of a feature.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ProductFeature']} })
+    maturity: Optional[str] = Field(default=None, description="""Maturity of a feature.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ProductFeature', 'TechnicalCapability']} })
     linked_problem: Optional[str] = Field(default=None, description="""Free-form pointer to a related problem.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ProductFeature']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -444,7 +444,7 @@ class Assumption(Entity):
          'slot_usage': {'criticality': {'name': 'criticality', 'required': True}}})
 
     criticality: CriticalityEnum = Field(default=..., description="""Strategic importance of the assumption.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Assumption']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -470,7 +470,7 @@ class Evidence(Entity):
     source: Optional[str] = Field(default=None, description="""Citation or source attribution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Evidence']} })
     evidence_type: Optional[EvidenceTypeEnum] = Field(default=None, description="""Category of evidence.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Evidence']} })
     strength: Optional[StrengthEnum] = Field(default=None, description="""Strength of evidence.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Evidence']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -497,7 +497,7 @@ class Risk(Entity):
     probability: Optional[SeverityEnum] = Field(default=None, description="""Probability of the risk materializing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Risk']} })
     impact: Optional[SeverityEnum] = Field(default=None, description="""Magnitude of the impact.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Risk', 'RegulatoryConstraint']} })
     mitigation: Optional[str] = Field(default=None, description="""Mitigation plan.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Risk']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -524,7 +524,7 @@ class Experiment(Entity):
     method: Optional[str] = Field(default=None, description="""Experimental method.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Experiment']} })
     success_criteria: Optional[str] = Field(default=None, description="""How success is measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Experiment', 'Milestone']} })
     experiment_status: Optional[ExperimentStatusEnum] = Field(default=None, description="""Experiment lifecycle status.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Experiment']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -550,7 +550,7 @@ class Decision(Entity):
     decision_date: Optional[date] = Field(default=None, description="""Date associated with the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Decision', 'CustomerInterview', 'Grant']} })
     rationale: Optional[str] = Field(default=None, description="""Why the decision was made.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Decision']} })
     decided_by: Optional[str] = Field(default=None, description="""Decision maker.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Decision']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -576,7 +576,7 @@ class Milestone(Entity):
     deadline: Optional[date] = Field(default=None, description="""Deadline of the milestone.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Milestone', 'GrantCall']} })
     success_criteria: Optional[str] = Field(default=None, description="""How success is measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Experiment', 'Milestone']} })
     milestone_status: Optional[MilestoneStatusEnum] = Field(default=None, description="""Milestone lifecycle status.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Milestone']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -600,7 +600,7 @@ class CustomerInterview(Entity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
 
     decision_date: Optional[date] = Field(default=None, description="""Date associated with the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Decision', 'CustomerInterview', 'Grant']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -628,7 +628,7 @@ class GrantCall(Entity):
     deadline: Optional[date] = Field(default=None, description="""Deadline of the milestone.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Milestone', 'GrantCall']} })
     themes: Optional[list[str]] = Field(default=None, description="""Themes covered by the grant call.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GrantCall']} })
     fit_score: Optional[float] = Field(default=None, description="""How well the startup fits the call.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GrantCall']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: str = Field(default=..., description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -653,7 +653,7 @@ class Grant(Entity):
 
     funder: Optional[str] = Field(default=None, description="""Funder for a grant call.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GrantCall', 'Grant']} })
     decision_date: Optional[date] = Field(default=None, description="""Date associated with the entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Decision', 'CustomerInterview', 'Grant']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -677,7 +677,7 @@ class Impact(Entity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
 
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     source_document_id: Optional[str] = Field(default=None, description="""ID of the document this record was extracted from.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
@@ -700,7 +700,7 @@ class Market(Entity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
 
     location: Optional[str] = Field(default=None, description="""Geographic location.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Startup', 'Market']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -724,9 +724,9 @@ class Investor(Entity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup',
          'slot_usage': {'name': {'name': 'name', 'required': True}}})
 
-    stage: Optional[str] = Field(default=None, description="""Preferred investment stage.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Investor']} })
+    stage: Optional[str] = Field(default=None, description="""Stage (preferred investment stage for investors; current stage for projects and processes).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Investor', 'StartupProject', 'CommercialProcess']} })
     thesis: Optional[str] = Field(default=None, description="""Investment thesis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Investor']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: str = Field(default=..., description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -750,9 +750,9 @@ class Partner(Entity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup',
          'slot_usage': {'name': {'name': 'name', 'required': True}}})
 
-    role: Optional[str] = Field(default=None, description="""Role of a founder or partner.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Founder', 'Partner']} })
+    role: Optional[str] = Field(default=None, description="""Role of a founder or partner.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Founder', 'Partner', 'Person']} })
     status: Optional[str] = Field(default=None, description="""Current status of a partnership or asset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Partner', 'IPAsset']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: str = Field(default=..., description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -777,7 +777,7 @@ class Competitor(Entity):
          'slot_usage': {'name': {'name': 'name', 'required': True}}})
 
     differentiation: Optional[str] = Field(default=None, description="""How a competitor differentiates itself.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Competitor']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: str = Field(default=..., description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -802,7 +802,7 @@ class IPAsset(Entity):
 
     status: Optional[str] = Field(default=None, description="""Current status of a partnership or asset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Partner', 'IPAsset']} })
     owner: Optional[str] = Field(default=None, description="""Owner of an asset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IPAsset']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -827,7 +827,7 @@ class RegulatoryConstraint(Entity):
 
     jurisdiction: Optional[str] = Field(default=None, description="""Regulatory jurisdiction.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RegulatoryConstraint']} })
     impact: Optional[SeverityEnum] = Field(default=None, description="""Magnitude of the impact.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Risk', 'RegulatoryConstraint']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -852,7 +852,7 @@ class TechnicalDependency(Entity):
 
     system: Optional[str] = Field(default=None, description="""System being depended on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TechnicalDependency']} })
     risk_level: Optional[SeverityEnum] = Field(default=None, description="""Risk level of a dependency.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TechnicalDependency']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -877,7 +877,7 @@ class FinancialHypothesis(Entity):
 
     metric: Optional[str] = Field(default=None, description="""Financial metric the hypothesis concerns.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FinancialHypothesis']} })
     assumption_text: Optional[str] = Field(default=None, description="""Free-form text statement of the financial assumption.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FinancialHypothesis']} })
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -900,13 +900,13 @@ class Community(ConfiguredBaseModel):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
 
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
-    summary: Optional[str] = Field(default=None, description="""Short LLM-generated description of a community.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Community']} })
-    embedding: Optional[list[float]] = Field(default=None, description="""Numeric embedding vector.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
+    summary: Optional[str] = Field(default=None, description="""Short LLM-generated description of a community.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Community', 'MacroCommunity']} })
+    embedding: Optional[list[float]] = Field(default=None, description="""Numeric embedding vector.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Community', 'MacroCommunity']} })
     size: Optional[int] = Field(default=None, description="""Number of members in a community.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Community']} })
     risk_exposure: Optional[float] = Field(default=None, description="""Share of community members carrying high-criticality risk markers.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Community']} })
-    created_at: Optional[datetime ] = Field(default=None, description="""Datetime this record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Community']} })
-    updated_at: Optional[datetime ] = Field(default=None, description="""Datetime this record was last updated.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Community']} })
+    created_at: Optional[datetime ] = Field(default=None, description="""Datetime this record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Community', 'MacroCommunity']} })
+    updated_at: Optional[datetime ] = Field(default=None, description="""Datetime this record was last updated.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Community', 'MacroCommunity']} })
 
 
 class Site(Entity):
@@ -915,7 +915,7 @@ class Site(Entity):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
 
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -938,7 +938,7 @@ class Vendor(Entity):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
 
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -961,7 +961,7 @@ class Country(Entity):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
 
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -984,7 +984,332 @@ class Blocker(Entity):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
 
-    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
+    name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
+    label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
+    source_document_id: Optional[str] = Field(default=None, description="""ID of the document this record was extracted from.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_file: Optional[str] = Field(default=None, description="""Filename of the originating document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    source_snippet: Optional[str] = Field(default=None, description="""Original source text excerpt.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_location: Optional[str] = Field(default=None, description="""Coarse location in the source (page, slide, paragraph).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    evidence_grade: Optional[EvidenceGradeEnum] = Field(default=None, description="""How directly the source supports the assertion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_confidence: Optional[ReviewerConfidenceEnum] = Field(default=None, description="""Human-assigned reviewer confidence.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_comment: Optional[str] = Field(default=None, description="""Free-form reviewer notes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    validation_status: Optional[ValidationStatusEnum] = Field(default=None, description="""Lifecycle status of this candidate record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    valid_from: Optional[datetime ] = Field(default=None, description="""Datetime this version became valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    valid_to: Optional[datetime ] = Field(default=None, description="""Datetime this version stopped being valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    superseded_by: Optional[str] = Field(default=None, description="""Id of the entity that replaces this one.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+
+
+class MacroCommunity(ConfiguredBaseModel):
+    """
+    A Level-2 cluster of related Community nodes with an LLM summary.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
+
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
+    summary: Optional[str] = Field(default=None, description="""Short LLM-generated description of a community.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Community', 'MacroCommunity']} })
+    embedding: Optional[list[float]] = Field(default=None, description="""Numeric embedding vector.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Community', 'MacroCommunity']} })
+    total_entity_count: Optional[int] = Field(default=None, description="""Total number of entities across a macro-community's member communities.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MacroCommunity']} })
+    max_risk_exposure: Optional[float] = Field(default=None, description="""Highest risk_exposure among a macro-community's member communities.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MacroCommunity']} })
+    member_count: Optional[int] = Field(default=None, description="""Number of Level-1 communities in a macro-community.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MacroCommunity']} })
+    created_at: Optional[datetime ] = Field(default=None, description="""Datetime this record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Community', 'MacroCommunity']} })
+    updated_at: Optional[datetime ] = Field(default=None, description="""Datetime this record was last updated.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Community', 'MacroCommunity']} })
+
+
+class StartupProject(Entity):
+    """
+    A startup initiative modeled as a structured project entity.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
+
+    stage: Optional[str] = Field(default=None, description="""Stage (preferred investment stage for investors; current stage for projects and processes).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Investor', 'StartupProject', 'CommercialProcess']} })
+    focus_area: Optional[str] = Field(default=None, description="""Primary focus area of a startup project.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StartupProject']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
+    name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
+    label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
+    source_document_id: Optional[str] = Field(default=None, description="""ID of the document this record was extracted from.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_file: Optional[str] = Field(default=None, description="""Filename of the originating document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    source_snippet: Optional[str] = Field(default=None, description="""Original source text excerpt.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_location: Optional[str] = Field(default=None, description="""Coarse location in the source (page, slide, paragraph).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    evidence_grade: Optional[EvidenceGradeEnum] = Field(default=None, description="""How directly the source supports the assertion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_confidence: Optional[ReviewerConfidenceEnum] = Field(default=None, description="""Human-assigned reviewer confidence.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_comment: Optional[str] = Field(default=None, description="""Free-form reviewer notes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    validation_status: Optional[ValidationStatusEnum] = Field(default=None, description="""Lifecycle status of this candidate record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    valid_from: Optional[datetime ] = Field(default=None, description="""Datetime this version became valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    valid_to: Optional[datetime ] = Field(default=None, description="""Datetime this version stopped being valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    superseded_by: Optional[str] = Field(default=None, description="""Id of the entity that replaces this one.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+
+
+class UseCase(Entity):
+    """
+    A concrete workflow or problem scenario addressed by the startup.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
+
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
+    name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
+    label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
+    source_document_id: Optional[str] = Field(default=None, description="""ID of the document this record was extracted from.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_file: Optional[str] = Field(default=None, description="""Filename of the originating document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    source_snippet: Optional[str] = Field(default=None, description="""Original source text excerpt.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_location: Optional[str] = Field(default=None, description="""Coarse location in the source (page, slide, paragraph).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    evidence_grade: Optional[EvidenceGradeEnum] = Field(default=None, description="""How directly the source supports the assertion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_confidence: Optional[ReviewerConfidenceEnum] = Field(default=None, description="""Human-assigned reviewer confidence.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_comment: Optional[str] = Field(default=None, description="""Free-form reviewer notes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    validation_status: Optional[ValidationStatusEnum] = Field(default=None, description="""Lifecycle status of this candidate record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    valid_from: Optional[datetime ] = Field(default=None, description="""Datetime this version became valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    valid_to: Optional[datetime ] = Field(default=None, description="""Datetime this version stopped being valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    superseded_by: Optional[str] = Field(default=None, description="""Id of the entity that replaces this one.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+
+
+class Concept(Entity):
+    """
+    A domain concept or operating principle relevant to strategy and design.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
+
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
+    name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
+    label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
+    source_document_id: Optional[str] = Field(default=None, description="""ID of the document this record was extracted from.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_file: Optional[str] = Field(default=None, description="""Filename of the originating document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    source_snippet: Optional[str] = Field(default=None, description="""Original source text excerpt.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_location: Optional[str] = Field(default=None, description="""Coarse location in the source (page, slide, paragraph).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    evidence_grade: Optional[EvidenceGradeEnum] = Field(default=None, description="""How directly the source supports the assertion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_confidence: Optional[ReviewerConfidenceEnum] = Field(default=None, description="""Human-assigned reviewer confidence.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_comment: Optional[str] = Field(default=None, description="""Free-form reviewer notes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    validation_status: Optional[ValidationStatusEnum] = Field(default=None, description="""Lifecycle status of this candidate record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    valid_from: Optional[datetime ] = Field(default=None, description="""Datetime this version became valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    valid_to: Optional[datetime ] = Field(default=None, description="""Datetime this version stopped being valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    superseded_by: Optional[str] = Field(default=None, description="""Id of the entity that replaces this one.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+
+
+class Standard(Entity):
+    """
+    A formal guideline or interoperability standard.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
+
+    version: Optional[str] = Field(default=None, description="""Version identifier of a standard.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Standard']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
+    name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
+    label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
+    source_document_id: Optional[str] = Field(default=None, description="""ID of the document this record was extracted from.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_file: Optional[str] = Field(default=None, description="""Filename of the originating document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    source_snippet: Optional[str] = Field(default=None, description="""Original source text excerpt.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_location: Optional[str] = Field(default=None, description="""Coarse location in the source (page, slide, paragraph).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    evidence_grade: Optional[EvidenceGradeEnum] = Field(default=None, description="""How directly the source supports the assertion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_confidence: Optional[ReviewerConfidenceEnum] = Field(default=None, description="""Human-assigned reviewer confidence.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_comment: Optional[str] = Field(default=None, description="""Free-form reviewer notes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    validation_status: Optional[ValidationStatusEnum] = Field(default=None, description="""Lifecycle status of this candidate record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    valid_from: Optional[datetime ] = Field(default=None, description="""Datetime this version became valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    valid_to: Optional[datetime ] = Field(default=None, description="""Datetime this version stopped being valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    superseded_by: Optional[str] = Field(default=None, description="""Id of the entity that replaces this one.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+
+
+class ExportFormat(Entity):
+    """
+    A supported data export format.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
+
+    specification: Optional[str] = Field(default=None, description="""Specification or reference describing an export format.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ExportFormat']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
+    name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
+    label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
+    source_document_id: Optional[str] = Field(default=None, description="""ID of the document this record was extracted from.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_file: Optional[str] = Field(default=None, description="""Filename of the originating document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    source_snippet: Optional[str] = Field(default=None, description="""Original source text excerpt.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_location: Optional[str] = Field(default=None, description="""Coarse location in the source (page, slide, paragraph).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    evidence_grade: Optional[EvidenceGradeEnum] = Field(default=None, description="""How directly the source supports the assertion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_confidence: Optional[ReviewerConfidenceEnum] = Field(default=None, description="""Human-assigned reviewer confidence.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_comment: Optional[str] = Field(default=None, description="""Free-form reviewer notes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    validation_status: Optional[ValidationStatusEnum] = Field(default=None, description="""Lifecycle status of this candidate record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    valid_from: Optional[datetime ] = Field(default=None, description="""Datetime this version became valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    valid_to: Optional[datetime ] = Field(default=None, description="""Datetime this version stopped being valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    superseded_by: Optional[str] = Field(default=None, description="""Id of the entity that replaces this one.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+
+
+class ProductModule(Entity):
+    """
+    A named product module in the platform architecture.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
+
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
+    name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
+    label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
+    source_document_id: Optional[str] = Field(default=None, description="""ID of the document this record was extracted from.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_file: Optional[str] = Field(default=None, description="""Filename of the originating document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    source_snippet: Optional[str] = Field(default=None, description="""Original source text excerpt.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_location: Optional[str] = Field(default=None, description="""Coarse location in the source (page, slide, paragraph).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    evidence_grade: Optional[EvidenceGradeEnum] = Field(default=None, description="""How directly the source supports the assertion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_confidence: Optional[ReviewerConfidenceEnum] = Field(default=None, description="""Human-assigned reviewer confidence.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_comment: Optional[str] = Field(default=None, description="""Free-form reviewer notes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    validation_status: Optional[ValidationStatusEnum] = Field(default=None, description="""Lifecycle status of this candidate record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    valid_from: Optional[datetime ] = Field(default=None, description="""Datetime this version became valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    valid_to: Optional[datetime ] = Field(default=None, description="""Datetime this version stopped being valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    superseded_by: Optional[str] = Field(default=None, description="""Id of the entity that replaces this one.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+
+
+class TechnicalCapability(Entity):
+    """
+    A technical capability that enables product behavior.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
+
+    maturity: Optional[str] = Field(default=None, description="""Maturity of a feature.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ProductFeature', 'TechnicalCapability']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
+    name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
+    label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
+    source_document_id: Optional[str] = Field(default=None, description="""ID of the document this record was extracted from.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_file: Optional[str] = Field(default=None, description="""Filename of the originating document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    source_snippet: Optional[str] = Field(default=None, description="""Original source text excerpt.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_location: Optional[str] = Field(default=None, description="""Coarse location in the source (page, slide, paragraph).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    evidence_grade: Optional[EvidenceGradeEnum] = Field(default=None, description="""How directly the source supports the assertion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_confidence: Optional[ReviewerConfidenceEnum] = Field(default=None, description="""Human-assigned reviewer confidence.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_comment: Optional[str] = Field(default=None, description="""Free-form reviewer notes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    validation_status: Optional[ValidationStatusEnum] = Field(default=None, description="""Lifecycle status of this candidate record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    valid_from: Optional[datetime ] = Field(default=None, description="""Datetime this version became valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    valid_to: Optional[datetime ] = Field(default=None, description="""Datetime this version stopped being valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    superseded_by: Optional[str] = Field(default=None, description="""Id of the entity that replaces this one.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+
+
+class Technology(Entity):
+    """
+    A technology, tool, or external platform dependency.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
+
+    category: Optional[str] = Field(default=None, description="""Category of a technology.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Technology']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
+    name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
+    label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
+    source_document_id: Optional[str] = Field(default=None, description="""ID of the document this record was extracted from.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_file: Optional[str] = Field(default=None, description="""Filename of the originating document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    source_snippet: Optional[str] = Field(default=None, description="""Original source text excerpt.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_location: Optional[str] = Field(default=None, description="""Coarse location in the source (page, slide, paragraph).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    evidence_grade: Optional[EvidenceGradeEnum] = Field(default=None, description="""How directly the source supports the assertion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_confidence: Optional[ReviewerConfidenceEnum] = Field(default=None, description="""Human-assigned reviewer confidence.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_comment: Optional[str] = Field(default=None, description="""Free-form reviewer notes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    validation_status: Optional[ValidationStatusEnum] = Field(default=None, description="""Lifecycle status of this candidate record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    valid_from: Optional[datetime ] = Field(default=None, description="""Datetime this version became valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    valid_to: Optional[datetime ] = Field(default=None, description="""Datetime this version stopped being valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    superseded_by: Optional[str] = Field(default=None, description="""Id of the entity that replaces this one.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+
+
+class Person(Entity):
+    """
+    A person involved in founding, building, or operating the startup.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
+
+    role: Optional[str] = Field(default=None, description="""Role of a founder or partner.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Founder', 'Partner', 'Person']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
+    name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
+    label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
+    source_document_id: Optional[str] = Field(default=None, description="""ID of the document this record was extracted from.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_file: Optional[str] = Field(default=None, description="""Filename of the originating document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    source_snippet: Optional[str] = Field(default=None, description="""Original source text excerpt.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_location: Optional[str] = Field(default=None, description="""Coarse location in the source (page, slide, paragraph).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    evidence_grade: Optional[EvidenceGradeEnum] = Field(default=None, description="""How directly the source supports the assertion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_confidence: Optional[ReviewerConfidenceEnum] = Field(default=None, description="""Human-assigned reviewer confidence.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_comment: Optional[str] = Field(default=None, description="""Free-form reviewer notes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    validation_status: Optional[ValidationStatusEnum] = Field(default=None, description="""Lifecycle status of this candidate record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    valid_from: Optional[datetime ] = Field(default=None, description="""Datetime this version became valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    valid_to: Optional[datetime ] = Field(default=None, description="""Datetime this version stopped being valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    superseded_by: Optional[str] = Field(default=None, description="""Id of the entity that replaces this one.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+
+
+class PartnerSegment(Entity):
+    """
+    A partner or buyer segment connected to a use case.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
+
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
+    name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
+    label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
+    source_document_id: Optional[str] = Field(default=None, description="""ID of the document this record was extracted from.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_file: Optional[str] = Field(default=None, description="""Filename of the originating document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    source_snippet: Optional[str] = Field(default=None, description="""Original source text excerpt.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_location: Optional[str] = Field(default=None, description="""Coarse location in the source (page, slide, paragraph).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    evidence_grade: Optional[EvidenceGradeEnum] = Field(default=None, description="""How directly the source supports the assertion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_confidence: Optional[ReviewerConfidenceEnum] = Field(default=None, description="""Human-assigned reviewer confidence.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_comment: Optional[str] = Field(default=None, description="""Free-form reviewer notes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    validation_status: Optional[ValidationStatusEnum] = Field(default=None, description="""Lifecycle status of this candidate record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    valid_from: Optional[datetime ] = Field(default=None, description="""Datetime this version became valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    valid_to: Optional[datetime ] = Field(default=None, description="""Datetime this version stopped being valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    superseded_by: Optional[str] = Field(default=None, description="""Id of the entity that replaces this one.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+
+
+class BusinessModelComponent(Entity):
+    """
+    A component of the business model such as pricing or channel.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
+
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
+    name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
+    label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
+    source_document_id: Optional[str] = Field(default=None, description="""ID of the document this record was extracted from.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_file: Optional[str] = Field(default=None, description="""Filename of the originating document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    source_snippet: Optional[str] = Field(default=None, description="""Original source text excerpt.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_location: Optional[str] = Field(default=None, description="""Coarse location in the source (page, slide, paragraph).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    evidence_grade: Optional[EvidenceGradeEnum] = Field(default=None, description="""How directly the source supports the assertion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_confidence: Optional[ReviewerConfidenceEnum] = Field(default=None, description="""Human-assigned reviewer confidence.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_comment: Optional[str] = Field(default=None, description="""Free-form reviewer notes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    validation_status: Optional[ValidationStatusEnum] = Field(default=None, description="""Lifecycle status of this candidate record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    valid_from: Optional[datetime ] = Field(default=None, description="""Datetime this version became valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    valid_to: Optional[datetime ] = Field(default=None, description="""Datetime this version stopped being valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    superseded_by: Optional[str] = Field(default=None, description="""Id of the entity that replaces this one.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+
+
+class CommercialProcess(Entity):
+    """
+    A commercial or go-to-market process step.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
+
+    stage: Optional[str] = Field(default=None, description="""Stage (preferred investment stage for investors; current stage for projects and processes).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Investor', 'StartupProject', 'CommercialProcess']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
+    name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
+    label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
+    source_document_id: Optional[str] = Field(default=None, description="""ID of the document this record was extracted from.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_file: Optional[str] = Field(default=None, description="""Filename of the originating document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    source_snippet: Optional[str] = Field(default=None, description="""Original source text excerpt.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    source_location: Optional[str] = Field(default=None, description="""Coarse location in the source (page, slide, paragraph).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+    evidence_grade: Optional[EvidenceGradeEnum] = Field(default=None, description="""How directly the source supports the assertion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_confidence: Optional[ReviewerConfidenceEnum] = Field(default=None, description="""Human-assigned reviewer confidence.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    reviewer_comment: Optional[str] = Field(default=None, description="""Free-form reviewer notes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    validation_status: Optional[ValidationStatusEnum] = Field(default=None, description="""Lifecycle status of this candidate record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Relation']} })
+    valid_from: Optional[datetime ] = Field(default=None, description="""Datetime this version became valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    valid_to: Optional[datetime ] = Field(default=None, description="""Datetime this version stopped being valid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation']} })
+    superseded_by: Optional[str] = Field(default=None, description="""Id of the entity that replaces this one.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
+
+
+class Metric(Entity):
+    """
+    A measurable KPI or outcome used for decision-making.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://foundergraph.dev/ontology/startup'})
+
+    unit: Optional[str] = Field(default=None, description="""Unit of measurement of a metric.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Metric']} })
+    target: Optional[str] = Field(default=None, description="""Target value of a metric.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Metric']} })
+    id: str = Field(default=..., description="""Stable identifier for the entity or relation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Relation', 'Community', 'MacroCommunity']} })
     name: Optional[str] = Field(default=None, description="""Human-readable display name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document']} })
     label: Optional[str] = Field(default=None, description="""Short label (often used in graphs / UI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity']} })
     description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Entity', 'Document', 'Impact']} })
@@ -1036,3 +1361,17 @@ Site.model_rebuild()
 Vendor.model_rebuild()
 Country.model_rebuild()
 Blocker.model_rebuild()
+MacroCommunity.model_rebuild()
+StartupProject.model_rebuild()
+UseCase.model_rebuild()
+Concept.model_rebuild()
+Standard.model_rebuild()
+ExportFormat.model_rebuild()
+ProductModule.model_rebuild()
+TechnicalCapability.model_rebuild()
+Technology.model_rebuild()
+Person.model_rebuild()
+PartnerSegment.model_rebuild()
+BusinessModelComponent.model_rebuild()
+CommercialProcess.model_rebuild()
+Metric.model_rebuild()

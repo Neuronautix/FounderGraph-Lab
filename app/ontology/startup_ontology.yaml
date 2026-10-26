@@ -328,6 +328,9 @@ relations:
 - subject: Metric
   predicate: MEASURES
   object: Concept
+- subject: Founder
+  predicate: FOUNDED
+  object: Startup
 - subject: Person
   predicate: FOUNDED
   object: StartupProject
